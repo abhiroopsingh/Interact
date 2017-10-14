@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created by Tanya Sutan-Tanon on 2017.04.17
+Copyright © 2017 Osman Balci. All rights reserved.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <!-- Do not enter tags before the composition line since they are ignored by JSF -->
+
+    <!-- This page is constructed based on the siteTemplate -->
+    <ui:composition template="template/siteTemplate.xhtml">
+
+        <ui:define name="title">
+            <!-- Set the page title -->
+            <h:outputText value="Create Account"></h:outputText>
+        </ui:define>
+
+        <!-- Create the content for this page below -->
+        <ui:define name="editableContent">
+            <div align="center"> <index_header>Create Account</index_header></div>
+            <br/>
+            <div align="center" style="width:600px; background-color: #FEFEFE; margin:0 auto;" >
+
+                <!-- Error messages will be shown here if any  -->
+                <p:messages id="msgs" showIcon="false"/>
+                <h:outputLabel id="form-error-message" class="errorMessages" value="#{accountManager.statusMessage}"/>
+
+                <h:form id="AccountCreationForm">
+
+                    <f:event listener="#{accountManager.validateInformation}" type="postValidate"/>
+
+                    <table cellspacing="7" style="border-right-color: red; border-right-width: 200px;">
+                        <tr>
+                            <td><index_regular>First Name</index_regular></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p:inputText id="firstName" value="#{accountManager.firstName}" required="true" styleClass="accountInputTextField"
+                                             requiredMessage="First Name is Required!" label="First Name">
+                                    <f:validateLength minimum="2" />
+                                </p:inputText>   
+                            </td>
+                             
+                        </tr>
+                        
+                        <tr>
+                            <td><index_regular>Last Name</index_regular></td>
+                        </tr>
+                        <tr>
+                             <td>
+                               <p:inputText id="lastName" value="#{accountManager.lastName}" required="true" styleClass="accountInputTextField"
+                                             requiredMessage="Last Name is Required!" label="Last Name">
+                                    <f:validateLength minimum="2" />
+                                </p:inputText>
+                            </td> 
+                        </tr>
+                        
+                        <tr>
+                            <td><index_regular>Email</index_regular></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p:inputText id="email" value="#{accountManager.email}" required="true" styleClass="accountInputTextField"
+                                             requiredMessage="Email Address is Required!" label="Email">
+                                    <f:validator validatorId="emailValidator" />  
+                                </p:inputText>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td><index_regular>Username</index_regular></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p:inputText id="username" value="#{accountManager.username}" required="true" styleClass="accountInputTextField"
+                                             requiredMessage="Username is Required!" label="Username">
+                                    <f:validator validatorId="usernameValidator"/> 
+                                </p:inputText>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td><index_regular>Password</index_regular></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p:password id="password" value="#{accountManager.password}" feedback="true" required="true" 
+                                            styleClass="accountInputTextField" requiredMessage="Password is Required!">
+                                    <!-- Execute the "validate" method in the "PasswordValidator.java" class file to validate the password entered. -->
+                                    <f:validator validatorId="passwordValidator" /> 
+                                </p:password>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td><index_regular>Confirm Password</index_regular></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p:password id="confirmPassword" value="ToBeReadFromThisFieldByAccountManager" required="true" 
+                                            styleClass="accountInputTextField" requiredMessage="Confirm Password is Required!"/>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td><index_regular>Security Question</index_regular></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h:selectOneMenu id="securityQuestion" style="width: 228px; height: 30px; border-radius: 3px;" label="Security Questions"
+                                                 value="#{accountManager.securityQuestion}" required="true" requiredMessage="Security Question is Required!" >
+                                    <f:selectItems value="#{accountManager.security_questions}" />
+                                </h:selectOneMenu>
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td><index_regular>Security Answer</index_regular></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <p:inputText id="securityAnswer" value="#{accountManager.securityAnswer}" required="true" styleClass="accountInputTextField"
+                                             requiredMessage="Security Answer is Required!" label="Security Answer">
+                                    <f:validateLength minimum="2" />
+                                </p:inputText>
+                            </td>
+                        </tr>
+
+                    </table>
+                    <p:spacer height="20px"/>
+                    <div align="center">
+                        <p:commandButton class="login" style="display:inline" id="submit" value="Submit" action="#{accountManager.createAccount()}" ajax="false"/>
+                    </div>
+                    <br/>
+                    <br/>
+                </h:form>
+            </div>
+        </ui:define>
+
+    </ui:composition>
+    <!-- Do not enter tags after the composition line since they are ignored by JSF -->
+
+</html>
