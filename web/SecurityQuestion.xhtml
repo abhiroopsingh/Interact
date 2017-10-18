@@ -9,6 +9,7 @@ Copyright © 2017 Akhil Gangu. All rights reserved.
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui">
 
+
     <!-- Do not enter tags before the composition line since they are ignored by JSF -->
 
     <!-- This page is constructed based on the siteTemplate -->
@@ -16,49 +17,30 @@ Copyright © 2017 Akhil Gangu. All rights reserved.
 
         <!-- Create the content for this page below -->
         <ui:define name="editableContent">
-            <div align="center"> <index_header>Log In</index_header></div>
+            <div align="center"> <index_header>Security Question</index_header></div>
             <br></br>
 
             <div align="center" style="width:500px; background-color: #FEFEFE; margin:0 auto;">
-                <br/>
-                <p:messages id="msgs" showIcon="false"/>
-                <h:outputLabel id="form-error-message" class="errorMessages" value="#{loginManager.errorMessage}"/>
-
-                <!-- Form is used to Sign In to the User model of the application -->
                 <h:form>
                     <br/>
                     <table cellspacing="10">
                         <tr>
-                            <td><index_regular>Username</index_regular></td>
+                            <index_regular><h:outputLabel for="question" value="#{passwordResetManager.getSecurityQuestion()}" /></index_regular>
                         </tr>
                         <tr>
                             <td>
-                                <p:inputText id="username" style="font-family: Lato; width:250px; box-shadow: none;" value="#{loginManager.username}" required="true" 
-                                             requiredMessage="Username Requred!" label="Username">
+                                <p:inputText id="answer" style="font-family: Lato; width:250px; box-shadow: none;" value="#{passwordResetManager.answer}" required="true" 
+                                             requiredMessage="Please enter the answer." label="Answer">
                                 </p:inputText>
-                            </td>
-                        </tr>
-                        <tr></tr>
-                        <tr></tr>
-                        <tr>
-                            <td><index_regular>Password</index_regular></td>
-                        </tr>
 
-                        <tr>
-                            <td>
-                                <p:password id="password" style="font-family: Lato; width: 250px; box-shadow: none;" value="#{loginManager.password}" feedback="false">
-                                </p:password>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h:link outcome="ForgotPassword.xhtml"><b>Forgot password?</b></h:link>
                             </td>
                         </tr>
                     </table>
                     <br/>
-                    <p:commandButton id="login" value="Sign In" action="#{loginManager.loginUser()}" 
+                    <p:commandButton id="submit" value="Submit" action="#{passwordResetManager.securityAnswerSubmit()}" style="display: inline" 
                                      class="login" ajax="false"/>
+
+                    &nbsp;
                     <br/>
                     <br/>
                 </h:form>
