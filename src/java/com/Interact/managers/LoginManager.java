@@ -2,7 +2,7 @@
  * Created by Abhiroop Singh on 2017.05.01  * 
  * Copyright © 2017 Abhiroop Singh. All rights reserved. * 
  */
-package com.interact.managers;
+package com.Interact.managers;
 
 import com.Interact.Entities.Users;
 import com.Interact.FacadeBeans.UsersFacade;
