@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Created by Osman Balci on 2016.11.30 
+Copyright © 2016 Osman Balci. All rights reserved.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <!-- Do not enter tags before the composition line since they are ignored by JSF -->
+
+    <!-- This page is constructed based on the siteTemplate -->
+    <ui:composition template="/template/siteTemplate.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Session Questions"></h:outputText>
+        </ui:define>
+
+        <!-- Create the content for this page below -->
+        <ui:define name="editableContent">
+            <!--
+            PrimeFaces Growl displays messages in an overlay. Place p:growl anywhere on your JSF page. 
+            The location of growl in a JSF page does not matter since the messages are displayed
+            as an overlay. The life attribute defines how long the message will be displayed in 
+            milliseconds after which it will fade away. 4000 milliseconds = 4 seconds
+            -->
+            <p:growl id="growl" life="4000" />
+
+            <h:form id="QuestionAnswersListForm">
+
+                <p:commandButton styleClass="index_signup" value="Back" action="#{sessionsController.backIsClicked}" ajax="false"/>
+
+                <div align="Center">
+                    <index_header><h:outputText value="Your session key is: #{sessionsController.selected.getId()}"/></index_header>
+                    <br />
+                    <br />
+                </div>
+
+                <p:dataTable id="datalist" value="#{questionAnswersController.sessionItems}" var="item"
+                             selectionMode="single" selection="#{questionAnswersController.selected}" rowKey="#{item.id}">
+
+                    <p:ajax event="rowSelect"   update="createButton"/>
+                    <p:ajax event="rowUnselect" update="createButton"/>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListQuestionAnswersTitle_question}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.question}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Question Type"/>
+                        </f:facet>
+                        <h:outputText value="#{item.questionType}"/>
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListQuestionAnswersTitle_answer}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.answer}"/>
+                    </p:column>
+
+                    <f:facet name="footer">
+                        <div align="center">
+                            <p:commandButton id="createButton" value="Add Question" actionListener="#{questionAnswersController.prepareCreate}" update=":QuestionAnswersCreateForm" oncomplete="PF('QuestionAnswersCreateDialog').show()"/>
+                        </div>
+                    </f:facet>
+                </p:dataTable>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+
+        </ui:define>
+
+    </ui:composition>
+    <!-- Do not enter tags after the composition line since they are ignored by JSF -->
+
+</html>

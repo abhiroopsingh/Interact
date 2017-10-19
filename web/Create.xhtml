@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:composition>
+
+        <p:dialog id="QuestionAnswersCreateDlg" widgetVar="QuestionAnswersCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Create New Question">
+            <h:form id="QuestionAnswersCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{questionAnswersController.selected != null}">
+
+                        <p:outputLabel value="#{bundle.CreateQuestionAnswersLabel_question}" for="question" />
+                        <p:inputText id="question" style="width: 500px" value="#{questionAnswersController.selected.question}" title="#{bundle.CreateQuestionAnswersTitle_question}" required="true" requiredMessage="#{bundle.CreateQuestionAnswersRequiredMessage_question}"/>
+
+                        <p:outputLabel value="Question Type" for="questionType" />
+                        <p:selectOneMenu id="questionType" value="#{questionAnswersController.selected.questionType}" style="width:483px">
+                            <f:selectItem itemLabel="Select Question Type" itemValue="" />
+                            <f:selectItem itemLabel="Multiple Choice" itemValue="MC" />
+                            <f:selectItem itemLabel="Text Entry" itemValue="TE" />
+                            <f:selectItem itemLabel="True False" itemValue="TF" />
+                        </p:selectOneMenu>                        
+
+                        <p:outputLabel value="#{bundle.CreateQuestionAnswersLabel_answer}" for="answer" />
+                        <p:inputText id="answer" value="#{questionAnswersController.selected.answer}" title="#{bundle.CreateQuestionAnswersTitle_answer}" required="true" requiredMessage="#{bundle.CreateQuestionAnswersRequiredMessage_answer}"/>
+
+                    </p:panelGrid>
+                    <div align="center">
+                        <br />
+                        <p:commandButton actionListener="#{questionAnswersController.create}" value="#{bundle.Save}" 
+                                         styleClass="commandButton" icon="ui-icon-disk" ajax="false"
+                                         update="display,:QuestionAnswersListForm:datalist,:growl" 
+                                         oncomplete="handleSubmit(args,'QuestionAnswersCreateDialog');" />
+                        &nbsp;
+                        <!-- CANCEL button -->
+                        <p:commandButton value="#{bundle.Cancel}" onclick="PF('QuestionAnswersCreateDialog').hide()" 
+                                         styleClass="commandButton" icon="ui-icon-cancel"/>
+                    </div>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

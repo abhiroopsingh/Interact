@@ -85,6 +85,14 @@ index_header {
     text-decoration: none;
     color: black; /* Dark Green */
 }
+something {
+    font-family: Lato;
+    font-size: 30px;
+    font-weight: bolder;
+    text-decoration: none;
+    color: white; /* Dark Green */
+}
+
 
 index_regular {
 

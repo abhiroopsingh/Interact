@@ -4,6 +4,7 @@ import com.Interact.Entities.Sessions;
 import com.Interact.controllers.util.JsfUtil;
 import com.Interact.controllers.util.JsfUtil.PersistAction;
 import com.Interact.FacadeBeans.SessionsFacade;
+import com.Interact.managers.AccountManager;
 
 import java.io.Serializable;
 import java.util.List;
@@ -18,6 +19,7 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Inject;
 
 @Named("sessionsController")
 @SessionScoped
@@ -27,6 +29,11 @@ public class SessionsController implements Serializable {
     private com.Interact.FacadeBeans.SessionsFacade ejbFacade;
     private List<Sessions> items = null;
     private Sessions selected;
+    
+    @Inject
+    private AccountManager accountManager;
+    
+    private List<Sessions> ownedSessions = null;
 
     public SessionsController() {
     }
@@ -119,6 +126,16 @@ public class SessionsController implements Serializable {
 
     public List<Sessions> getItemsAvailableSelectOne() {
         return getFacade().findAll();
+    }
+
+    public List<Sessions> getOwnedSessions() {
+                
+        String username = accountManager.getUsername();        
+        return getFacade().findOwnedSessions(username);
+    }
+
+    public void setOwnedSessions(List<Sessions> ownedSessions) {
+        this.ownedSessions = ownedSessions;
     }
 
     @FacesConverter(forClass = Sessions.class)

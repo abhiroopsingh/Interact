@@ -5,6 +5,7 @@
 package com.Interact.FacadeBeans;
 
 import com.Interact.Entities.Sessions;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -27,5 +28,13 @@ public class SessionsFacade extends AbstractFacade<Sessions> {
     public SessionsFacade() {
         super(Sessions.class);
     }
-    
+
+    public List<Sessions> findOwnedSessions(String username) {
+
+        return em.createQuery("SELECT c FROM Sessions c WHERE c.master = :username")
+                .setParameter("username", username)
+                .getResultList();
+
+    }
+
 }

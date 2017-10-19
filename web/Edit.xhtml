@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="QuestionAnswersEditDlg" widgetVar="QuestionAnswersEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditQuestionAnswersTitle}">
+            <h:form id="QuestionAnswersEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{questionAnswersController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditQuestionAnswersLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{questionAnswersController.selected.id}" title="#{bundle.EditQuestionAnswersTitle_id}" required="true" requiredMessage="#{bundle.EditQuestionAnswersRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditQuestionAnswersLabel_question}" for="question" />
+                        <p:inputText id="question" value="#{questionAnswersController.selected.question}" title="#{bundle.EditQuestionAnswersTitle_question}" required="true" requiredMessage="#{bundle.EditQuestionAnswersRequiredMessage_question}"/>
+                        <p:outputLabel value="#{bundle.EditQuestionAnswersLabel_questionType}" for="questionType" />
+                        <p:inputText id="questionType" value="#{questionAnswersController.selected.questionType}" title="#{bundle.EditQuestionAnswersTitle_questionType}" required="true" requiredMessage="#{bundle.EditQuestionAnswersRequiredMessage_questionType}"/>
+                        <p:outputLabel value="#{bundle.EditQuestionAnswersLabel_answer}" for="answer" />
+                        <p:inputText id="answer" value="#{questionAnswersController.selected.answer}" title="#{bundle.EditQuestionAnswersTitle_answer}" required="true" requiredMessage="#{bundle.EditQuestionAnswersRequiredMessage_answer}"/>
+                        <p:outputLabel value="#{bundle.EditQuestionAnswersLabel_answerChoices}" for="answerChoices" />
+                        <p:inputText id="answerChoices" value="#{questionAnswersController.selected.answerChoices}" title="#{bundle.EditQuestionAnswersTitle_answerChoices}" required="true" requiredMessage="#{bundle.EditQuestionAnswersRequiredMessage_answerChoices}"/>
+                        <p:outputLabel value="#{bundle.EditQuestionAnswersLabel_sessionId}" for="sessionId" />
+                        <p:selectOneMenu id="sessionId" value="#{questionAnswersController.selected.sessionId}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{sessionsController.itemsAvailableSelectOne}"
+                                           var="sessionIdItem"
+                                           itemValue="#{sessionIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{questionAnswersController.update}" value="#{bundle.Save}" update="display,:QuestionAnswersListForm:datalist,:growl" oncomplete="handleSubmit(args, 'QuestionAnswersEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="QuestionAnswersEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
