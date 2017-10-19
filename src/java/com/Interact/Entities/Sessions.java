@@ -30,9 +30,12 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Sessions.findAll", query = "SELECT s FROM Sessions s")
-    , @NamedQuery(name = "Sessions.findById", query = "SELECT s FROM Sessions s WHERE s.id = :id")
-    , @NamedQuery(name = "Sessions.findByActive", query = "SELECT s FROM Sessions s WHERE s.active = :active")
-    , @NamedQuery(name = "Sessions.findOwnedSessions", query = "SELECT s FROM Sessions s WHERE s.master = :master") })
+    , @NamedQuery(name = "Sessions.findById",
+            query = "SELECT s FROM Sessions s WHERE s.id = :id")
+    , @NamedQuery(name = "Sessions.findByActive",
+            query = "SELECT s FROM Sessions s WHERE s.active = :active")
+    , @NamedQuery(name = "Sessions.findOwnedSessions",
+            query = "SELECT s FROM Sessions s WHERE s.master = :master")})
 public class Sessions implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -66,6 +69,12 @@ public class Sessions implements Serializable {
         this.active = active;
     }
 
+    public Sessions(String id, boolean active, Users master) {
+        this.id = id;
+        this.active = active;
+        this.master = master;
+    }
+
     public String getId() {
         return id;
     }
@@ -87,7 +96,8 @@ public class Sessions implements Serializable {
         return userAnswersCollection;
     }
 
-    public void setUserAnswersCollection(Collection<UserAnswers> userAnswersCollection) {
+    public void setUserAnswersCollection(
+            Collection<UserAnswers> userAnswersCollection) {
         this.userAnswersCollection = userAnswersCollection;
     }
 
@@ -122,7 +132,8 @@ public class Sessions implements Serializable {
             return false;
         }
         Sessions other = (Sessions) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.
+                equals(other.id))) {
             return false;
         }
         return true;
@@ -132,5 +143,5 @@ public class Sessions implements Serializable {
     public String toString() {
         return "com.Interact.Questions.Sessions[ id=" + id + " ]";
     }
-    
+
 }
