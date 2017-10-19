@@ -129,8 +129,9 @@ public class SessionsController implements Serializable {
     }
 
     public List<Sessions> getOwnedSessions() {
-                
-        String username = accountManager.getUsername();        
+        
+        String username = accountManager.getSelected().getUsername();
+         
         return getFacade().findOwnedSessions(username);
     }
 

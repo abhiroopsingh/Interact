@@ -31,8 +31,7 @@ public class SessionsFacade extends AbstractFacade<Sessions> {
 
     public List<Sessions> findOwnedSessions(String username) {
 
-        return em.createQuery("SELECT c FROM Sessions c WHERE c.master = :username")
-                .setParameter("username", username)
+        return em.createNamedQuery("Sessions.findOwnedSessions").setParameter("master", username)
                 .getResultList();
 
     }
