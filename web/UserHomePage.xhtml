@@ -39,26 +39,31 @@ Copyright © 2017 Osman Balci. All rights reserved.
 
                     </h:form>
 
-                    <p:dataTable var="item" value="#{sessionsController.ownedSessions}" style="font-family: Lato" >
-                        <f:facet name="header">
-                            My Sessions
-                        </f:facet>
+                    <h:form>
+                        <p:dataTable var="item" value="#{sessionsController.ownedSessions}" style="font-family: Lato" >
+                            <f:facet name="header">
+                                My Sessions
+                            </f:facet>
 
-                        <p:column headerText="Session Name">
-                            <h:outputText value="#{item.id}" />
-                        </p:column>
-                        <p:column headerText="Active">
+                            <p:column headerText="Session Name">
 
-                            <p:graphicImage rendered="#{item.active eq true}">
-                                <i class="fa fa-check" style="font-size: 20px; color:green"></i>
-                            </p:graphicImage>
-                            <p:graphicImage rendered="#{item.active eq false}">
-                                <i class="fa fa-times" style="font-size: 20px; color:red"></i>
-                            </p:graphicImage>
-                            
-                        </p:column>
+                                <h:commandLink id="routeLink" value="#{item.id}" action="#{sessionsController.routeSessions}" style="color:black" >         
+                                    <f:param name="sessId" value="#{item.id}" />
+                                </h:commandLink>
+                            </p:column>
+                            <p:column headerText="Active">
 
-                    </p:dataTable>
+                                <p:graphicImage rendered="#{item.active eq true}">
+                                    <i class="fa fa-check" style="font-size: 20px; color:green"></i>
+                                </p:graphicImage>
+                                <p:graphicImage rendered="#{item.active eq false}">
+                                    <i class="fa fa-times" style="font-size: 20px; color:red"></i>
+                                </p:graphicImage>
+
+                            </p:column>
+
+                        </p:dataTable>
+                    </h:form>
 
                 </p:panelGrid>
 

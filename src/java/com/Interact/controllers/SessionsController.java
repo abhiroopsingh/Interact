@@ -8,6 +8,7 @@ import com.Interact.managers.AccountManager;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -151,12 +152,23 @@ public class SessionsController implements Serializable {
 
     public List<Sessions> getOwnedSessions() {
         String username = accountManager.getSelected().getUsername();
-       
+
         return getFacade().findOwnedSessions(username);
     }
 
     public void setOwnedSessions(List<Sessions> ownedSessions) {
         this.ownedSessions = ownedSessions;
+    }
+
+    public String routeSessions() {
+
+        FacesContext fc = FacesContext.getCurrentInstance();
+        String session_id = fc.getExternalContext().getRequestParameterMap().get("sessId");
+
+        Sessions sess = getSessions(session_id);
+        setSelected(sess);
+        
+        return "/CreateSession.xhtml";
     }
 
     @FacesConverter(forClass = Sessions.class)
