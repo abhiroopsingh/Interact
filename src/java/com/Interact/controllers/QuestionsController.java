@@ -81,9 +81,7 @@ public class QuestionsController implements Serializable {
     }
 
     public List<Questions> getItems() {
-        if (items == null) {
-            items = getFacade().findAll();
-        }
+        items = getFacade().findBySessionId(sessionsController.getSelected().getId());
         return items;
     }
 

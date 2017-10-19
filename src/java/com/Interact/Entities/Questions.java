@@ -33,7 +33,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Questions.findByQuestion", query = "SELECT q FROM Questions q WHERE q.question = :question")
     , @NamedQuery(name = "Questions.findByQuestionType", query = "SELECT q FROM Questions q WHERE q.questionType = :questionType")
     , @NamedQuery(name = "Questions.findByAnswer", query = "SELECT q FROM Questions q WHERE q.answer = :answer")
-    , @NamedQuery(name = "Questions.findByAnswerChoices", query = "SELECT q FROM Questions q WHERE q.answerChoices = :answerChoices")})
+    , @NamedQuery(name = "Questions.findByAnswerChoices", query = "SELECT q FROM Questions q WHERE q.answerChoices = :answerChoices")
+    , @NamedQuery(name = "Questions.findBySessionId", query = "SELECT q FROM Questions q WHERE q.sessionId.id = :session_id")})
 public class Questions implements Serializable {
 
     @JoinColumn(name = "session_id", referencedColumnName = "id")

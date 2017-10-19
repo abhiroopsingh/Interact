@@ -8,6 +8,7 @@ import com.Interact.Entities.Questions;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 /**
  *
@@ -28,4 +29,8 @@ public class QuestionsFacade extends AbstractFacade<Questions> {
         super(Questions.class);
     }
     
+    public List<Questions> findBySessionId(String sessionId) {
+        return em.createNamedQuery("Questions.findBySessionId").setParameter("session_id", sessionId)
+                .getResultList();
+    }
 }
