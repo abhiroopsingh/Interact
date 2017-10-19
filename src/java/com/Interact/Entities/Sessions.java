@@ -80,13 +80,9 @@ public class Sessions implements Serializable {
         this.id = id;
     }
 
-    public String getActive() {
-        
-        if(active) {
-            return "true";
-        }
-        
-        return "false";
+    public boolean getActive() {
+       
+        return active;
     }
 
     public void setActive(boolean active) {

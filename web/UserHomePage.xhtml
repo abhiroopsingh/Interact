@@ -48,7 +48,14 @@ Copyright © 2017 Osman Balci. All rights reserved.
                             <h:outputText value="#{item.id}" />
                         </p:column>
                         <p:column headerText="Active">
-                            <h:outputText value="#{item.active}" />
+
+                            <p:graphicImage rendered="#{item.active eq true}">
+                                <i class="fa fa-check" style="font-size: 20px; color:green"></i>
+                            </p:graphicImage>
+                            <p:graphicImage rendered="#{item.active eq false}">
+                                <i class="fa fa-times" style="font-size: 20px; color:red"></i>
+                            </p:graphicImage>
+                            
                         </p:column>
 
                     </p:dataTable>
