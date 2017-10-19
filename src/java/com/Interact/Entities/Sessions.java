@@ -66,6 +66,12 @@ public class Sessions implements Serializable {
         this.active = active;
     }
 
+    public Sessions(String id, boolean active, Users master) {
+        this.id = id;
+        this.active = active;
+        this.master = master;
+    }
+
     public String getId() {
         return id;
     }
@@ -92,7 +98,8 @@ public class Sessions implements Serializable {
         return userAnswersCollection;
     }
 
-    public void setUserAnswersCollection(Collection<UserAnswers> userAnswersCollection) {
+    public void setUserAnswersCollection(
+            Collection<UserAnswers> userAnswersCollection) {
         this.userAnswersCollection = userAnswersCollection;
     }
 
@@ -127,7 +134,8 @@ public class Sessions implements Serializable {
             return false;
         }
         Sessions other = (Sessions) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.
+                equals(other.id))) {
             return false;
         }
         return true;
@@ -137,5 +145,5 @@ public class Sessions implements Serializable {
     public String toString() {
         return "com.Interact.Questions.Sessions[ id=" + id + " ]";
     }
-    
+
 }

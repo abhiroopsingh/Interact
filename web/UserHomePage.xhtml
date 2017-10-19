@@ -23,7 +23,7 @@ Copyright © 2017 Osman Balci. All rights reserved.
 
                             <p:commandButton id="create_event" class="login" 
                                              style="width: 290px; height: 55px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 20px; border-style: solid; border-width: 1px;"
-                                             value="Create Session" action="CreateSession?faces-redirect=true">
+                                             value="Create Session" action="#{sessionsController.initSession()}" ajax="false">
                             </p:commandButton>  
                             <br/>
                             <p:commandButton id="share" class="login"

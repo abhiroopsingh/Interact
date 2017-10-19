@@ -9,35 +9,35 @@
 
     <ui:composition>
 
-        <p:dialog id="QuestionAnswersCreateDlg" widgetVar="QuestionAnswersCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Create New Question">
-            <h:form id="QuestionAnswersCreateForm">
+        <p:dialog id="QuestionsCreateDlg" widgetVar="QuestionsCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="Create New Question">
+            <h:form id="QuestionsCreateForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{questionAnswersController.selected != null}">
+                    <p:panelGrid columns="2" rendered="#{questionsController.selected != null}">
 
-                        <p:outputLabel value="#{bundle.CreateQuestionAnswersLabel_question}" for="question" />
-                        <p:inputText id="question" style="width: 500px" value="#{questionAnswersController.selected.question}" title="#{bundle.CreateQuestionAnswersTitle_question}" required="true" requiredMessage="#{bundle.CreateQuestionAnswersRequiredMessage_question}"/>
+                        <p:outputLabel value="#{bundle.CreateQuestionsLabel_question}" for="question" />
+                        <p:inputText id="question" style="width: 500px" value="#{questionsController.selected.question}" title="#{bundle.CreateQuestionsTitle_question}" required="true" requiredMessage="#{bundle.CreateQuestionsRequiredMessage_question}"/>
 
                         <p:outputLabel value="Question Type" for="questionType" />
-                        <p:selectOneMenu id="questionType" value="#{questionAnswersController.selected.questionType}" style="width:483px">
+                        <p:selectOneMenu id="questionType" value="#{questionsController.selected.questionType}" style="width:483px">
                             <f:selectItem itemLabel="Select Question Type" itemValue="" />
                             <f:selectItem itemLabel="Multiple Choice" itemValue="MC" />
                             <f:selectItem itemLabel="Text Entry" itemValue="TE" />
                             <f:selectItem itemLabel="True False" itemValue="TF" />
                         </p:selectOneMenu>                        
 
-                        <p:outputLabel value="#{bundle.CreateQuestionAnswersLabel_answer}" for="answer" />
-                        <p:inputText id="answer" value="#{questionAnswersController.selected.answer}" title="#{bundle.CreateQuestionAnswersTitle_answer}" required="true" requiredMessage="#{bundle.CreateQuestionAnswersRequiredMessage_answer}"/>
+                        <p:outputLabel value="#{bundle.CreateQuestionsLabel_answer}" for="answer" />
+                        <p:inputText id="answer" value="#{questionsController.selected.answer}" title="#{bundle.CreateQuestionsTitle_answer}" required="true" requiredMessage="#{bundle.CreateQuestionsRequiredMessage_answer}"/>
 
                     </p:panelGrid>
                     <div align="center">
                         <br />
-                        <p:commandButton actionListener="#{questionAnswersController.create}" value="#{bundle.Save}" 
+                        <p:commandButton actionListener="#{questionsController.create}" value="#{bundle.Save}" 
                                          styleClass="commandButton" icon="ui-icon-disk" ajax="false"
-                                         update="display,:QuestionAnswersListForm:datalist,:growl" 
-                                         oncomplete="handleSubmit(args,'QuestionAnswersCreateDialog');" />
+                                         update="display,:QuestionsListForm:datalist,:growl" 
+                                         oncomplete="handleSubmit(args,'QuestionsCreateDialog');" />
                         &nbsp;
                         <!-- CANCEL button -->
-                        <p:commandButton value="#{bundle.Cancel}" onclick="PF('QuestionAnswersCreateDialog').hide()" 
+                        <p:commandButton value="#{bundle.Cancel}" onclick="PF('QuestionsCreateDialog').hide()" 
                                          styleClass="commandButton" icon="ui-icon-cancel"/>
                     </div>
                 </h:panelGroup>

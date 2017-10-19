@@ -39,35 +39,35 @@ Copyright © 2016 Osman Balci. All rights reserved.
                     <br />
                 </div>
 
-                <p:dataTable id="datalist" value="#{questionAnswersController.sessionItems}" var="item"
-                             selectionMode="single" selection="#{questionAnswersController.selected}" rowKey="#{item.id}">
+                <p:dataTable id="datalist" value="#{questionsController.items}" var="item"
+                             selectionMode="single" selection="#{questionsController.selected}" rowKey="#{item.id}">
 
                     <p:ajax event="rowSelect"   update="createButton"/>
                     <p:ajax event="rowUnselect" update="createButton"/>
 
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="#{bundle.ListQuestionAnswersTitle_question}"/>
+                            <h:outputText value="#{bundle.ListQuestionsTitle_question}"/>
                         </f:facet>
                         <h:outputText value="#{item.question}"/>
                     </p:column>
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="Question Type"/>
+                            <h:outputText value="#{bundle.ListQuestionsTitle_questionType}"/>
                         </f:facet>
                         <h:outputText value="#{item.questionType}"/>
                     </p:column>
 
                     <p:column>
                         <f:facet name="header">
-                            <h:outputText value="#{bundle.ListQuestionAnswersTitle_answer}"/>
+                            <h:outputText value="#{bundle.ListQuestionsTitle_answer}"/>
                         </f:facet>
                         <h:outputText value="#{item.answer}"/>
                     </p:column>
 
                     <f:facet name="footer">
                         <div align="center">
-                            <p:commandButton id="createButton" value="Add Question" actionListener="#{questionAnswersController.prepareCreate}" update=":QuestionAnswersCreateForm" oncomplete="PF('QuestionAnswersCreateDialog').show()"/>
+                            <p:commandButton id="createButton" value="Add Question" actionListener="#{questionsController.prepareCreate}" update=":QuestionsCreateForm" oncomplete="PF('QuestionsCreateDialog').show()"/>
                         </div>
                     </f:facet>
                 </p:dataTable>
