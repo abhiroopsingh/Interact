@@ -41,6 +41,8 @@ public class SessionsController implements Serializable {
             toCharArray();
     final static int ID_SIZE = 16;
 
+    private String joinKey;
+
     public SessionsController() {
     }
 
@@ -58,6 +60,14 @@ public class SessionsController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
+    public String getJoinKey() {
+        return joinKey;
+    }
+
+    public void setJoinKey(String joinKey) {
+        this.joinKey = joinKey;
+    }
+
     private SessionsFacade getFacade() {
         return ejbFacade;
     }
@@ -67,12 +77,18 @@ public class SessionsController implements Serializable {
         return "CreateSession?faces-redirect=true";
     }
 
+    public String join() {
+        return "JoinSession?faces-redirect=true";
+    }
+
     public String backIsClicked() {
+        joinKey = null;
         return "UserHomePage?faces-redirect=true";
     }
 
     public Sessions prepareCreate() {
-        selected = new Sessions(generateId(), false, accountManager.getSelected());
+        selected = new Sessions(generateId(), false, accountManager.
+                getSelected());
         initializeEmbeddableKey();
         create();
         return selected;
@@ -163,11 +179,12 @@ public class SessionsController implements Serializable {
     public String routeSessions() {
 
         FacesContext fc = FacesContext.getCurrentInstance();
-        String session_id = fc.getExternalContext().getRequestParameterMap().get("sessId");
+        String session_id = fc.getExternalContext().getRequestParameterMap().
+                get("sessId");
 
         Sessions sess = getSessions(session_id);
         setSelected(sess);
-        
+
         return "/CreateSession.xhtml";
     }
 
@@ -219,7 +236,7 @@ public class SessionsController implements Serializable {
 
     }
 
-    private static String generateId() {
+    private String generateId() {
         Random random = new Random();
         char[] id = new char[ID_SIZE];
         for (int x = 0; x < ID_SIZE; x++) {

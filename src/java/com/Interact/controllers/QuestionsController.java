@@ -27,6 +27,7 @@ public class QuestionsController implements Serializable {
     @EJB
     private com.Interact.FacadeBeans.QuestionsFacade ejbFacade;
     private List<Questions> items = null;
+    private List<Questions> sessionItems = null;
     private Questions selected;
     private String optionA = "", optionB = "", optionC = "", optionD = "";
     private final String OPTION_DELIM = "|$|";
@@ -117,7 +118,8 @@ public class QuestionsController implements Serializable {
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("QuestionsDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").
+                getString("QuestionsDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
@@ -125,10 +127,17 @@ public class QuestionsController implements Serializable {
     }
 
     public List<Questions> getItems() {
-        if (items == null) {
-            items = getFacade().findAll();
-        }
+        items = getFacade().findBySessionId(sessionsController.getSelected().
+                getId());
         return items;
+    }
+
+    public List<Questions> getSessionItems() {
+        return getFacade().findBySessionId(sessionsController.getJoinKey());
+    }
+
+    public void setSessionItems(List<Questions> sessionItems) {
+        this.sessionItems = sessionItems;
     }
 
     private void persist(PersistAction persistAction, String successMessage) {
@@ -150,11 +159,14 @@ public class QuestionsController implements Serializable {
                 if (msg.length() > 0) {
                     JsfUtil.addErrorMessage(msg);
                 } else {
-                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle(
+                            "/Bundle").getString("PersistenceErrorOccured"));
                 }
             } catch (Exception ex) {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
-                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE,
+                        null, ex);
+                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").
+                        getString("PersistenceErrorOccured"));
             }
         }
     }
@@ -175,12 +187,15 @@ public class QuestionsController implements Serializable {
     public static class QuestionsControllerConverter implements Converter {
 
         @Override
-        public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
+        public Object getAsObject(FacesContext facesContext,
+                UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            QuestionsController controller = (QuestionsController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "questionsController");
+            QuestionsController controller = (QuestionsController) facesContext.
+                    getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null,
+                            "questionsController");
             return controller.getQuestions(getKey(value));
         }
 
@@ -197,7 +212,8 @@ public class QuestionsController implements Serializable {
         }
 
         @Override
-        public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
+        public String getAsString(FacesContext facesContext,
+                UIComponent component, Object object) {
             if (object == null) {
                 return null;
             }
@@ -205,7 +221,10 @@ public class QuestionsController implements Serializable {
                 Questions o = (Questions) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Questions.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE,
+                        "object {0} is of type {1}; expected type: {2}",
+                        new Object[]{object, object.getClass().getName(),
+                            Questions.class.getName()});
                 return null;
             }
         }
