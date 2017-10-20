@@ -28,6 +28,8 @@ public class QuestionsController implements Serializable {
     private com.Interact.FacadeBeans.QuestionsFacade ejbFacade;
     private List<Questions> items = null;
     private Questions selected;
+    private String optionA = "", optionB = "", optionC = "", optionD = "";
+    private final String OPTION_DELIM = "|$|";
     
     @Inject
     private SessionsController sessionsController;
@@ -37,6 +39,38 @@ public class QuestionsController implements Serializable {
 
     public Questions getSelected() {
         return selected;
+    }
+
+    public String getOptionA() {
+        return optionA;
+    }
+
+    public void setOptionA(String optionA) {
+        this.optionA = optionA;
+    }
+
+    public String getOptionB() {
+        return optionB;
+    }
+
+    public void setOptionB(String optionB) {
+        this.optionB = optionB;
+    }
+
+    public String getOptionC() {
+        return optionC;
+    }
+
+    public void setOptionC(String optionC) {
+        this.optionC = optionC;
+    }
+
+    public String getOptionD() {
+        return optionD;
+    }
+
+    public void setOptionD(String optionD) {
+        this.optionD = optionD;
     }
 
     public void setSelected(Questions selected) {
@@ -60,8 +94,15 @@ public class QuestionsController implements Serializable {
         initializeEmbeddableKey();
         return selected;
     }
+    
+    private String encodeOptions(){
+        return optionA + OPTION_DELIM + optionB + OPTION_DELIM + optionC + OPTION_DELIM + optionD;
+    }
 
     public void create() {
+        if(selected.getQuestionType().equals("MC")){
+            selected.setAnswerChoices(encodeOptions());
+        }
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("QuestionsCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
@@ -69,6 +110,9 @@ public class QuestionsController implements Serializable {
     }
 
     public void update() {
+        if(selected.getQuestionType().equals("MC")){
+            selected.setAnswerChoices(encodeOptions());
+        }
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("QuestionsUpdated"));
     }
 
@@ -81,7 +125,9 @@ public class QuestionsController implements Serializable {
     }
 
     public List<Questions> getItems() {
-        items = getFacade().findBySessionId(sessionsController.getSelected().getId());
+        if (items == null) {
+            items = getFacade().findAll();
+        }
         return items;
     }
 
