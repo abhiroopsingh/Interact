@@ -111,14 +111,22 @@ public class QuestionsController implements Serializable {
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("QuestionsCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").
+                getString("QuestionsCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
-
+    
+    public void prepareUpdate() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        String question_id = fc.getExternalContext().getRequestParameterMap().get("editQuestion");
+        this.setSelected(getQuestions(Integer.parseInt(question_id)));
+    }
+    
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("QuestionsUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").
+                getString("QuestionsUpdated"));
     }
 
     public void destroy() {
@@ -128,6 +136,17 @@ public class QuestionsController implements Serializable {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
+    }
+
+    public void deleteQuestion() {
+
+        FacesContext fc = FacesContext.getCurrentInstance();
+
+        String question_id = fc.getExternalContext().getRequestParameterMap().
+                get("deleteId");
+
+        selected = getFacade().find(Integer.parseInt(question_id));
+        destroy();
     }
 
     public List<Questions> getItems() {

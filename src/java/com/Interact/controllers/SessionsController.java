@@ -90,6 +90,13 @@ public class SessionsController implements Serializable {
         return "UserHomePage?faces-redirect=true";
     }
 
+    public String startSession() {
+        getSelected().setActive(true);
+        update();
+        joinKey = null;
+        return "UserHomePage?faces-redirect=true";
+    }
+
     public Sessions prepareCreate() {
         selected = new Sessions(generateId(), false, accountManager.
                 getSelected());
@@ -124,13 +131,13 @@ public class SessionsController implements Serializable {
         setSelected(sess);
 
         List<Questions> deleteQuestions = questionsController.getItems();
-        
-        for(Questions q : deleteQuestions) {
-            
+
+        for (Questions q : deleteQuestions) {
+
             questionsController.setSelected(q);
             questionsController.destroy();
         }
-        
+
         persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").
                 getString("SessionsDeleted"));
         if (!JsfUtil.isValidationFailed()) {

@@ -4,34 +4,68 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:composition>
 
-        <p:dialog id="QuestionAnswersEditDlg" widgetVar="QuestionAnswersEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditQuestionAnswersTitle}">
-            <h:form id="QuestionAnswersEditForm">
+        <p:dialog id="QuestionsEditDlg" widgetVar="QuestionsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="Edit Question">
+            <h:form id="QuestionsEditForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{questionAnswersController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditQuestionAnswersLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{questionAnswersController.selected.id}" title="#{bundle.EditQuestionAnswersTitle_id}" required="true" requiredMessage="#{bundle.EditQuestionAnswersRequiredMessage_id}"/>
-                        <p:outputLabel value="#{bundle.EditQuestionAnswersLabel_question}" for="question" />
-                        <p:inputText id="question" value="#{questionAnswersController.selected.question}" title="#{bundle.EditQuestionAnswersTitle_question}" required="true" requiredMessage="#{bundle.EditQuestionAnswersRequiredMessage_question}"/>
-                        <p:outputLabel value="#{bundle.EditQuestionAnswersLabel_questionType}" for="questionType" />
-                        <p:inputText id="questionType" value="#{questionAnswersController.selected.questionType}" title="#{bundle.EditQuestionAnswersTitle_questionType}" required="true" requiredMessage="#{bundle.EditQuestionAnswersRequiredMessage_questionType}"/>
-                        <p:outputLabel value="#{bundle.EditQuestionAnswersLabel_answer}" for="answer" />
-                        <p:inputText id="answer" value="#{questionAnswersController.selected.answer}" title="#{bundle.EditQuestionAnswersTitle_answer}" required="true" requiredMessage="#{bundle.EditQuestionAnswersRequiredMessage_answer}"/>
-                        <p:outputLabel value="#{bundle.EditQuestionAnswersLabel_answerChoices}" for="answerChoices" />
-                        <p:inputText id="answerChoices" value="#{questionAnswersController.selected.answerChoices}" title="#{bundle.EditQuestionAnswersTitle_answerChoices}" required="true" requiredMessage="#{bundle.EditQuestionAnswersRequiredMessage_answerChoices}"/>
-                        <p:outputLabel value="#{bundle.EditQuestionAnswersLabel_sessionId}" for="sessionId" />
-                        <p:selectOneMenu id="sessionId" value="#{questionAnswersController.selected.sessionId}" >
-                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItems value="#{sessionsController.itemsAvailableSelectOne}"
-                                           var="sessionIdItem"
-                                           itemValue="#{sessionIdItem}"/>
-                        </p:selectOneMenu>
+                    <p:panelGrid columns="2" rendered="#{questionsController.selected != null}">
+
+                        <p:outputLabel value="Question Type" for="questionType" />
+                        <p:selectOneMenu id="questionType" value="#{questionsController.selected.questionType}" style="width:483px">
+                            <f:selectItem itemLabel="Select Question Type" itemValue="" />
+                            <f:selectItem itemLabel="Multiple Choice" itemValue="Multiple Choice" />
+                            <f:selectItem itemLabel="True False" itemValue="True/False" />
+                            <f:selectItem itemLabel="Text Entry" itemValue="Text Entry" />
+                            <p:ajax event="change" update="@form" />
+                        </p:selectOneMenu> 
+
+                        <p:outputLabel value="#{bundle.CreateQuestionsLabel_question}" for="question" />
+                        <p:inputText id="question" style="width: 500px" value="#{questionsController.selected.question}" title="#{bundle.CreateQuestionsTitle_question}" required="true" requiredMessage="#{bundle.CreateQuestionsRequiredMessage_question}"/>         
+
+                        <p:outputLabel rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" value="A:" />
+                        <p:inputText rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" id="choice1" style="width: 500px" value="#{questionsController.selected.multipleChoiceA}" title="#{bundle.CreateQuestionsTitle_question}"/>
+                        <p:outputLabel rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" value="B:" />
+                        <p:inputText rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" id="choice2" style="width: 500px" value="#{questionsController.selected.multipleChoiceB}" title="#{bundle.CreateQuestionsTitle_question}"/>
+                        <p:outputLabel rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" value="C:" />
+                        <p:inputText rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" id="choice3" style="width: 500px" value="#{questionsController.selected.multipleChoiceC}" title="#{bundle.CreateQuestionsTitle_question}"/>
+                        <p:outputLabel rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" value="D:" />
+                        <p:inputText rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" id="choice4" style="width: 500px" value="#{questionsController.selected.multipleChoiceD}" title="#{bundle.CreateQuestionsTitle_question}"/>
+                        <p:outputLabel rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" value="E:" />
+                        <p:inputText rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" id="choice5" style="width: 500px" value="#{questionsController.selected.multipleChoiceE}" title="#{bundle.CreateQuestionsTitle_question}"/>
+
+                        <p:outputLabel value="#{bundle.CreateQuestionsLabel_answer}" for="answer" />
+                        <p:selectOneMenu id="MCAnswer" rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" value="#{questionsController.selected.answer}" style="width:483px">
+                            <f:selectItem itemLabel="Select Correct Answer Choice" itemValue="" />
+                            <f:selectItem itemLabel="A" itemValue="A" />
+                            <f:selectItem itemLabel="B" itemValue="B" />
+                            <f:selectItem itemLabel="C" itemValue="C" />
+                            <f:selectItem itemLabel="D" itemValue="D" />
+                            <f:selectItem itemLabel="E" itemValue="E" />
+
+                        </p:selectOneMenu> 
+                        <p:selectOneMenu id="TFAnswer" rendered="#{questionsController.selected.questionType eq 'True/False'}" value="#{questionsController.selected.answer}" style="width:483px">
+                            <f:selectItem itemLabel="Select Correct Answer Choice" itemValue="" />
+                            <f:selectItem itemLabel="True" itemValue="A" />
+                            <f:selectItem itemLabel="False" itemValue="B" />
+                        </p:selectOneMenu> 
+                        <p:inputText id="answer" rendered="#{questionsController.selected.questionType eq 'Text Entry'}" value="#{questionsController.selected.answer}" title="#{bundle.CreateQuestionsTitle_answer}" required="true" requiredMessage="#{bundle.CreateQuestionsRequiredMessage_answer}"/>
+
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{questionAnswersController.update}" value="#{bundle.Save}" update="display,:QuestionAnswersListForm:datalist,:growl" oncomplete="handleSubmit(args, 'QuestionAnswersEditDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="QuestionAnswersEditDialog.hide()"/>
+                    <div align="center">
+                        <br />
+                        <p:commandButton actionListener="#{questionsController.update}" value="#{bundle.Save}" 
+                                         styleClass="commandButton" icon="ui-icon-disk" ajax="false"
+                                         update="display,:QuestionsListForm:datalist,:growl" 
+                                         oncomplete="handleSubmit(args,'QuestionsCreateDialog');" />
+                        &nbsp;
+                        <!-- CANCEL button -->
+                        <p:commandButton value="#{bundle.Cancel}" onclick="PF('QuestionsEditDialog').hide()" 
+                                         styleClass="commandButton" icon="ui-icon-cancel"/>
+                    </div>
                 </h:panelGroup>
             </h:form>
         </p:dialog>
