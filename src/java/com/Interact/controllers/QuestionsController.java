@@ -105,7 +105,13 @@ public class QuestionsController implements Serializable {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
-
+    
+    public void prepareUpdate() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        String question_id = fc.getExternalContext().getRequestParameterMap().get("editQuestion");
+        this.setSelected(getQuestions(Integer.parseInt(question_id)));
+    }
+    
     public void update() {
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("QuestionsUpdated"));
     }
