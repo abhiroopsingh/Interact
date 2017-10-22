@@ -44,7 +44,7 @@ Copyright © 2016 Osman Balci. All rights reserved.
 
                     <p:ajax event="rowSelect"   update="createButton"/>
                     <p:ajax event="rowUnselect" update="createButton"/>
-                    
+
                     <p:column>
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListQuestionsTitle_questionType}"/>
@@ -65,6 +65,27 @@ Copyright © 2016 Osman Balci. All rights reserved.
                         </f:facet>
                         <h:outputText value="#{item.answer}"/>
                     </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Preview"/>
+                        </f:facet>
+
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Edit"/>
+                        </f:facet>
+
+                    </p:column>
+
+                    <p:column>
+                        <f:facet name="header">
+                            <h:outputText value="Delete"/>
+                        </f:facet>
+
+                    </p:column>
+
 
                     <f:facet name="footer">
                         <div align="center">
