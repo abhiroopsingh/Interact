@@ -31,7 +31,7 @@ public class QuestionsController implements Serializable {
     private Questions selected;
     private String optionA = "", optionB = "", optionC = "", optionD = "";
     private final String OPTION_DELIM = "|$|";
-    
+
     @Inject
     private SessionsController sessionsController;
 
@@ -94,8 +94,19 @@ public class QuestionsController implements Serializable {
         initializeEmbeddableKey();
         return selected;
     }
-    
-    private String encodeOptions(){
+
+    public void prepareView() {
+
+        FacesContext fc = FacesContext.getCurrentInstance();
+        int questionId = Integer.valueOf(fc.getExternalContext().getRequestParameterMap().
+                get("questionId"));
+        
+        Questions q = getQuestions(questionId);
+        setSelected(q);
+        
+    }
+
+    private String encodeOptions() {
         return optionA + OPTION_DELIM + optionB + OPTION_DELIM + optionC + OPTION_DELIM + optionD;
     }
 
