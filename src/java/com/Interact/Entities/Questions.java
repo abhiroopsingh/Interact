@@ -33,9 +33,24 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Questions.findByQuestion", query = "SELECT q FROM Questions q WHERE q.question = :question")
     , @NamedQuery(name = "Questions.findByQuestionType", query = "SELECT q FROM Questions q WHERE q.questionType = :questionType")
     , @NamedQuery(name = "Questions.findByAnswer", query = "SELECT q FROM Questions q WHERE q.answer = :answer")
-    , @NamedQuery(name = "Questions.findByAnswerChoices", query = "SELECT q FROM Questions q WHERE q.answerChoices = :answerChoices")
     , @NamedQuery(name = "Questions.findBySessionId", query = "SELECT q FROM Questions q WHERE q.sessionId.id = :session_id")})
 public class Questions implements Serializable {
+
+    @Size(max = 1000)
+    @Column(name = "multipleChoiceA")
+    private String multipleChoiceA;
+    @Size(max = 1000)
+    @Column(name = "multipleChoiceB")
+    private String multipleChoiceB;
+    @Size(max = 1000)
+    @Column(name = "multipleChoiceC")
+    private String multipleChoiceC;
+    @Size(max = 1000)
+    @Column(name = "multipleChoiceD")
+    private String multipleChoiceD;
+    @Size(max = 1000)
+    @Column(name = "multipleChoiceE")
+    private String multipleChoiceE;
 
     @JoinColumn(name = "session_id", referencedColumnName = "id")
     @ManyToOne
@@ -62,11 +77,6 @@ public class Questions implements Serializable {
     @Size(min = 1, max = 3000)
     @Column(name = "answer")
     private String answer;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 3000)
-    @Column(name = "answerChoices")
-    private String answerChoices;
 
     public Questions() {
     }
@@ -75,12 +85,11 @@ public class Questions implements Serializable {
         this.id = id;
     }
 
-    public Questions(Integer id, String question, String questionType, String answer, String answerChoices) {
+    public Questions(Integer id, String question, String questionType, String answer) {
         this.id = id;
         this.question = question;
         this.questionType = questionType;
         this.answer = answer;
-        this.answerChoices = answerChoices;
     }
 
     public Integer getId() {
@@ -115,14 +124,6 @@ public class Questions implements Serializable {
         this.answer = answer;
     }
 
-    public String getAnswerChoices() {
-        return answerChoices;
-    }
-
-    public void setAnswerChoices(String answerChoices) {
-        this.answerChoices = answerChoices;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -154,6 +155,46 @@ public class Questions implements Serializable {
 
     public void setSessionId(Sessions sessionId) {
         this.sessionId = sessionId;
+    }
+
+    public String getMultipleChoiceA() {
+        return multipleChoiceA;
+    }
+
+    public void setMultipleChoiceA(String multipleChoiceA) {
+        this.multipleChoiceA = multipleChoiceA;
+    }
+
+    public String getMultipleChoiceB() {
+        return multipleChoiceB;
+    }
+
+    public void setMultipleChoiceB(String multipleChoiceB) {
+        this.multipleChoiceB = multipleChoiceB;
+    }
+
+    public String getMultipleChoiceC() {
+        return multipleChoiceC;
+    }
+
+    public void setMultipleChoiceC(String multipleChoiceC) {
+        this.multipleChoiceC = multipleChoiceC;
+    }
+
+    public String getMultipleChoiceD() {
+        return multipleChoiceD;
+    }
+
+    public void setMultipleChoiceD(String multipleChoiceD) {
+        this.multipleChoiceD = multipleChoiceD;
+    }
+
+    public String getMultipleChoiceE() {
+        return multipleChoiceE;
+    }
+
+    public void setMultipleChoiceE(String multipleChoiceE) {
+        this.multipleChoiceE = multipleChoiceE;
     }
     
 }

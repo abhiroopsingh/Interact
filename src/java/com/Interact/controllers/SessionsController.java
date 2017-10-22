@@ -1,5 +1,6 @@
 package com.Interact.controllers;
 
+import com.Interact.Entities.Questions;
 import com.Interact.Entities.Sessions;
 import com.Interact.controllers.util.JsfUtil;
 import com.Interact.controllers.util.JsfUtil.PersistAction;
@@ -7,8 +8,8 @@ import com.Interact.FacadeBeans.SessionsFacade;
 import com.Interact.managers.AccountManager;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -34,6 +35,9 @@ public class SessionsController implements Serializable {
 
     @Inject
     private AccountManager accountManager;
+
+    @Inject
+    private QuestionsController questionsController;
 
     private List<Sessions> ownedSessions = null;
 
@@ -89,17 +93,20 @@ public class SessionsController implements Serializable {
     public Sessions prepareCreate() {
         selected = new Sessions(generateId(), false, accountManager.
                 getSelected());
+        selected.setDateModified(new Date());
         initializeEmbeddableKey();
-        create();
         return selected;
     }
 
-    public void create() {
+    public String create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").
                 getString("SessionsCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
+
+        return "CreateSession?faces-redirect=true";
+
     }
 
     public void update() {
@@ -108,6 +115,22 @@ public class SessionsController implements Serializable {
     }
 
     public void destroy() {
+
+        FacesContext fc = FacesContext.getCurrentInstance();
+        String session_id = fc.getExternalContext().getRequestParameterMap().
+                get("deleteId");
+
+        Sessions sess = getSessions(session_id);
+        setSelected(sess);
+
+        List<Questions> deleteQuestions = questionsController.getItems();
+        
+        for(Questions q : deleteQuestions) {
+            
+            questionsController.setSelected(q);
+            questionsController.destroy();
+        }
+        
         persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").
                 getString("SessionsDeleted"));
         if (!JsfUtil.isValidationFailed()) {

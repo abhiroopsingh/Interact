@@ -360,6 +360,7 @@ Style the div component whose unique id is "rightAlignPanelGroup" per reference
     font-size: 18px;
     color: white;
     text-decoration: none;
+    border-width: 1px;
 
 }
 
@@ -367,6 +368,20 @@ Style the div component whose unique id is "rightAlignPanelGroup" per reference
     color: #0aa9f7;
 }
 .login_button {
+    font-family: Lato;
+    font-size: 14px;
+    font-weight: 300;
+    color: white;
+    text-decoration: none;
+    border-color: white;
+    background: transparent;
+    border-width: 1px;
+    border-style: solid;
+    box-shadow: none;
+
+}
+
+.ui-button .ui-widget .ui-state-default .ui-corner-all .ui-button-text-icon-left .loginn {
     font-family: Lato;
     font-size: 14px;
     font-weight: 300;

@@ -13,42 +13,46 @@
             <h:form id="QuestionsCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{questionsController.selected != null}">
-                        
-                       <p:outputLabel value="Question Type" for="questionType" />
+
+                        <p:outputLabel value="Question Type" for="questionType" />
                         <p:selectOneMenu id="questionType" value="#{questionsController.selected.questionType}" style="width:483px">
                             <f:selectItem itemLabel="Select Question Type" itemValue="" />
-                            <f:selectItem itemLabel="Multiple Choice" itemValue="MC" />
-                            <f:selectItem itemLabel="True False" itemValue="TF" />
-                            <f:selectItem itemLabel="Text Entry" itemValue="TE" />
+                            <f:selectItem itemLabel="Multiple Choice" itemValue="Multiple Choice" />
+                            <f:selectItem itemLabel="True False" itemValue="True/False" />
+                            <f:selectItem itemLabel="Text Entry" itemValue="Text Entry" />
                             <p:ajax event="change" update="@form" />
                         </p:selectOneMenu> 
 
                         <p:outputLabel value="#{bundle.CreateQuestionsLabel_question}" for="question" />
                         <p:inputText id="question" style="width: 500px" value="#{questionsController.selected.question}" title="#{bundle.CreateQuestionsTitle_question}" required="true" requiredMessage="#{bundle.CreateQuestionsRequiredMessage_question}"/>         
-                        
-                        <p:outputLabel rendered="#{questionsController.selected.questionType eq 'MC'}" value="Option A:" />
-                        <p:inputText rendered="#{questionsController.selected.questionType eq 'MC'}" id="choice1" style="width: 500px" value="#{questionsController.optionA}" title="#{bundle.CreateQuestionsTitle_question}"/>
-                        <p:outputLabel rendered="#{questionsController.selected.questionType eq 'MC'}" value="Option B:" />
-                        <p:inputText rendered="#{questionsController.selected.questionType eq 'MC'}" id="choice2" style="width: 500px" value="#{questionsController.optionB}" title="#{bundle.CreateQuestionsTitle_question}"/>
-                        <p:outputLabel rendered="#{questionsController.selected.questionType eq 'MC'}" value="Option C:" />
-                        <p:inputText rendered="#{questionsController.selected.questionType eq 'MC'}" id="choice3" style="width: 500px" value="#{questionsController.optionC}" title="#{bundle.CreateQuestionsTitle_question}"/>
-                        <p:outputLabel rendered="#{questionsController.selected.questionType eq 'MC'}" value="Option D:" />
-                        <p:inputText rendered="#{questionsController.selected.questionType eq 'MC'}" id="choice4" style="width: 500px" value="#{questionsController.optionD}" title="#{bundle.CreateQuestionsTitle_question}"/>
-                        
+
+                        <p:outputLabel rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" value="A:" />
+                        <p:inputText rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" id="choice1" style="width: 500px" value="#{questionsController.selected.multipleChoiceA}" title="#{bundle.CreateQuestionsTitle_question}"/>
+                        <p:outputLabel rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" value="B:" />
+                        <p:inputText rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" id="choice2" style="width: 500px" value="#{questionsController.selected.multipleChoiceB}" title="#{bundle.CreateQuestionsTitle_question}"/>
+                        <p:outputLabel rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" value="C:" />
+                        <p:inputText rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" id="choice3" style="width: 500px" value="#{questionsController.selected.multipleChoiceC}" title="#{bundle.CreateQuestionsTitle_question}"/>
+                        <p:outputLabel rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" value="D:" />
+                        <p:inputText rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" id="choice4" style="width: 500px" value="#{questionsController.selected.multipleChoiceD}" title="#{bundle.CreateQuestionsTitle_question}"/>
+                        <p:outputLabel rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" value="E:" />
+                        <p:inputText rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" id="choice5" style="width: 500px" value="#{questionsController.selected.multipleChoiceE}" title="#{bundle.CreateQuestionsTitle_question}"/>
+
                         <p:outputLabel value="#{bundle.CreateQuestionsLabel_answer}" for="answer" />
-                        <p:selectOneMenu id="MCAnswer" rendered="#{questionsController.selected.questionType eq 'MC'}" value="#{questionsController.selected.answer}" style="width:483px">
+                        <p:selectOneMenu id="MCAnswer" rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" value="#{questionsController.selected.answer}" style="width:483px">
                             <f:selectItem itemLabel="Select Correct Answer Choice" itemValue="" />
-                            <f:selectItem itemLabel="Option A" itemValue="A" />
-                            <f:selectItem itemLabel="Option B" itemValue="B" />
-                            <f:selectItem itemLabel="Option C" itemValue="C" />
-                            <f:selectItem itemLabel="Option D" itemValue="D" />
+                            <f:selectItem itemLabel="A" itemValue="A" />
+                            <f:selectItem itemLabel="B" itemValue="B" />
+                            <f:selectItem itemLabel="C" itemValue="C" />
+                            <f:selectItem itemLabel="D" itemValue="D" />
+                            <f:selectItem itemLabel="E" itemValue="E" />
+
                         </p:selectOneMenu> 
-                        <p:selectOneMenu id="TFAnswer" rendered="#{questionsController.selected.questionType eq 'TF'}" value="#{questionsController.selected.answer}" style="width:483px">
+                        <p:selectOneMenu id="TFAnswer" rendered="#{questionsController.selected.questionType eq 'True/False'}" value="#{questionsController.selected.answer}" style="width:483px">
                             <f:selectItem itemLabel="Select Correct Answer Choice" itemValue="" />
                             <f:selectItem itemLabel="True" itemValue="A" />
                             <f:selectItem itemLabel="False" itemValue="B" />
                         </p:selectOneMenu> 
-                        <p:inputText id="answer" rendered="#{questionsController.selected.questionType eq 'TE'}" value="#{questionsController.selected.answer}" title="#{bundle.CreateQuestionsTitle_answer}" required="true" requiredMessage="#{bundle.CreateQuestionsRequiredMessage_answer}"/>
+                        <p:inputText id="answer" rendered="#{questionsController.selected.questionType eq 'Text Entry'}" value="#{questionsController.selected.answer}" title="#{bundle.CreateQuestionsTitle_answer}" required="true" requiredMessage="#{bundle.CreateQuestionsRequiredMessage_answer}"/>
 
                     </p:panelGrid>
                     <div align="center">

@@ -91,7 +91,6 @@ public class QuestionsController implements Serializable {
     public Questions prepareCreate() {
         selected = new Questions();
         selected.setSessionId(sessionsController.getSelected());
-        selected.setAnswerChoices("...");
         initializeEmbeddableKey();
         return selected;
     }
@@ -101,9 +100,6 @@ public class QuestionsController implements Serializable {
     }
 
     public void create() {
-        if(selected.getQuestionType().equals("MC")){
-            selected.setAnswerChoices(encodeOptions());
-        }
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("QuestionsCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
@@ -111,9 +107,6 @@ public class QuestionsController implements Serializable {
     }
 
     public void update() {
-        if(selected.getQuestionType().equals("MC")){
-            selected.setAnswerChoices(encodeOptions());
-        }
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("QuestionsUpdated"));
     }
 

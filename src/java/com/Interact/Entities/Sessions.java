@@ -6,6 +6,7 @@ package com.Interact.Entities;
 
 import java.io.Serializable;
 import java.util.Collection;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +17,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -32,7 +35,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Sessions.findAll", query = "SELECT s FROM Sessions s")
     , @NamedQuery(name = "Sessions.findById", query = "SELECT s FROM Sessions s WHERE s.id = :id")
     , @NamedQuery(name = "Sessions.findByActive", query = "SELECT s FROM Sessions s WHERE s.active = :active")
-    , @NamedQuery(name = "Sessions.findOwnedSessions", query = "SELECT s FROM Sessions s WHERE s.master.username = :master") })
+    , @NamedQuery(name = "Sessions.findOwnedSessions", query = "SELECT s FROM Sessions s WHERE s.master.username = :master")})
 public class Sessions implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -53,6 +56,16 @@ public class Sessions implements Serializable {
     private Users master;
     @OneToMany(mappedBy = "sessionId")
     private Collection<Questions> questionsCollection;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 3000)
+    @Column(name = "sessionName")
+    private String sessionName;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "dateModified")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateModified;
 
     public Sessions() {
     }
@@ -81,7 +94,7 @@ public class Sessions implements Serializable {
     }
 
     public boolean getActive() {
-       
+
         return active;
     }
 
@@ -140,6 +153,22 @@ public class Sessions implements Serializable {
     @Override
     public String toString() {
         return "com.Interact.Questions.Sessions[ id=" + id + " ]";
+    }
+
+    public String getSessionName() {
+        return sessionName;
+    }
+
+    public void setSessionName(String sessionName) {
+        this.sessionName = sessionName;
+    }
+
+    public Date getDateModified() {
+        return dateModified;
+    }
+
+    public void setDateModified(Date dateModified) {
+        this.dateModified = dateModified;
     }
 
 }
