@@ -31,7 +31,12 @@ Copyright © 2016 Osman Balci. All rights reserved.
 
             <h:form id="QuestionAnswersListForm">
 
-                <p:commandButton styleClass="index_signup" value="Back" action="#{sessionsController.backIsClicked}" ajax="false"/>
+                <p:panelGrid id="buttons" columns="2" styleClass="ui-panelgrid-blank">
+                    <p:commandButton id="Back" value="Back" action="#{sessionsController.backIsClicked}"
+                                     style="width: 290px; height: 55px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 20px; border-style: solid; border-width: 1px;"/>
+                    <p:commandButton id="Start" value="Start Session" action="#{sessionsController.startSession}" 
+                                     style="width: 290px; height: 55px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 20px; border-style: solid; border-width: 1px;"/>
+                </p:panelGrid>
 
                 <div align="Center">
                     <index_header><h:outputText value="Your session key is: #{sessionsController.selected.getId()}"/></index_header>
@@ -88,6 +93,13 @@ Copyright © 2016 Osman Balci. All rights reserved.
                         <f:facet name="header">
                             <h:outputText value="Delete"/>
                         </f:facet>
+
+                        <p:commandButton id="deleteButton" icon="ui-icon-trash" 
+                                         style="width: 50px; height: 50px;" 
+                                         action="#{questionsController.deleteQuestion()}"
+                                         update="datalist">
+                            <f:param name="deleteId" value="#{item.id}" />
+                        </p:commandButton>
 
                     </p:column>
 
