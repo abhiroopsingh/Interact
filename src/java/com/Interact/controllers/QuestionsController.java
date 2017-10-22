@@ -28,6 +28,7 @@ public class QuestionsController implements Serializable {
     private com.Interact.FacadeBeans.QuestionsFacade ejbFacade;
     private List<Questions> items = null;
     private List<Questions> sessionItems = null;
+private String fullAnswer = null;    
     private Questions selected;
     private String optionA = "", optionB = "", optionC = "", optionD = "";
     private final String OPTION_DELIM = "|$|";
@@ -100,10 +101,10 @@ public class QuestionsController implements Serializable {
         FacesContext fc = FacesContext.getCurrentInstance();
         int questionId = Integer.valueOf(fc.getExternalContext().getRequestParameterMap().
                 get("questionId"));
-        
+
         Questions q = getQuestions(questionId);
         setSelected(q);
-        
+
     }
 
     private String encodeOptions() {
@@ -111,22 +112,66 @@ public class QuestionsController implements Serializable {
     }
 
     public void create() {
+
+        if (selected.getQuestionType().equals("True/False")) {
+            selected.setMultipleChoiceA("True");
+            selected.setMultipleChoiceB("False");
+        }
+
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").
                 getString("QuestionsCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
-    
+
     public void prepareUpdate() {
         FacesContext fc = FacesContext.getCurrentInstance();
         String question_id = fc.getExternalContext().getRequestParameterMap().get("editQuestion");
         this.setSelected(getQuestions(Integer.parseInt(question_id)));
     }
-    
+
     public void update() {
+        if (selected.getQuestionType().equals("True/False")) {
+            selected.setMultipleChoiceA("True");
+            selected.setMultipleChoiceB("False");
+            selected.setMultipleChoiceC(null);
+            selected.setMultipleChoiceD(null);
+            selected.setMultipleChoiceE(null);
+        }
+
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").
                 getString("QuestionsUpdated"));
+    }
+
+    public String getFullAnswer() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        String question_id = fc.getExternalContext().getRequestParameterMap().get("answerChoice");
+
+        Questions q = getQuestions(Integer.parseInt(question_id));
+        setSelected(q);
+
+        switch (q.getAnswer()) {
+
+            case "A":
+                return q.getMultipleChoiceA();
+            case "B":
+                return q.getMultipleChoiceB();
+            case "C":
+                return q.getMultipleChoiceC();
+            case "D":
+                return q.getMultipleChoiceD();
+            case "E":
+                return q.getMultipleChoiceE();
+            default:
+                return "";
+        }
+
+    }
+    
+    public void setFullAnswer(String answer) {
+        
+        fullAnswer = answer;
     }
 
     public void destroy() {

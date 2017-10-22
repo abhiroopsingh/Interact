@@ -68,7 +68,8 @@ Copyright © 2016 Osman Balci. All rights reserved.
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListQuestionsTitle_answer}"/>
                         </f:facet>
-                        <h:outputText value="#{item.answer}"/>
+                        <h:outputText value="#{item.answer}">
+                        </h:outputText>
                     </p:column>
 
                     <p:column>
@@ -87,10 +88,10 @@ Copyright © 2016 Osman Balci. All rights reserved.
                         <f:facet name="header">
                             <h:outputText value="Edit"/>
                         </f:facet>
-                        
+
                         <p:commandButton id="editButton" style="width: 50px; height: 50px;" 
-                                                 action="#{questionsController.prepareUpdate}" icon="ui-icon-trash"
-                                                 update=":QuestionsEditForm" oncomplete="PF('QuestionsEditDialog').show()">
+                                         action="#{questionsController.prepareUpdate}" icon="ui-icon-trash"
+                                         update=":QuestionsEditForm" oncomplete="PF('QuestionsEditDialog').show()">
                             <f:param name="editQuestion" value="#{item.id}" />
                         </p:commandButton>                            
                     </p:column>

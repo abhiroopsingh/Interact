@@ -21,30 +21,28 @@
                             <br/><br/><br/>
                         </div>
 
-                        <c:if test="#{(questionsController.selected.questionType) eq 'Multiple Choice'}">
+                        <c:choose>
+                            <c:when test="#{(questionsController.selected.questionType) eq 'Text Entry'}">
 
-                            <div style="padding-left: 30px; padding-right: 30px;">
-                                <h:outputText style="word-wrap: break-word;" rendered="#{not empty questionsController.selected.multipleChoiceA}" 
-                                              escape="false" value="A. #{questionsController.selected.multipleChoiceA} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>
-                                <h:outputText style="word-wrap: break-word;" rendered="#{not empty questionsController.selected.multipleChoiceB}" 
-                                              escape="false" value="B. #{questionsController.selected.multipleChoiceB} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>
-                                <h:outputText style="word-wrap: break-word;" rendered="#{not empty questionsController.selected.multipleChoiceC}" 
-                                              escape="false" value="C. #{questionsController.selected.multipleChoiceC} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>
-                                <h:outputText style="word-wrap: break-word;" rendered="#{not empty questionsController.selected.multipleChoiceD}" 
-                                              escape="false" value="D. #{questionsController.selected.multipleChoiceD} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>
-                                <h:outputText style="word-wrap: break-word;" rendered="#{not empty questionsController.selected.multipleChoiceE}" 
-                                              escape="false" value="E. #{questionsController.selected.multipleChoiceE} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>
-                            </div>
-
-                        </c:if>
-
-                        <c:if test="#{(questionsController.selected.questionType) eq 'Text Entry'}">
-
-                            <div align="center">
-                                <p:inputTextarea disabled="true" style="box-shadow: none" rows="10" cols="40" />  
-                            </div>
-
-                        </c:if>
+                                <div align="center">
+                                    <p:inputTextarea disabled="true" style="box-shadow: none" rows="10" cols="40" />  
+                                </div>
+                            </c:when>    
+                            <c:otherwise>
+                                <div style="padding-left: 30px; padding-right: 30px;">
+                                    <h:outputText style="word-wrap: break-word;" rendered="#{not empty questionsController.selected.multipleChoiceA}" 
+                                                  escape="false" value="A. #{questionsController.selected.multipleChoiceA} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>
+                                    <h:outputText style="word-wrap: break-word;" rendered="#{not empty questionsController.selected.multipleChoiceB}" 
+                                                  escape="false" value="B. #{questionsController.selected.multipleChoiceB} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>
+                                    <h:outputText style="word-wrap: break-word;" rendered="#{not empty questionsController.selected.multipleChoiceC}" 
+                                                  escape="false" value="C. #{questionsController.selected.multipleChoiceC} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>
+                                    <h:outputText style="word-wrap: break-word;" rendered="#{not empty questionsController.selected.multipleChoiceD}" 
+                                                  escape="false" value="D. #{questionsController.selected.multipleChoiceD} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>
+                                    <h:outputText style="word-wrap: break-word;" rendered="#{not empty questionsController.selected.multipleChoiceE}" 
+                                                  escape="false" value="E. #{questionsController.selected.multipleChoiceE} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>
+                                </div>
+                            </c:otherwise>
+                        </c:choose>
 
                         <div align="center" style="font-weight: bolder; padding-bottom: 25px;">
                             <h:outputText style="word-wrap: break-word;" value="Correct Answer: #{questionsController.selected.answer}"/>
