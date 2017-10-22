@@ -84,6 +84,13 @@ Copyright © 2016 Osman Balci. All rights reserved.
                             <h:outputText value="Delete"/>
                         </f:facet>
 
+                        <p:commandButton id="deleteButton" icon="ui-icon-trash" 
+                                         style="width: 50px; height: 50px;" 
+                                         action="#{questionsController.deleteQuestion()}"
+                                         update="datalist">
+                            <f:param name="deleteId" value="#{item.id}" />
+                        </p:commandButton>
+
                     </p:column>
 
 
