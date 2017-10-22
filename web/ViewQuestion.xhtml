@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:composition>
+
+        <p:dialog id="QuestionsViewDlg" widgetVar="QuestionsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewQuestionsTitle}">
+
+            <div align="left" style="width:97%">
+
+                <h:form id="QuestionsViewForm" style="width: 750px; height: 500px; ">
+                    <h:panelGroup id="display">
+
+                        <div align="center">
+                            <h:outputText style="word-wrap: break-word;" value="#{questionsController.selected.question}" title="#{bundle.ViewQuestionsTitle_question}"/>
+                            <br/><br/><br/>
+                        </div>
+
+                        <c:if test="#{(questionsController.selected.questionType) eq 'Multiple Choice'}">
+
+                            <div style="padding-left: 30px; padding-right: 30px;">
+                                <h:outputText style="word-wrap: break-word;" rendered="#{not empty questionsController.selected.multipleChoiceA}" 
+                                              escape="false" value="A. #{questionsController.selected.multipleChoiceA} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>
+                                <h:outputText style="word-wrap: break-word;" rendered="#{not empty questionsController.selected.multipleChoiceB}" 
+                                              escape="false" value="B. #{questionsController.selected.multipleChoiceB} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>
+                                <h:outputText style="word-wrap: break-word;" rendered="#{not empty questionsController.selected.multipleChoiceC}" 
+                                              escape="false" value="C. #{questionsController.selected.multipleChoiceC} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>
+                                <h:outputText style="word-wrap: break-word;" rendered="#{not empty questionsController.selected.multipleChoiceD}" 
+                                              escape="false" value="D. #{questionsController.selected.multipleChoiceD} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>
+                                <h:outputText style="word-wrap: break-word;" rendered="#{not empty questionsController.selected.multipleChoiceE}" 
+                                              escape="false" value="E. #{questionsController.selected.multipleChoiceE} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>
+                            </div>
+
+                        </c:if>
+
+                        <c:if test="#{(questionsController.selected.questionType) eq 'Text Entry'}">
+
+                            <div align="center">
+                                <p:inputTextarea disabled="true" style="box-shadow: none" rows="10" cols="40" />  
+                            </div>
+
+                        </c:if>
+
+                        <div align="center" style="font-weight: bolder; padding-bottom: 25px;">
+                            <h:outputText style="word-wrap: break-word;" value="Correct Answer: #{questionsController.selected.answer}"/>
+                        </div>
+                        <div align="center" style="padding-bottom:10px;">                        
+                            <p:commandButton value="#{bundle.Close}" onclick="QuestionsViewDialog.hide()"/>
+                        </div>
+                    </h:panelGroup>
+                </h:form>
+            </div>
+        </p:dialog>
+
+    </ui:composition>
+</html>
