@@ -91,14 +91,14 @@ public class SessionsController implements Serializable {
     }
 
     public String startSession() {
-        getSelected().setActive(true);
+        getSelected().setStatus(1);
         update();
         joinKey = null;
         return "UserHomePage?faces-redirect=true";
     }
 
     public Sessions prepareCreate() {
-        selected = new Sessions(generateId(), false, accountManager.
+        selected = new Sessions(generateId(), 0, accountManager.
                 getSelected());
         selected.setDateModified(new Date());
         initializeEmbeddableKey();

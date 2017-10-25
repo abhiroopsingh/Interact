@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Sessions.findAll", query = "SELECT s FROM Sessions s")
     , @NamedQuery(name = "Sessions.findById", query = "SELECT s FROM Sessions s WHERE s.id = :id")
-    , @NamedQuery(name = "Sessions.findByActive", query = "SELECT s FROM Sessions s WHERE s.active = :active")
+    , @NamedQuery(name = "Sessions.findByStatus", query = "SELECT s FROM Sessions s WHERE s.status = :status")
     , @NamedQuery(name = "Sessions.findOwnedSessions", query = "SELECT s FROM Sessions s WHERE s.master.username = :master")})
 public class Sessions implements Serializable {
 
@@ -50,10 +50,6 @@ public class Sessions implements Serializable {
     @Size(min = 1, max = 16)
     @Column(name = "id")
     private String id;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "active")
-    private boolean active;
     @OneToMany(mappedBy = "sessionId")
     private Collection<UserAnswers> userAnswersCollection;
     @JoinColumn(name = "master", referencedColumnName = "username")
@@ -79,14 +75,14 @@ public class Sessions implements Serializable {
         this.id = id;
     }
 
-    public Sessions(String id, boolean active) {
+    public Sessions(String id, int status) {
         this.id = id;
-        this.active = active;
+        this.status = status;
     }
 
-    public Sessions(String id, boolean active, Users master) {
+    public Sessions(String id, int status, Users master) {
         this.id = id;
-        this.active = active;
+        this.status = status;
         this.master = master;
     }
 
@@ -96,15 +92,6 @@ public class Sessions implements Serializable {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public boolean getActive() {
-
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
     }
 
     @XmlTransient

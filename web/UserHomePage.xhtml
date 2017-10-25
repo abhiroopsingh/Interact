@@ -54,10 +54,10 @@ Copyright © 2017 Osman Balci. All rights reserved.
 
                             <p:column headerText="Active">
 
-                                <p:graphicImage rendered="#{item.active eq true}">
+                                <p:graphicImage rendered="#{item.status eq 1}">
                                     <i class="fa fa-check" style="font-size: 20px; color:green"></i>
                                 </p:graphicImage>
-                                <p:graphicImage rendered="#{item.active eq false}">
+                                <p:graphicImage rendered="#{item.status != 1}">
                                     <i class="fa fa-times" style="font-size: 20px; color:red"></i>
                                 </p:graphicImage>
 
