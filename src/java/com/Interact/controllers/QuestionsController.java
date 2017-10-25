@@ -28,7 +28,7 @@ public class QuestionsController implements Serializable {
     private com.Interact.FacadeBeans.QuestionsFacade ejbFacade;
     private List<Questions> items = null;
     private List<Questions> sessionItems = null;
-private String fullAnswer = null;    
+    private String fullAnswer = null;
     private Questions selected;
     private String optionA = "", optionB = "", optionC = "", optionD = "";
     private final String OPTION_DELIM = "|$|";
@@ -144,11 +144,11 @@ private String fullAnswer = null;
                 getString("QuestionsUpdated"));
     }
 
-    public String getFullAnswer() {
+    public String getFullAnswer(int id) {
         FacesContext fc = FacesContext.getCurrentInstance();
         String question_id = fc.getExternalContext().getRequestParameterMap().get("answerChoice");
 
-        Questions q = getQuestions(Integer.parseInt(question_id));
+        Questions q = getQuestions(id);
         setSelected(q);
 
         switch (q.getAnswer()) {
@@ -168,9 +168,9 @@ private String fullAnswer = null;
         }
 
     }
-    
+
     public void setFullAnswer(String answer) {
-        
+
         fullAnswer = answer;
     }
 

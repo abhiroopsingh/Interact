@@ -9,7 +9,8 @@ Copyright © 2016 Osman Balci. All rights reserved.
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <!-- Do not enter tags before the composition line since they are ignored by JSF -->
 
@@ -68,8 +69,11 @@ Copyright © 2016 Osman Balci. All rights reserved.
                         <f:facet name="header">
                             <h:outputText value="#{bundle.ListQuestionsTitle_answer}"/>
                         </f:facet>
-                        <h:outputText value="#{item.answer}">
-                        </h:outputText>
+
+                        <h:outputFormat value = "#{item.answer}. {0}">     
+                            <f:param value = "#{questionsController.getFullAnswer(item.id)}" /> 
+                        </h:outputFormat>
+
                     </p:column>
 
                     <p:column>
