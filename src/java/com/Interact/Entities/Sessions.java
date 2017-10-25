@@ -38,6 +38,11 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Sessions.findOwnedSessions", query = "SELECT s FROM Sessions s WHERE s.master.username = :master")})
 public class Sessions implements Serializable {
 
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "status")
+    private int status;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -169,6 +174,14 @@ public class Sessions implements Serializable {
 
     public void setDateModified(Date dateModified) {
         this.dateModified = dateModified;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 
 }
