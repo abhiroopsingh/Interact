@@ -215,7 +215,7 @@ public class SessionsController implements Serializable {
         Sessions sess = getSessions(session_id);
         setSelected(sess);
 
-        return "/CreateSession.xhtml";
+        return "CreateSession.xhtml?faces-redirect=true";
     }
 
     @FacesConverter(forClass = Sessions.class)

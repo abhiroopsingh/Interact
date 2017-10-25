@@ -21,7 +21,9 @@ Copyright © 2017 Osman Balci. All rights reserved.
                     <h:form>
                         <p:panelGrid id="buttons" columns="3">
 
-                            <p:commandButton id="createButton" value="Create Session" actionListener="#{sessionsController.prepareCreate}" update=":SessionsCreateForm" oncomplete="PF('SessionsCreateDialog').show()"/>
+                            <p:commandButton id="createButton" class="login" 
+                                             style="width: 290px; height: 55px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 20px; border-style: solid; border-width: 1px;"
+                                             value="Create Session" actionListener="#{sessionsController.prepareCreate}" update=":SessionsCreateForm" oncomplete="PF('SessionsCreateDialog').show()"/>
 
                             <p:commandButton id="share" class="login"
                                              style="width: 290px; height: 55px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 20px; border-style: solid; border-width: 1px;"
@@ -42,10 +44,7 @@ Copyright © 2017 Osman Balci. All rights reserved.
                             </f:facet>
 
                             <p:column headerText="Session Name">
-
-                                <h:commandLink id="routeLink" value="#{item.sessionName}" action="#{sessionsController.routeSessions}" style="color:black" >         
-                                    <f:param name="sessId" value="#{item.id}" />
-                                </h:commandLink>
+                                <h:outputLabel value="#{item.sessionName}"/>
                             </p:column>
 
                             <p:column headerText="Session Id">
@@ -68,8 +67,9 @@ Copyright © 2017 Osman Balci. All rights reserved.
 
                                 <p:commandButton id="editButton" style="width: 50px; height: 50px;" 
                                                  update="masterSessions"
-                                                 action="#{sessionsController.update()}" icon="ui-icon-trash">
-                                </p:commandButton>         
+                                                 action="#{sessionsController.routeSessions}" icon="ui-icon-trash">
+                                    <f:param name="sessId" value="#{item.id}" />
+                                </p:commandButton>    
                             </p:column>
 
                             <p:column headerText="Delete Session">
