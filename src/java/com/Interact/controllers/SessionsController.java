@@ -93,8 +93,8 @@ public class SessionsController implements Serializable {
     public String startSession() {
         getSelected().setStatus(1);
         update();
-        joinKey = null;
-        return "UserHomePage?faces-redirect=true";
+        joinKey = getSelected().getId();
+        return "MasterJoinSession?faces-redirect=true";
     }
 
     public Sessions prepareCreate() {

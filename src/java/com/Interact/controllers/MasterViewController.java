@@ -5,8 +5,6 @@
 package com.Interact.controllers;
 
 import com.Interact.Entities.Questions;
-import com.Interact.controllers.QuestionsController;
-import com.Interact.controllers.SessionsController;
 import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
@@ -40,7 +38,7 @@ public class MasterViewController implements Serializable {
             sessionsController.setJoinKey(null);
             return "UserHomePage?faces-redirect=true";
         } else {
-            return "JoinSession?faces-redirect=true";
+            return "MasterJoinSession?faces-redirect=true";
         }
 
     }
@@ -50,7 +48,7 @@ public class MasterViewController implements Serializable {
             questionNum--;
         }
 
-        return "JoinSession?faces-redirect=true";
+        return "MasterJoinSession?faces-redirect=true";
 
     }
 
@@ -59,8 +57,6 @@ public class MasterViewController implements Serializable {
             sessionQuestions = questionsController.getSessionItems();
             questionNum = 0;
         }
-
-        System.out.println("session questions:" + sessionQuestions);
 
         String question = sessionQuestions.get(questionNum).getQuestion();
 
