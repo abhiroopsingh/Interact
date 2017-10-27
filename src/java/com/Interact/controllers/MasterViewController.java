@@ -59,8 +59,6 @@ public class MasterViewController implements Serializable {
         }
 
         return sessionQuestions.get(questionNum);
-
-
     }
 
 }

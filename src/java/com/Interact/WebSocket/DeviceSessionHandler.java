@@ -1,5 +1,6 @@
 package com.Interact.WebSocket;
 
+import com.Interact.Entities.Questions;
 import javax.enterprise.context.ApplicationScoped;
 import java.util.HashSet;
 import java.util.Set;
@@ -11,7 +12,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.json.JsonObject;
+import javax.json.JsonObjectBuilder;
+import javax.json.JsonValue;
 import javax.json.spi.JsonProvider;
+import org.primefaces.json.JSONObject;
 
 @ApplicationScoped
 public class DeviceSessionHandler {
@@ -19,9 +23,14 @@ public class DeviceSessionHandler {
     private int deviceId = 0;
     private final Set<Session> sessions = new HashSet<>();
     private final Set<Device> devices = new HashSet<>();
+    private final Set<Questions> questions = new HashSet<>();
 
     public List<Device> getDevices() {
         return new ArrayList<>(devices);
+    }
+
+    public List<Questions> getQuestions() {
+        return new ArrayList<>(questions);
     }
 
     public void addDevice(Device device) {
@@ -29,6 +38,12 @@ public class DeviceSessionHandler {
         devices.add(device);
         deviceId++;
         JsonObject addMessage = createAddMessage(device);
+        sendToAllConnectedSessions(addMessage);
+    }
+
+    public void addQuestion(Questions question) {
+        questions.add(question);
+        JSONObject addMessage = createAddMessage(question);
         sendToAllConnectedSessions(addMessage);
     }
 
@@ -85,7 +100,18 @@ public class DeviceSessionHandler {
         return addMessage;
     }
 
+    private JSONObject createAddMessage(Questions question) {
+        JSONObject addMessage = new JSONObject(question.toString());
+        return addMessage;
+    }
+
     private void sendToAllConnectedSessions(JsonObject message) {
+        for (Session session : sessions) {
+            sendToSession(session, message);
+        }
+    }
+
+    private void sendToAllConnectedSessions(JSONObject message) {
         for (Session session : sessions) {
             sendToSession(session, message);
         }
@@ -96,7 +122,19 @@ public class DeviceSessionHandler {
             session.getBasicRemote().sendText(message.toString());
         } catch (IOException ex) {
             sessions.remove(session);
-            Logger.getLogger(DeviceSessionHandler.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DeviceSessionHandler.class.getName()).log(
+                    Level.SEVERE, null, ex);
+        }
+    }
+
+    private void sendToSession(Session session, JSONObject message) {
+        System.out.println(message.toString());
+        try {
+            session.getBasicRemote().sendText(message.toString());
+        } catch (IOException ex) {
+            sessions.remove(session);
+            Logger.getLogger(DeviceSessionHandler.class.getName()).log(
+                    Level.SEVERE, null, ex);
         }
     }
 

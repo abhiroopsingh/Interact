@@ -5,6 +5,8 @@
 package com.Interact.Entities;
 
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,6 +21,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.primefaces.json.JSONObject;
 
 /**
  *
@@ -29,11 +32,16 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Questions.findAll", query = "SELECT q FROM Questions q")
-    , @NamedQuery(name = "Questions.findById", query = "SELECT q FROM Questions q WHERE q.id = :id")
-    , @NamedQuery(name = "Questions.findByQuestion", query = "SELECT q FROM Questions q WHERE q.question = :question")
-    , @NamedQuery(name = "Questions.findByQuestionType", query = "SELECT q FROM Questions q WHERE q.questionType = :questionType")
-    , @NamedQuery(name = "Questions.findByAnswer", query = "SELECT q FROM Questions q WHERE q.answer = :answer")
-    , @NamedQuery(name = "Questions.findBySessionId", query = "SELECT q FROM Questions q WHERE q.sessionId.id = :session_id")})
+    , @NamedQuery(name = "Questions.findById",
+            query = "SELECT q FROM Questions q WHERE q.id = :id")
+    , @NamedQuery(name = "Questions.findByQuestion",
+            query = "SELECT q FROM Questions q WHERE q.question = :question")
+    , @NamedQuery(name = "Questions.findByQuestionType",
+            query = "SELECT q FROM Questions q WHERE q.questionType = :questionType")
+    , @NamedQuery(name = "Questions.findByAnswer",
+            query = "SELECT q FROM Questions q WHERE q.answer = :answer")
+    , @NamedQuery(name = "Questions.findBySessionId",
+            query = "SELECT q FROM Questions q WHERE q.sessionId.id = :session_id")})
 public class Questions implements Serializable {
 
     @Size(max = 1000)
@@ -85,7 +93,8 @@ public class Questions implements Serializable {
         this.id = id;
     }
 
-    public Questions(Integer id, String question, String questionType, String answer) {
+    public Questions(Integer id, String question, String questionType,
+            String answer) {
         this.id = id;
         this.question = question;
         this.questionType = questionType;
@@ -138,7 +147,8 @@ public class Questions implements Serializable {
             return false;
         }
         Questions other = (Questions) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.
+                equals(other.id))) {
             return false;
         }
         return true;
@@ -146,7 +156,23 @@ public class Questions implements Serializable {
 
     @Override
     public String toString() {
-        return "com.Interact.Questions.Questions[ id=" + id + " ]";
+        Map<String, Object> attributes = new HashMap<>();
+        attributes.put("id", String.valueOf(id));
+        attributes.put("question", question);
+        attributes.put("answer", answer);
+        attributes.put("questionType", questionType);
+        attributes.put("A",
+                multipleChoiceA == null ? JSONObject.NULL : multipleChoiceA);
+        attributes.put("B",
+                multipleChoiceB == null ? JSONObject.NULL : multipleChoiceB);
+        attributes.put("C",
+                multipleChoiceC == null ? JSONObject.NULL : multipleChoiceC);
+        attributes.put("D",
+                multipleChoiceD == null ? JSONObject.NULL : multipleChoiceD);
+        attributes.put("E",
+                multipleChoiceE == null ? JSONObject.NULL : multipleChoiceE);
+        JSONObject json = new JSONObject(attributes);
+        return json.toString();
     }
 
     public Sessions getSessionId() {
@@ -196,5 +222,5 @@ public class Questions implements Serializable {
     public void setMultipleChoiceE(String multipleChoiceE) {
         this.multipleChoiceE = multipleChoiceE;
     }
-    
+
 }
