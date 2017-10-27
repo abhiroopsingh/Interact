@@ -52,15 +52,14 @@ public class MasterViewController implements Serializable {
 
     }
 
-    public String getQuestion() {
+    public Questions getQuestion() {
         if (sessionQuestions == null) {
             sessionQuestions = questionsController.getSessionItems();
             questionNum = 0;
         }
 
-        String question = sessionQuestions.get(questionNum).getQuestion();
+        return sessionQuestions.get(questionNum);
 
-        return question;
 
     }
 

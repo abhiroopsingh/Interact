@@ -75,7 +75,7 @@ public class DeviceSessionHandler {
     private JsonObject createAddMessage(Device device) {
         JsonProvider provider = JsonProvider.provider();
         JsonObject addMessage = provider.createObjectBuilder()
-                .add("action", "add")
+                .add("action", "update")
                 .add("id", device.getId())
                 .add("name", device.getName())
                 .add("type", device.getType())

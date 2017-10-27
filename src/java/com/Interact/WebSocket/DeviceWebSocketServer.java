@@ -47,23 +47,13 @@ public class DeviceWebSocketServer {
         try (JsonReader reader = Json.createReader(new StringReader(message))) {
             JsonObject jsonMessage = reader.readObject();
 
-            if ("add".equals(jsonMessage.getString("action"))) {
+            if ("update".equals(jsonMessage.getString("action"))) {
                 Device device = new Device();
                 device.setName(jsonMessage.getString("name"));
                 device.setDescription(jsonMessage.getString("description"));
                 device.setType(jsonMessage.getString("type"));
                 device.setStatus("Off");
                 sessionHandler.addDevice(device);
-            }
-
-            if ("remove".equals(jsonMessage.getString("action"))) {
-                int id = (int) jsonMessage.getInt("id");
-                sessionHandler.removeDevice(id);
-            }
-
-            if ("toggle".equals(jsonMessage.getString("action"))) {
-                int id = (int) jsonMessage.getInt("id");
-                sessionHandler.toggleDevice(id);
             }
         }
     }

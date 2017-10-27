@@ -24,24 +24,13 @@ Copyright © 2017 Andy Sin. All rights reserved.
         <ui:define name="editableContent">
 
             <div align="center" style="width:97%">
+                <script src="websocket.js"></script>
 
                 <h:form>
 
-                    <p:panelGrid id="topGrid" columns="3" layout="grid" styleClass="ui-panelgrid-blank">
+                    <p id="demo"></p>
 
 
-
-                        <p:commandButton styleClass="index_signup" value="Previous" action="#{studentViewController.previousIsClicked}" ajax="false"/>
-
-                        <p:panel style="height: auto;">
-                            <h:outputLabel style="font-size: 25px;" value="#{studentViewController.question}" />
-                            <br /> <br /><br /><br />
-                            <br /> <br /><br /><br />
-                            <p:inputTextarea style="box-shadow: none" rows="6" cols="33" />                        
-                        </p:panel>
-
-                        <p:commandButton styleClass="index_signup" value="Next" action="#{studentViewController.nextIsClicked}" ajax="false"/>
-                    </p:panelGrid>
 
                 </h:form>
 
