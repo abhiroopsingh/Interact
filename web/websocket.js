@@ -4,7 +4,24 @@ socket.onmessage = onMessage;
 
 function onMessage(event) {
     var device = JSON.parse(event.data);
-    document.getElementById("demo").innerHTML = device.question;
+    
+    document.getElementById("studentViewQuestion").innerHTML = device.question;
+    
+    if(device.A) {
+        document.getElementById("studentViewOptionA").innerHTML = device.A;
+    }
+    if(device.B) {
+        document.getElementById("studentViewOptionB").innerHTML = device.B;
+    }
+    if(device.C) {
+        document.getElementById("studentViewOptionC").innerHTML = device.C;
+    }
+    if(device.D) {
+        document.getElementById("studentViewOptionD").innerHTML = device.D;
+    }
+    if(device.E) {
+        document.getElementById("studentViewOptionE").innerHTML = device.E;
+    }
 }
 
 function addDevice(name, type, description) {

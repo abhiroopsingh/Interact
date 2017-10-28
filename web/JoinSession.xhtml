@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-Created by Andy Sin on 2017.10.28 
+Created by Andy Sin on 2017.10.25 
 Copyright © 2017 Andy Sin. All rights reserved.
 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -8,7 +8,8 @@ Copyright © 2017 Andy Sin. All rights reserved.
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <!-- Do not enter tags before the composition line since they are ignored by JSF -->
 
@@ -23,17 +24,25 @@ Copyright © 2017 Andy Sin. All rights reserved.
         <!-- Create the content for this page below -->
         <ui:define name="editableContent">
 
-            <div align="center" style="width:97%">
-                <script src="websocket.js"></script>
+            <div align="center">
 
-                <h:form>
+                <h:form id="studentView">
+                    <script src="websocket.js"></script>
 
-                    <p id="demo"></p>
-
-
-
-                </h:form>
-
+                    <p:panelGrid id="topGrid" columns="1">
+                        <h:panelGroup style="display: block; text-align:center">
+                                        <p id="studentViewQuestion" style="font-size: 25px; word-wrap: break-word;" />
+                                        <br/>
+                                        
+                                        <p id="studentViewOptionA" style="font-size: 25px; word-wrap: break-word;" />
+                                        <p id="studentViewOptionB" style="font-size: 25px; word-wrap: break-word;" />
+                                        <p id="studentViewOptionC" style="font-size: 25px; word-wrap: break-word;" />
+                                        <p id="studentViewOptionD" style="font-size: 25px; word-wrap: break-word;" />
+                                        <p id="studentViewOptionE" style="font-size: 25px; word-wrap: break-word;" />
+                                       
+                        </h:panelGroup>
+                    </p:panelGrid>
+                     </h:form>
             </div>
         </ui:define>
 
