@@ -4,11 +4,7 @@ socket.onmessage = onMessage;
 
 function onMessage(event) {
     var device = JSON.parse(event.data);
-    if (device.action === "update") {
-
-        document.getElementById("demo").innerHTML = device.name;
-        console.log(device.name);
-    }
+    document.getElementById("demo").innerHTML = device.question;
 }
 
 function addDevice(name, type, description) {

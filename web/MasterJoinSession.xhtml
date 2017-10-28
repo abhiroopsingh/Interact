@@ -24,25 +24,24 @@ Copyright © 2017 Andy Sin. All rights reserved.
         <!-- Create the content for this page below -->
         <ui:define name="editableContent">
 
-            <div align="center" style="width:97%">
+            <div align="center">
 
                 <h:form>
                     <script src="websocket.js"></script>
 
-                    <p:panelGrid id="topGrid" columns="3" layout="grid" styleClass="ui-panelgrid-blank">
+                    <p:panelGrid id="topGrid" columns="3" layout="grid">
 
-                        <p:commandButton styleClass="index_signup" value="Previous" action="#{masterViewController.previousIsClicked}" ajax="false"/>
+                        <p:commandButton style="width: 290px; height: 55px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 20px; border-style: solid; border-width: 1px;"
+                            value="Previous" action="#{masterViewController.previousIsClicked}" ajax="false"/>
 
 
                         <h:panelGroup id="display">
-                            <p:commandButton styleClass="index_signup" value="Broadcast" onclick="formSubmit(\'#{masterViewController.question}\')"/>
-
-                            <h:form id="QuestionsViewForm" style="width: 750px; height: 500px; ">
-
-                                <h:panelGroup id="display">
-
+                            <p:commandButton style="width: 290px; height: 55px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 20px; border-style: solid; border-width: 1px;"
+                                value="Broadcast" onclick="formSubmit(\'#{masterViewController.question}\')"/>
+                            <br/>
+                            <br/>
                                     <div align="center">
-                                        <h:outputText style="word-wrap: break-word;" value="#{masterViewController.question.question}" title="#{bundle.ViewQuestionsTitle_question}"/>
+                                        <h:outputText style="font-size: 25px; word-wrap: break-word;" value="#{masterViewController.question.question}" title="#{bundle.ViewQuestionsTitle_question}"/>
                                         <br/><br/><br/>
                                     </div>
 
@@ -55,39 +54,32 @@ Copyright © 2017 Andy Sin. All rights reserved.
                                         </c:when>    
                                         <c:otherwise>
                                             <div style="padding-left: 30px; padding-right: 30px;">
-                                                <h:outputText style="word-wrap: break-word;" rendered="#{not empty masterViewController.question.multipleChoiceA}" 
+                                                <h:outputText style="font-size: 25px; word-wrap: break-word;" rendered="#{not empty masterViewController.question.multipleChoiceA}" 
                                                               escape="false" value="A. #{masterViewController.question.multipleChoiceA} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>
-                                                <h:outputText style="word-wrap: break-word;" rendered="#{not empty masterViewController.question.multipleChoiceB}" 
+                                                <h:outputText style="font-size: 25px; word-wrap: break-word;" rendered="#{not empty masterViewController.question.multipleChoiceB}" 
                                                               escape="false" value="B. #{masterViewController.question.multipleChoiceB} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>                                        
-                                                <h:outputText style="word-wrap: break-word;" rendered="#{not empty masterViewController.question.multipleChoiceC}" 
+                                                <h:outputText style="font-size: 25px; word-wrap: break-word;" rendered="#{not empty masterViewController.question.multipleChoiceC}" 
                                                               escape="false" value="C. #{masterViewController.question.multipleChoiceC} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>                                        
-                                                <h:outputText style="word-wrap: break-word;" rendered="#{not empty masterViewController.question.multipleChoiceD}" 
+                                                <h:outputText style="font-size: 25px; word-wrap: break-word;" rendered="#{not empty masterViewController.question.multipleChoiceD}" 
                                                               escape="false" value="D. #{masterViewController.question.multipleChoiceD} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>                                        
-                                                <h:outputText style="word-wrap: break-word;" rendered="#{not empty masterViewController.question.multipleChoiceE}" 
+                                                <h:outputText style="font-size: 25px; word-wrap: break-word;" rendered="#{not empty masterViewController.question.multipleChoiceE}" 
                                                               escape="false" value="E. #{masterViewController.question.multipleChoiceE} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>
                                             </div>
                                         </c:otherwise>
                                     </c:choose>
 
-                                    <div align="center" style="font-weight: bolder; padding-bottom: 25px;">
+                                    <div align="center" style="font-size: 25px; font-weight: bolder; padding-bottom: 25px;">
                                         <h:outputText style="word-wrap: break-word;" value="Correct Answer: #{masterViewController.question.answer}"/>
                                     </div>
+                       </h:panelGroup>
 
+                           
 
-                                </h:panelGroup>
-
-                            </h:form>
-
-                        </h:panelGroup>
-
-                        <p:commandButton styleClass="index_signup" value="Next" action="#{masterViewController.nextIsClicked}" ajax="false"/>
+                        <p:commandButton style="width: 290px; height: 55px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 20px; border-style: solid; border-width: 1px;"
+                            value="Next" action="#{masterViewController.nextIsClicked}" ajax="false"/>
 
                     </p:panelGrid>
-
-
-
-                </h:form>
-
+                     </h:form>
             </div>
         </ui:define>
 

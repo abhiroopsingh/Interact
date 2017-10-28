@@ -48,15 +48,9 @@ public class DeviceWebSocketServer {
     public void handleMessage(String message, Session session) {
 
         try (JsonReader reader = Json.createReader(new StringReader(message))) {
-            JsonObject jsonMessage = reader.readObject();
-
-            /*    if ("update".equals(jsonMessage.getString("action"))) {
-                Device device = new Device();
-                device.setName(jsonMessage.getString("name"));
-                device.setDescription(jsonMessage.getString("description"));
-                device.setType(jsonMessage.getString("type"));
-                device.setStatus("Off");
-                sessionHandler.addDevice(device); */
+            JsonObject jsonMessage1 = reader.readObject();
+            JsonReader reader2 = Json.createReader(new StringReader(jsonMessage1.getString("name")));
+            JsonObject jsonMessage = reader2.readObject();
             Questions question = new Questions(Integer.valueOf(jsonMessage.
                     getString("id")),
                     jsonMessage.getString("question"), jsonMessage.getString(
