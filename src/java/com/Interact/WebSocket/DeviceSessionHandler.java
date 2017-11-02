@@ -33,58 +33,11 @@ public class DeviceSessionHandler {
         return new ArrayList<>(questions);
     }
 
-    public void addDevice(Device device) {
-        device.setId(deviceId);
-        devices.add(device);
-        deviceId++;
-        JsonObject addMessage = createAddMessage(device);
-        sendToAllConnectedSessions(addMessage);
-    }
-
     public void addQuestion(Questions question) {
-        questions.add(question);
+        questions.add(question);        
         JSONObject addMessage = createAddMessage(question);
+        
         sendToAllConnectedSessions(addMessage);
-    }
-
-    public void removeDevice(int id) {
-        Device device = getDeviceById(id);
-        if (device != null) {
-            devices.remove(device);
-            JsonProvider provider = JsonProvider.provider();
-            JsonObject removeMessage = provider.createObjectBuilder()
-                    .add("action", "remove")
-                    .add("id", id)
-                    .build();
-            sendToAllConnectedSessions(removeMessage);
-        }
-    }
-
-    public void toggleDevice(int id) {
-        JsonProvider provider = JsonProvider.provider();
-        Device device = getDeviceById(id);
-        if (device != null) {
-            if ("On".equals(device.getStatus())) {
-                device.setStatus("Off");
-            } else {
-                device.setStatus("On");
-            }
-            JsonObject updateDevMessage = provider.createObjectBuilder()
-                    .add("action", "toggle")
-                    .add("id", device.getId())
-                    .add("status", device.getStatus())
-                    .build();
-            sendToAllConnectedSessions(updateDevMessage);
-        }
-    }
-
-    private Device getDeviceById(int id) {
-        for (Device device : devices) {
-            if (device.getId() == id) {
-                return device;
-            }
-        }
-        return null;
     }
 
     private JsonObject createAddMessage(Device device) {

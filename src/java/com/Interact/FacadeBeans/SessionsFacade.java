@@ -36,4 +36,9 @@ public class SessionsFacade extends AbstractFacade<Sessions> {
 
     }
 
+    public Sessions findById(String id) {
+
+        return (Sessions) em.createNamedQuery("Sessions.findById").setParameter("id", id).getResultList().get(0);
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.Interact.WebSocket;
 
 import com.Interact.Entities.Questions;
+import com.Interact.FacadeBeans.SessionsFacade;
 import java.io.StringReader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,7 +24,10 @@ public class DeviceWebSocketServer {
 
     @Inject
     private DeviceSessionHandler sessionHandler;
-
+    
+    @Inject
+    private SessionsFacade facade;
+    
     @OnOpen
     public void open(Session session) {
         sessionHandler.addSession(session);
@@ -70,6 +74,10 @@ public class DeviceWebSocketServer {
             question.setMultipleChoiceE(
                     jsonMessage.isNull("E") ? null : jsonMessage.
                     getString("E"));
+            question.setSessionId(facade.findById(jsonMessage.getString("session")));
+            
+            System.out.println("Socket Server Class: " + jsonMessage.getString("session"));
+            
             sessionHandler.addQuestion(question);
         }
     }

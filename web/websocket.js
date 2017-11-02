@@ -5,6 +5,15 @@ socket.onmessage = onMessage;
 function onMessage(event) {
     var device = JSON.parse(event.data);
     
+    console.log(device);
+       
+    var form = document.getElementById("studentView");   
+    var join_id = form.elements["joinKeyId"].value;
+    
+    console.log(join_id);
+    
+    if(device.session === join_id) {
+    
     document.getElementById("studentViewQuestion").innerHTML = device.question;
     
     if(device.A) {
@@ -22,6 +31,7 @@ function onMessage(event) {
     if(device.E) {
         document.getElementById("studentViewOptionE").innerHTML = device.E;
     }
+    }
 }
 
 function addDevice(name, type, description) {
@@ -35,9 +45,8 @@ function addDevice(name, type, description) {
 }
 
 function formSubmit(question) {
-
-    var name = question;
-    var type = "Text Entry";
+    var name = question;    
+    var type = "No errors";
     var description = "Hello. It Works!";
     addDevice(name, type, description);
 }

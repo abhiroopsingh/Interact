@@ -171,7 +171,11 @@ public class Questions implements Serializable {
                 multipleChoiceD == null ? JSONObject.NULL : multipleChoiceD);
         attributes.put("E",
                 multipleChoiceE == null ? JSONObject.NULL : multipleChoiceE);
+        attributes.put("session", sessionId.getId());
         JSONObject json = new JSONObject(attributes);
+        
+        System.out.println("Questions Class: " + json.toString());
+        
         return json.toString();
     }
 
