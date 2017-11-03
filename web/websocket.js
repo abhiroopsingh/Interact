@@ -13,24 +13,27 @@ function onMessage(event) {
     console.log(join_id);
     
     if(device.session === join_id) {
-    
+        
     document.getElementById("studentViewQuestion").innerHTML = device.question;
     
     if(device.A) {
-        document.getElementById("studentViewOptionA").innerHTML = device.A;
+        document.getElementById("studentView:studentViewOptionA").value = device.A;
     }
     if(device.B) {
-        document.getElementById("studentViewOptionB").innerHTML = device.B;
+        document.getElementById("studentView:studentViewOptionB").value = device.B;
     }
     if(device.C) {
-        document.getElementById("studentViewOptionC").innerHTML = device.C;
+        document.getElementById("studentView:studentViewOptionC").value = device.C;
     }
     if(device.D) {
-        document.getElementById("studentViewOptionD").innerHTML = device.D;
+        document.getElementById("studentView:studentViewOptionD").value = device.D;
     }
     if(device.E) {
-        document.getElementById("studentViewOptionE").innerHTML = device.E;
+        document.getElementById("studentView:studentViewOptionE").value = device.E;
     }
+    
+    qid([{name:'questionID', value: device.id}]);
+    
     }
 }
 

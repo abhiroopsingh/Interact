@@ -187,6 +187,10 @@ button[type=submit]:hover {
     background-color: #00BFFF;
 }
 
+input[type=button]:click {
+    background-color: red;
+}
+
 /* Style the text used under the standard HTML tag "h2" for header 2 */
 h2 {
     font-family: Lato;

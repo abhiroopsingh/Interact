@@ -5,6 +5,7 @@
 package com.Interact.FacadeBeans;
 
 import com.Interact.Entities.UserAnswers;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -28,4 +29,11 @@ public class UserAnswersFacade extends AbstractFacade<UserAnswers> {
         super(UserAnswers.class);
     }
     
+    
+       public List<UserAnswers> findByUsernameAndSession(String username, String session_id) {
+
+        return em.createNamedQuery("UserAnswers.findByUsernameAndSession")
+                .setParameter("username", username)
+                .setParameter("session_id", session_id).getResultList();
+    }
 }
