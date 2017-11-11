@@ -17,6 +17,7 @@ function onMessage(event) {
         if (device.disable) {
             document.getElementById("studentView:submit").disabled = true;
         } else {
+            document.getElementById("studentView:submit").disabled = false;
             document.getElementById("studentViewQuestion").innerHTML = device.question;
 
             if (device.A) {
