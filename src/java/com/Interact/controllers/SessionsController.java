@@ -2,9 +2,11 @@ package com.Interact.controllers;
 
 import com.Interact.Entities.Questions;
 import com.Interact.Entities.Sessions;
+import com.Interact.Entities.UserAnswers;
 import com.Interact.controllers.util.JsfUtil;
 import com.Interact.controllers.util.JsfUtil.PersistAction;
 import com.Interact.FacadeBeans.SessionsFacade;
+import com.Interact.FacadeBeans.UserAnswersFacade;
 import com.Interact.managers.AccountManager;
 
 import java.io.Serializable;
@@ -38,7 +40,12 @@ public class SessionsController implements Serializable {
 
     @Inject
     private QuestionsController questionsController;
+    
+    @Inject
+    private UserAnswersFacade userAnswersFacade;
 
+    @Inject
+    private UserAnswersController userAnswersController;
     private List<Sessions> ownedSessions = null;
 
     final static char[] candidates = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789".
@@ -131,7 +138,14 @@ public class SessionsController implements Serializable {
         setSelected(sess);
 
         List<Questions> deleteQuestions = questionsController.getItems();
-
+        List<UserAnswers> userAnswer = userAnswersFacade.findBySession(sess.getId());
+        
+        for (UserAnswers u : userAnswer) {
+            
+            userAnswersController.setSelected(u);
+            userAnswersController.destroy();
+        }
+       
         for (Questions q : deleteQuestions) {
 
             questionsController.setSelected(q);

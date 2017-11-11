@@ -52,17 +52,6 @@ Copyright © 2017 Osman Balci. All rights reserved.
                                 <h:outputLabel value="#{item.id}"/>
                             </p:column>
 
-                            <p:column headerText="Active">
-
-                                <p:graphicImage rendered="#{item.status eq 1}">
-                                    <i class="fa fa-check" style="font-size: 20px; color:green"></i>
-                                </p:graphicImage>
-                                <p:graphicImage rendered="#{item.status != 1}">
-                                    <i class="fa fa-times" style="font-size: 20px; color:red"></i>
-                                </p:graphicImage>
-
-                            </p:column>
-
                             <p:column headerText="Edit Session">
 
                                 <p:commandButton id="editButton" style="width: 50px; height: 50px;" 

@@ -31,7 +31,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "UserAnswers.findAll", query = "SELECT u FROM UserAnswers u")
     , @NamedQuery(name = "UserAnswers.findById", query = "SELECT u FROM UserAnswers u WHERE u.id = :id")
     , @NamedQuery(name = "UserAnswers.findByAnswers", query = "SELECT u FROM UserAnswers u WHERE u.answers = :answers")
-    , @NamedQuery(name = "UserAnswers.findByUsernameAndSession", query = "SELECT u FROM UserAnswers u WHERE u.username.username = :username AND u.sessionId.id = :session_id" )})
+    , @NamedQuery(name = "UserAnswers.findByUsernameAndSession", query = "SELECT u FROM UserAnswers u WHERE u.username.username = :username AND u.sessionId.id = :session_id" )
+    , @NamedQuery(name = "UserAnswers.findBySession", query = "SELECT u FROM UserAnswers u WHERE u.sessionId.id = :session_id" )})
 public class UserAnswers implements Serializable {
 
     @Basic(optional = false)
