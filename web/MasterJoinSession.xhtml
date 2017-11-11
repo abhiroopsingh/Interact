@@ -26,60 +26,62 @@ Copyright © 2017 Andy Sin. All rights reserved.
 
             <div align="center">
 
-                <h:form>
+                <h:form id="masterView">
                     <script src="websocket.js"></script>
 
                     <p:panelGrid id="topGrid" columns="3" layout="grid">
 
                         <p:commandButton style="width: 290px; height: 55px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 20px; border-style: solid; border-width: 1px;"
-                            value="Previous" action="#{masterViewController.previousIsClicked}" ajax="false"/>
+                                         value="Previous" action="#{masterViewController.previousIsClicked}" ajax="false"/>
 
 
                         <h:panelGroup id="display">
-                            <p:commandButton style="width: 290px; height: 55px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 20px; border-style: solid; border-width: 1px;"
-                                value="Broadcast" onclick="formSubmit(\'#{masterViewController.question}\')"/>
+                            <p:commandButton id="broadcast" style="width: 290px; height: 55px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 20px; border-style: solid; border-width: 1px;"
+                                             value="Broadcast" onclick="formSubmit(\'#{masterViewController.question}\')"/>
+                            <p:commandButton id="unbroadcast" style="display:none; width: 290px; height: 55px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 20px; border-style: solid; border-width: 1px;"
+                                             value="Un-broadcast" onclick="formDisable(\'#{masterViewController.question}\')"/>
                             <br/>
                             <br/>
+                            <div align="center">
+                                <h:outputText style="font-size: 25px; word-wrap: break-word;" value="#{masterViewController.question.question}" title="#{bundle.ViewQuestionsTitle_question}"/>
+                                <br/><br/><br/>
+                            </div>
+
+                            <c:choose>
+                                <c:when test="#{(masterViewController.question.questionType) eq 'Text Entry'}">
+
                                     <div align="center">
-                                        <h:outputText style="font-size: 25px; word-wrap: break-word;" value="#{masterViewController.question.question}" title="#{bundle.ViewQuestionsTitle_question}"/>
-                                        <br/><br/><br/>
+                                        <p:inputTextarea disabled="true" style="box-shadow: none" rows="10" cols="40" />  
                                     </div>
-
-                                    <c:choose>
-                                        <c:when test="#{(masterViewController.question.questionType) eq 'Text Entry'}">
-
-                                            <div align="center">
-                                                <p:inputTextarea disabled="true" style="box-shadow: none" rows="10" cols="40" />  
-                                            </div>
-                                        </c:when>    
-                                        <c:otherwise>
-                                            <div style="padding-left: 30px; padding-right: 30px;">
-                                                <h:outputText style="font-size: 25px; word-wrap: break-word;" rendered="#{not empty masterViewController.question.multipleChoiceA}" 
-                                                              escape="false" value="A. #{masterViewController.question.multipleChoiceA} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>
-                                                <h:outputText style="font-size: 25px; word-wrap: break-word;" rendered="#{not empty masterViewController.question.multipleChoiceB}" 
-                                                              escape="false" value="B. #{masterViewController.question.multipleChoiceB} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>                                        
-                                                <h:outputText style="font-size: 25px; word-wrap: break-word;" rendered="#{not empty masterViewController.question.multipleChoiceC}" 
-                                                              escape="false" value="C. #{masterViewController.question.multipleChoiceC} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>                                        
-                                                <h:outputText style="font-size: 25px; word-wrap: break-word;" rendered="#{not empty masterViewController.question.multipleChoiceD}" 
-                                                              escape="false" value="D. #{masterViewController.question.multipleChoiceD} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>                                        
-                                                <h:outputText style="font-size: 25px; word-wrap: break-word;" rendered="#{not empty masterViewController.question.multipleChoiceE}" 
-                                                              escape="false" value="E. #{masterViewController.question.multipleChoiceE} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>
-                                            </div>
-                                        </c:otherwise>
-                                    </c:choose>
-
-                                    <div align="center" style="font-size: 25px; font-weight: bolder; padding-bottom: 25px;">
-                                        <h:outputText style="word-wrap: break-word;" value="Correct Answer: #{masterViewController.question.answer}"/>
+                                </c:when>    
+                                <c:otherwise>
+                                    <div style="padding-left: 30px; padding-right: 30px;">
+                                        <h:outputText style="font-size: 25px; word-wrap: break-word;" rendered="#{not empty masterViewController.question.multipleChoiceA}" 
+                                                      escape="false" value="A. #{masterViewController.question.multipleChoiceA} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>
+                                        <h:outputText style="font-size: 25px; word-wrap: break-word;" rendered="#{not empty masterViewController.question.multipleChoiceB}" 
+                                                      escape="false" value="B. #{masterViewController.question.multipleChoiceB} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>                                        
+                                        <h:outputText style="font-size: 25px; word-wrap: break-word;" rendered="#{not empty masterViewController.question.multipleChoiceC}" 
+                                                      escape="false" value="C. #{masterViewController.question.multipleChoiceC} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>                                        
+                                        <h:outputText style="font-size: 25px; word-wrap: break-word;" rendered="#{not empty masterViewController.question.multipleChoiceD}" 
+                                                      escape="false" value="D. #{masterViewController.question.multipleChoiceD} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>                                        
+                                        <h:outputText style="font-size: 25px; word-wrap: break-word;" rendered="#{not empty masterViewController.question.multipleChoiceE}" 
+                                                      escape="false" value="E. #{masterViewController.question.multipleChoiceE} &lt;br /&gt; &lt;br /&gt; &lt;br /&gt;"/>
                                     </div>
-                       </h:panelGroup>
+                                </c:otherwise>
+                            </c:choose>
 
-                           
+                            <div align="center" style="font-size: 25px; font-weight: bolder; padding-bottom: 25px;">
+                                <h:outputText style="word-wrap: break-word;" value="Correct Answer: #{masterViewController.question.answer}"/>
+                            </div>
+                        </h:panelGroup>
+
+
 
                         <p:commandButton style="width: 290px; height: 55px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 20px; border-style: solid; border-width: 1px;"
-                            value="Next" action="#{masterViewController.nextIsClicked}" ajax="false"/>
+                                         value="Next" action="#{masterViewController.nextIsClicked}" ajax="false"/>
 
                     </p:panelGrid>
-                     </h:form>
+                </h:form>
             </div>
         </ui:define>
 

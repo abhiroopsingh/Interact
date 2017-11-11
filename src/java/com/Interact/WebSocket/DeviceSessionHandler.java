@@ -39,6 +39,13 @@ public class DeviceSessionHandler {
         
         sendToAllConnectedSessions(addMessage);
     }
+    
+    public void disableSubmit(Questions question) {
+        JSONObject disableMessage = createAddMessage(question);
+        disableMessage.put("disable", true);
+        
+        sendToAllConnectedSessions(disableMessage);
+    }
 
     private JsonObject createAddMessage(Device device) {
         JsonProvider provider = JsonProvider.provider();
