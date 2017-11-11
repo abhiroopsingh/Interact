@@ -10,8 +10,6 @@ function onMessage(event) {
     var form = document.getElementById("studentView");
     var join_id = form.elements["joinKeyId"].value;
 
-    console.log(join_id);
-
     if (device.session === join_id) {
 
         if (device.disable) {
@@ -19,22 +17,55 @@ function onMessage(event) {
         } else {
             document.getElementById("studentView:submit").disabled = false;
             document.getElementById("studentViewQuestion").innerHTML = device.question;
+            if (device.questionType === "Text Entry") {
+                document.getElementById("studentView:studentResponse").style.display = "block";
+                document.getElementById("studentView:studentViewOptionA").style.display = "none";
+                document.getElementById("studentView:studentViewOptionB").style.display = "none";
+                document.getElementById("studentView:studentViewOptionC").style.display = "none";
+                document.getElementById("studentView:studentViewOptionD").style.display = "none";
+                document.getElementById("studentView:studentViewOptionE").style.display = "none";
+                document.getElementById("studentView:submit").style.display = "block";
+                qid([{name: 'questionID', value: device.id}]);
+                return;
+            }
 
             if (device.A) {
                 document.getElementById("studentView:studentViewOptionA").value = device.A;
+                document.getElementById("studentView:studentViewOptionA").style.display = "block";
+                document.getElementById("studentView:studentViewOptionB").style.display = "none";
+                document.getElementById("studentView:studentViewOptionC").style.display = "none";
+                document.getElementById("studentView:studentViewOptionD").style.display = "none";
+                document.getElementById("studentView:studentViewOptionE").style.display = "none";
             }
+
             if (device.B) {
                 document.getElementById("studentView:studentViewOptionB").value = device.B;
+                document.getElementById("studentView:studentViewOptionB").style.display = "block";
+                document.getElementById("studentView:studentViewOptionC").style.display = "none";
+                document.getElementById("studentView:studentViewOptionD").style.display = "none";
+                document.getElementById("studentView:studentViewOptionE").style.display = "none";
             }
+
             if (device.C) {
                 document.getElementById("studentView:studentViewOptionC").value = device.C;
+                document.getElementById("studentView:studentViewOptionC").style.display = "block";
+                document.getElementById("studentView:studentViewOptionD").style.display = "none";
+                document.getElementById("studentView:studentViewOptionE").style.display = "none";
             }
+
             if (device.D) {
                 document.getElementById("studentView:studentViewOptionD").value = device.D;
+                document.getElementById("studentView:studentViewOptionD").style.display = "block";
+                document.getElementById("studentView:studentViewOptionE").style.display = "none";
             }
+
             if (device.E) {
                 document.getElementById("studentView:studentViewOptionE").value = device.E;
+                document.getElementById("studentView:studentViewOptionE").style.display = "block";
             }
+
+            document.getElementById("studentView:submit").style.display = "block";
+
             qid([{name: 'questionID', value: device.id}]);
         }
 
