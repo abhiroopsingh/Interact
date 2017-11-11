@@ -34,6 +34,12 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "UserAnswers.findByUsernameAndSession", query = "SELECT u FROM UserAnswers u WHERE u.username.username = :username AND u.sessionId.id = :session_id" )})
 public class UserAnswers implements Serializable {
 
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 1000)
+    @Column(name = "grade")
+    private String grade;
+
     @JoinColumn(name = "session_id", referencedColumnName = "id")
     @ManyToOne
     private Sessions sessionId;
@@ -120,6 +126,14 @@ public class UserAnswers implements Serializable {
 
     public void setSessionId(Sessions sessionId) {
         this.sessionId = sessionId;
+    }
+
+    public String getGrade() {
+        return grade;
+    }
+
+    public void setGrade(String grade) {
+        this.grade = grade;
     }
 
 }

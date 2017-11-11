@@ -58,13 +58,24 @@ public class StudentViewController implements Serializable {
         a.setSessionId(sessionsFacade.findById(sessionsController.getJoinKey()));
 
         List<UserAnswers> b = userAnswersFacade.findByUsernameAndSession(a.getUsername().getUsername(), a.getSessionId().getId());
-        if (b.size() == 0) {
+        if (b.isEmpty()) {
 
             Map<String, Object> attributes = new HashMap<>();
             attributes.put(this.questionId, this.answer);
             JSONObject json = new JSONObject(attributes);
 
             a.setAnswers(json.toString());
+
+            String correctAnswer = questionsController.getQuestions(Integer.valueOf(this.questionId)).getAnswer();
+
+            if (correctAnswer.equals(answer)) {
+
+                int currentGrade = 0;
+                currentGrade++;
+
+                a.setGrade(String.valueOf(currentGrade));
+
+            }
 
             userAnswersController.setSelected(a);
             userAnswersController.create();
@@ -76,6 +87,17 @@ public class StudentViewController implements Serializable {
 
             json.put(this.questionId, this.answer);
             c.setAnswers(json.toString());
+
+            String correctAnswer = questionsController.getQuestions(Integer.valueOf(this.questionId)).getAnswer();
+
+            if (correctAnswer.equals(answer)) {
+
+                int currentGrade = Integer.valueOf(c.getGrade());
+                currentGrade++;
+
+                c.setGrade(String.valueOf(currentGrade));
+
+            }
 
             userAnswersController.setSelected(c);
             userAnswersController.update();
