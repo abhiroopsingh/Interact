@@ -76,6 +76,9 @@ public class StudentViewController implements Serializable {
                 a.setGrade(String.valueOf(currentGrade));
 
             }
+            else { // Need to initialize if user answers the first question wrong..
+                a.setGrade("0");
+            }
 
             userAnswersController.setSelected(a);
             userAnswersController.create();
