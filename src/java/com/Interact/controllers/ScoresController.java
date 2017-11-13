@@ -5,6 +5,7 @@
 package com.Interact.controllers;
 
 import com.Interact.Entities.UserAnswers;
+import com.Interact.FacadeBeans.QuestionsFacade;
 import com.Interact.FacadeBeans.UserAnswersFacade;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -13,6 +14,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -37,6 +39,9 @@ public class ScoresController implements Serializable {
     private String high;
     private String avg;
     private String median;
+    
+    @Inject
+    private QuestionsFacade questionsFacade;
 
     public ScoresController() {
 
@@ -46,8 +51,11 @@ public class ScoresController implements Serializable {
         FacesContext fc = FacesContext.getCurrentInstance();
         String session_id = fc.getExternalContext().getRequestParameterMap().
                 get("sessId");
+        
+        System.out.println("SESSION ID: " + session_id);
+        
         this.setSessionAnswers(getFacade().findBySession(session_id));
-        this.setTotalPoints(sessionsFacade.findById(session_id).getQuestionsCollection().size());
+        this.setTotalPoints(questionsFacade.findBySessionId(session_id).size());
         prepareSessionStats();
         // To display 1 row in class statistics table
         this.dummyList = new ArrayList<>();

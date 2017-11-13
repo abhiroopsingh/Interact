@@ -47,6 +47,7 @@ public class StudentViewController implements Serializable {
     private String questionId = "";
     private List<Questions> sessionQuestions = null;
     private int questionNum = 0;
+    private String freeResponseAnswer = "";
 
     public StudentViewController() {
     }
@@ -58,6 +59,7 @@ public class StudentViewController implements Serializable {
         a.setSessionId(sessionsFacade.findById(sessionsController.getJoinKey()));
 
         List<UserAnswers> b = userAnswersFacade.findByUsernameAndSession(a.getUsername().getUsername(), a.getSessionId().getId());
+
         if (b.isEmpty()) {
 
             Map<String, Object> attributes = new HashMap<>();
@@ -75,8 +77,7 @@ public class StudentViewController implements Serializable {
 
                 a.setGrade(String.valueOf(currentGrade));
 
-            }
-            else { // Need to initialize if user answers the first question wrong..
+            } else { // Need to initialize if user answers the first question wrong..
                 a.setGrade("0");
             }
 
@@ -122,30 +123,54 @@ public class StudentViewController implements Serializable {
     }
 
     public void setAnswer(String answer) {
-
-        System.out.println("Set Answer: " + answer);
-
         this.answer = answer;
+
     }
 
     public void makeA() {
+        System.out.println("A");
         setAnswer("A");
     }
 
     public void makeB() {
+        System.out.println("B");
         setAnswer("B");
     }
 
     public void makeC() {
+        System.out.println("C");
+
         setAnswer("C");
     }
 
     public void makeD() {
+        System.out.println("D");
+
         setAnswer("D");
     }
 
     public void makeE() {
+        System.out.println("E");
+
         setAnswer("E");
+    }
+
+    public String getFreeResponseAnswer() {
+        return freeResponseAnswer;
+    }
+
+    public void setFreeResponseAnswer(String freeResponseAnswer) {
+        this.freeResponseAnswer = freeResponseAnswer;
+        
+        if(questionId.isEmpty()){
+            return;
+        }
+
+        String questionType = questionsController.getQuestions(Integer.valueOf(this.questionId)).getQuestionType();
+
+        if (questionType.equals("Text Entry")) {
+            this.answer = freeResponseAnswer;
+        }
     }
 
     public String nextIsClicked() {
