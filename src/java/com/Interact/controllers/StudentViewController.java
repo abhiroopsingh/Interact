@@ -115,7 +115,6 @@ public class StudentViewController implements Serializable {
         String session_id = fc.getExternalContext().getRequestParameterMap().get("questionID");
 
         questionId = session_id;
-
     }
 
     public String getAnswer() {
@@ -208,5 +207,4 @@ public class StudentViewController implements Serializable {
         return question;
 
     }
-
 }
