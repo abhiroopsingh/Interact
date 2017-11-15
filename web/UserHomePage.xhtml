@@ -61,6 +61,16 @@ Copyright © 2017 Osman Balci. All rights reserved.
                                 </p:commandButton>    
                             </p:column>
                             
+                            <p:column headerText="Start Session">
+
+                                <p:commandButton id="startButton" style="width: 50px; height: 50px;" 
+                                                 update="masterSessions"
+                                                 action="#{sessionsController.startSession()}" icon="ui-icon-trash">
+                                    <f:param name="sessId" value="#{item.id}" />
+                                </p:commandButton>    
+                            </p:column>
+                            
+                            
                             <p:column headerText="Student Scores">
                                 <p:commandButton id="scoresButton" style="width: 50px; height: 50px;" 
                                                  update="masterSessions"

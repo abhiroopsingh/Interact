@@ -75,10 +75,17 @@ Copyright © 2017 Andy Sin. All rights reserved.
                             </div>
                         </h:panelGroup>
 
+                        <c:if test="#{masterViewController.isLastQuestion() == false}">
 
+                            <p:commandButton style="width: 290px; height: 55px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 20px; border-style: solid; border-width: 1px;"
+                                             value="Next" action="#{masterViewController.nextIsClicked}" ajax="false"/>
+                        </c:if>
+                        <c:if test="#{masterViewController.isLastQuestion() == true}">
 
-                        <p:commandButton style="width: 290px; height: 55px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 20px; border-style: solid; border-width: 1px;"
-                                         value="Next" action="#{masterViewController.nextIsClicked}" ajax="false"/>
+                            <p:commandButton style="width: 290px; height: 55px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 20px; border-style: solid; border-width: 1px;"
+                                             value="End" action="#{masterViewController.nextIsClicked}" onclick="endSession()" ajax="false"/>
+
+                        </c:if>
 
                     </p:panelGrid>
                 </h:form>

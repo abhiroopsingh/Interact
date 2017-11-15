@@ -36,23 +36,23 @@ Copyright © 2017 Andy Sin. All rights reserved.
                         <h:panelGroup style="display: block; text-align:center">
                             <p id="studentViewQuestion" style="font-size: 25px; word-wrap: break-word;" />
 
-                            <h:commandButton id="studentViewOptionA" style="font-size: 25px; word-wrap: break-word; display:none;" action="#{studentViewController.makeA()}">
+                            <h:commandButton id="studentViewOptionA" class="active" style="font-size: 25px; word-wrap: break-word; display:none;" action="#{studentViewController.makeA()}">
                                 <f:ajax execute="@form =" render="@none"/>
                             </h:commandButton>
 
-                            <h:commandButton id="studentViewOptionB"  style="font-size: 25px; word-wrap: break-word; display:none;" action="#{studentViewController.makeB()}">
+                            <h:commandButton id="studentViewOptionB" class="active"  style="font-size: 25px; word-wrap: break-word; display:none;" action="#{studentViewController.makeB()}">
                                 <f:ajax execute="@form =" render="@none"/>
                             </h:commandButton>
 
-                            <h:commandButton id="studentViewOptionC"  style="font-size: 25px; word-wrap: break-word; display:none;" action="#{studentViewController.makeC()}">
+                            <h:commandButton id="studentViewOptionC" class="active" style="font-size: 25px; word-wrap: break-word; display:none;" action="#{studentViewController.makeC()}">
                                 <f:ajax execute="@form =" render="@none"/>
                             </h:commandButton>
 
-                            <h:commandButton id="studentViewOptionD"  style="font-size: 25px; word-wrap: break-word; display:none;" action="#{studentViewController.makeD()}">
+                            <h:commandButton id="studentViewOptionD" class="active"  style="font-size: 25px; word-wrap: break-word; display:none;" action="#{studentViewController.makeD()}">
                                 <f:ajax execute="@form =" render="@none"/>
                             </h:commandButton>
 
-                            <h:commandButton id="studentViewOptionE"  style="font-size: 25px; word-wrap: break-word; display:none;" action="#{studentViewController.makeE()}">
+                            <h:commandButton id="studentViewOptionE" class="active" style="font-size: 25px; word-wrap: break-word; display:none;" action="#{studentViewController.makeE()}">
                                 <f:ajax execute="@form =" render="@none"/>
                             </h:commandButton>
                             <p:inputText id="studentResponse" style="box-shadow: none; display: none;" value="#{studentViewController.freeResponseAnswer}" >
@@ -72,6 +72,7 @@ Copyright © 2017 Andy Sin. All rights reserved.
 
 
                             <p:remoteCommand name="qid" actionListener="#{studentViewController.exec}"/>
+                            <p:remoteCommand name="end" action="#{studentViewController.sessionRedirect}"/>
 
                         </h:panelGroup>
 

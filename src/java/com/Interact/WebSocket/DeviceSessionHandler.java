@@ -34,17 +34,26 @@ public class DeviceSessionHandler {
     }
 
     public void addQuestion(Questions question) {
-        questions.add(question);        
+        questions.add(question);
         JSONObject addMessage = createAddMessage(question);
-        
+
         sendToAllConnectedSessions(addMessage);
     }
-    
+
     public void disableSubmit(Questions question) {
         JSONObject disableMessage = createAddMessage(question);
         disableMessage.put("disable", true);
-        
+
         sendToAllConnectedSessions(disableMessage);
+    }
+
+    public void endSession() {
+
+        JSONObject endMessage = new JSONObject();
+        endMessage.put("end", true);
+
+        sendToAllConnectedSessions(endMessage);
+
     }
 
     private JsonObject createAddMessage(Device device) {

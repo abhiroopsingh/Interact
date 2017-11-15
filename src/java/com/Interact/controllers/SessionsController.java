@@ -43,6 +43,9 @@ public class SessionsController implements Serializable {
     
     @Inject
     private UserAnswersFacade userAnswersFacade;
+    
+    @Inject
+    private MasterViewController masterViewController;
 
     @Inject
     private UserAnswersController userAnswersController;
@@ -101,6 +104,7 @@ public class SessionsController implements Serializable {
         getSelected().setStatus(1);
         update();
         joinKey = getSelected().getId();
+        masterViewController.prepare();
         return "MasterJoinSession?faces-redirect=true";
     }
 

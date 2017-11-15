@@ -3,7 +3,17 @@ var socket = new WebSocket("ws://localhost:8080/Interact/actions");
 socket.onmessage = onMessage;
 
 function onMessage(event) {
+
     var device = JSON.parse(event.data);
+
+
+    if (device.end) {
+        console.log("END");
+
+        end([{name: 'endSession', value: true}]);
+
+        return;
+    }
 
     console.log(device);
 
@@ -101,6 +111,20 @@ function formDisable(question) {
     };
     socket.send(JSON.stringify(DeviceAction));
     document.getElementById("masterView:unbroadcast").disabled = true;
+}
+
+function endSession() {
+
+    var DeviceAction = {
+        action: "a",
+        name: "b",
+        type: "end",
+        description: null
+    };
+    
+    console.log("HERE");
+    
+    socket.send(JSON.stringify(DeviceAction));
 }
 
 function init() {

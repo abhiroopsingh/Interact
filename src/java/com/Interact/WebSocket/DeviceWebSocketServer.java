@@ -53,6 +53,13 @@ public class DeviceWebSocketServer {
 
         try (JsonReader reader = Json.createReader(new StringReader(message))) {
             JsonObject jsonMessage1 = reader.readObject();
+
+            if (jsonMessage1.getString("type").equals("end")) {
+                System.out.println("In here");
+                sessionHandler.endSession();
+                return;
+            }
+
             JsonReader reader2 = Json.createReader(new StringReader(
                     jsonMessage1.getString("name")));
             JsonObject jsonMessage = reader2.readObject();

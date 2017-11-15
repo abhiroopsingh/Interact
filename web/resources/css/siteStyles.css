@@ -731,3 +731,10 @@ td.hPage {
 .answerSelection {
     text-align: left;
 }
+
+.active:focus {
+    
+    background-color: black;
+    color: white;
+    
+}

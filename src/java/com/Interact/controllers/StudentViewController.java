@@ -117,6 +117,10 @@ public class StudentViewController implements Serializable {
         questionId = session_id;
     }
 
+    public String sessionRedirect() {
+        return "UserHomePage?faces-redirect=true"; 
+    }
+
     public String getAnswer() {
         return answer;
     }
@@ -160,8 +164,8 @@ public class StudentViewController implements Serializable {
 
     public void setFreeResponseAnswer(String freeResponseAnswer) {
         this.freeResponseAnswer = freeResponseAnswer;
-        
-        if(questionId.isEmpty()){
+
+        if (questionId.isEmpty()) {
             return;
         }
 
