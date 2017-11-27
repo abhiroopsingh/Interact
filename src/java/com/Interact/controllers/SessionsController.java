@@ -107,12 +107,6 @@ public class SessionsController implements Serializable {
         masterViewController.prepare();
         return "MasterJoinSession?faces-redirect=true";
     }
-    
-    public void endSession() {
-        setJoinKey(null);
-        getSelected().setStatus(2);
-        update();
-    }
 
     public Sessions prepareCreate() {
         selected = new Sessions(generateId(), 0, accountManager.

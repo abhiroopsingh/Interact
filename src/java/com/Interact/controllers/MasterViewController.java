@@ -35,11 +35,12 @@ public class MasterViewController implements Serializable {
 
         if (questionNum >= sessionQuestions.size()) {
             sessionQuestions = null;
-            sessionsController.endSession();
+            sessionsController.setJoinKey(null);
             return "UserHomePage?faces-redirect=true";
         } else {
             return "MasterJoinSession?faces-redirect=true";
         }
+
     }
 
     public String previousIsClicked() {
