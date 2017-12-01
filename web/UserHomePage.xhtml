@@ -112,8 +112,19 @@ Copyright © 2017 Osman Balci. All rights reserved.
 
                         </p:dataTable>
 
-                        <p:dataTable id="joinedSessions" var="item" value="#{sessionsController.ownedSessions}" style="font-family: Lato" scrollable="true" scrollHeight="250">
-                        
+                        <p:dataTable id="joinedSessions" var="item" value="#{sessionsController.joinedSessions}" style="font-family: Lato" scrollable="true" scrollHeight="250">
+                            <div align="center">
+                                <p:column headerText="Session Name">
+                                    <div align="center">
+
+                                        <h:outputLabel value="#{item.sessionName}"/>
+                                    </div>
+
+                                </p:column>
+                            </div>
+
+
+
                         </p:dataTable>
                     </h:form>
 

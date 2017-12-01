@@ -229,6 +229,12 @@ public class SessionsController implements Serializable {
 
         return getFacade().findOwnedSessions(username);
     }
+    
+    public List<Sessions> getJoinedSessions() {
+        String username = accountManager.getSelected().getUsername();
+
+        return getFacade().findJoinedSessions(username);
+    }
 
     public void setOwnedSessions(List<Sessions> ownedSessions) {
         this.ownedSessions = ownedSessions;
