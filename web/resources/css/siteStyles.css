@@ -55,7 +55,7 @@ body {
     font-weight: normal;
     text-decoration: none;
     color: black;    
-   }
+}
 
 /* Style the text used under the standard HTML tag "p" for paragraph */
 p {
@@ -127,7 +127,7 @@ index_bottom_header {
     height: 500px;
     width: 100%;
 
-    background: #F8F8F8;
+    background: transparent;
     font-family: Lato; 
     text-align: center;
 
@@ -425,7 +425,8 @@ Style the div component whose unique id is "rightAlignPanelGroup" per reference
 }
 
 .login:hover {
-    border-color: #0aa9f7;
+    background: #0aa9f7 !important;
+    border-color: #0aa9f7 !important;
 }
 
 .signup_button:hover {
@@ -434,6 +435,8 @@ Style the div component whose unique id is "rightAlignPanelGroup" per reference
 
 .login_button:hover {
     background: #0aa9f7 !important;
+    border-color: #0aa9f7 !important;
+
 }
 
 .index_login:hover {
@@ -622,11 +625,18 @@ cascading hierarchy, use the !important attribute.
     font-style: normal;
     font-weight: normal;
     text-decoration: none;
+
+}
+
+th {
+    font-size: 15pt !important;
+    background: azure !important;
+
 }
 
 .monthCal .ui-widget, .ui-widget-content .ui-widget-content {
     font-family: Lato;
-    font-size: 18pt;
+    font-size: 15pt;
     text-decoration: none;
 }
 
@@ -733,8 +743,17 @@ td.hPage {
 }
 
 .active:focus {
-    
+
     background-color: black;
     color: white;
+
+}
+
+.ui-datatable thead th,
+.ui-datatable tbody,
+.ui-datatable tbody tr,
+.ui-datatable tbody td {
+    border-style: none !important;
+    text-align: center !important;
     
 }

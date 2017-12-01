@@ -10,37 +10,39 @@ Copyright © 2017 Andy Sin. All rights reserved.
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
     <h:head>
-        <link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet"/>        
-        <title><ui:insert name="title">Interact!</ui:insert></title>
+        <link href="https://fonts.googleapis.com/css?family=Lato:300" rel="stylesheet"/> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+            <title><ui:insert name="title">Interact!</ui:insert></title>
 
-        <h:outputStylesheet library="css" name="siteStyles.css" />
-        
-        <!--
-        The icons and the font-awesome.min.css styles provided by http://fontawesome.io/
-        are linked for use by the entire site.
-        +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        As a result of this link, a folder named Remote Files is automatically
-        created in the NetBeans Projects pane containing the font-awesome.min.css file.
-        +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-        -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-        <ui:insert name="css"/>
-      
-        <link rel="shortcut icon" href="resources/images/favicon.ico" type="image/x-icon" />
-        
+            <h:outputStylesheet library="css" name="siteStyles.css" />
+
+            <!--
+            The icons and the font-awesome.min.css styles provided by http://fontawesome.io/
+            are linked for use by the entire site.
+            +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            As a result of this link, a folder named Remote Files is automatically
+            created in the NetBeans Projects pane containing the font-awesome.min.css file.
+            +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+            -->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.2/css/font-awesome.min.css" />
+
+            <ui:insert name="css"/>
+
+            <link rel="shortcut icon" href="resources/images/favicon.ico" type="image/x-icon" />
+
     </h:head>
 
-    <h:body>  
+    <h:body style="background-image: url(resources/images/gradient.png)">  
         <div id="page">  
             <div id="header">
                 <ui:insert name="header" >
                     <ui:include src="headerTemplate.xhtml" />
                 </ui:insert>
             </div>
-            
+
             &nbsp;
 
             <div id="editableContent">
@@ -48,7 +50,7 @@ Copyright © 2017 Andy Sin. All rights reserved.
                     <ui:include src="contentTemplate.xhtml" />
                 </ui:insert>
             </div>
-            
+
         </div>
     </h:body>
 </html>
