@@ -27,7 +27,7 @@ Copyright © 2017 Osman Balci. All rights reserved.
 
                             <p:commandButton id="share" class="login"
                                              style="width: 290px; height: 55px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 20px; border-style: solid; border-width: 1px;"
-                                             value="Join Session" action="EnterKeyToJoinSession?faces-redirect=true">
+                                             value="Join Session" actionListener="#{sessionsController.prepareJoin}" oncomplete="PF('JoinSessionDialog').show()">
                             </p:commandButton>
                             <p:commandButton id="change" class="login"
                                              style="width: 290px; height: 55px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 20px; border-style: solid; border-width: 1px;"
@@ -112,6 +112,9 @@ Copyright © 2017 Osman Balci. All rights reserved.
 
                         </p:dataTable>
 
+                        <p:dataTable id="joinedSessions" var="item" value="#{sessionsController.ownedSessions}" style="font-family: Lato" scrollable="true" scrollHeight="250">
+                        
+                        </p:dataTable>
                     </h:form>
 
 
@@ -121,6 +124,7 @@ Copyright © 2017 Osman Balci. All rights reserved.
 
 
             <ui:include src="SessionCreationForm.xhtml"/>
+            <ui:include src="EnterKeyToJoinSession.xhtml"/>
 
         </ui:define>
 
