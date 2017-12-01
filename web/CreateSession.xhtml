@@ -17,7 +17,7 @@ Copyright © 2016 Osman Balci. All rights reserved.
     <!-- This page is constructed based on the siteTemplate -->
     <ui:composition template="/template/siteTemplate.xhtml">
         <ui:define name="title">
-            <h:outputText value="Session Questions"></h:outputText>
+            <h:outputText value="Interact!"></h:outputText>
         </ui:define>
 
         <!-- Create the content for this page below -->
@@ -28,16 +28,8 @@ Copyright © 2016 Osman Balci. All rights reserved.
             as an overlay. The life attribute defines how long the message will be displayed in 
             milliseconds after which it will fade away. 4000 milliseconds = 4 seconds
             -->
-            <p:growl id="growl" life="4000" />
 
             <h:form id="QuestionAnswersListForm">
-
-                <p:panelGrid id="buttons" columns="2" styleClass="ui-panelgrid-blank">
-                    <p:commandButton id="Back" value="Back" action="#{sessionsController.backIsClicked}"
-                                     style="width: 290px; height: 55px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 20px; border-style: solid; border-width: 1px;"/>
-                    <p:commandButton id="Start" value="Start Session" action="#{sessionsController.startSession}" 
-                                     style="width: 290px; height: 55px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 20px; border-style: solid; border-width: 1px;"/>
-                </p:panelGrid>
 
                 <div align="Center">
                     <br/>
@@ -46,8 +38,7 @@ Copyright © 2016 Osman Balci. All rights reserved.
                     <br />
                 </div>
 
-                <p:dataTable id="datalist" value="#{questionsController.items}" var="item"
-                             selectionMode="single" selection="#{questionsController.selected}" rowKey="#{item.id}">
+                <p:dataTable id="questions" value="#{questionsController.items}" var="item" style="font-family: Lato" scrollable="true">
 
                     <p:ajax event="rowSelect"   update="createButton"/>
                     <p:ajax event="rowUnselect" update="createButton"/>
@@ -78,38 +69,31 @@ Copyright © 2016 Osman Balci. All rights reserved.
                     </p:column>
 
                     <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Preview"/>
-                        </f:facet>
 
-                        <p:commandButton id="viewButton" style="width: 50px; height: 50px;" update=":QuestionsViewForm" 
-                                         oncomplete="PF('QuestionsViewDialog').show()" icon="ui-icon-window"
+                        <p:commandButton id="viewButton" update=":QuestionsViewForm" class="login" 
+                                         oncomplete="PF('QuestionsViewDialog').show()" value="Preview"
+                                         style="width: 140px; height: 50px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 15px; border-style: solid; border-width: 1px;"
                                          action="#{questionsController.prepareView()}" >
                             <f:param name="questionId" value="#{item.id}"/>
                         </p:commandButton>
 
                     </p:column>
                     <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Edit"/>
-                        </f:facet>
 
-                        <p:commandButton id="editButton" style="width: 50px; height: 50px;" 
-                                         action="#{questionsController.prepareUpdate}" icon="ui-icon-trash"
+                        <p:commandButton id="editButton" class="login"  value="Edit"
+                                         style="width: 140px; height: 50px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 15px; border-style: solid; border-width: 1px;"
+                                         action="#{questionsController.prepareUpdate}"
                                          update=":QuestionsEditForm" oncomplete="PF('QuestionsEditDialog').show()">
                             <f:param name="editQuestion" value="#{item.id}" />
                         </p:commandButton>                            
                     </p:column>
 
                     <p:column>
-                        <f:facet name="header">
-                            <h:outputText value="Delete"/>
-                        </f:facet>
 
-                        <p:commandButton id="deleteButton" icon="ui-icon-trash" 
-                                         style="width: 50px; height: 50px;" 
+                        <p:commandButton id="deleteButton" class="login" value="Delete"
+                                         style="width: 140px; height: 50px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 15px; border-style: solid; border-width: 1px;"
                                          action="#{questionsController.deleteQuestion()}"
-                                         update="datalist">
+                                         update="questions">
                             <f:param name="deleteId" value="#{item.id}" />
                         </p:commandButton>
 
