@@ -13,57 +13,50 @@ Copyright © 2017 Osman Balci. All rights reserved.
     <!-- Do not enter tags before the composition line since they are ignored by JSF -->
 
     <!-- This page is constructed based on the siteTemplate -->
-    <ui:composition template="template/siteTemplate.xhtml">
-
-        <ui:define name="title">
-            <!-- Set the page title -->
-            <h:outputText value="Create Account"></h:outputText>
-        </ui:define>
+    <ui:composition template="template/indexTemplate.xhtml">
 
         <!-- Create the content for this page below -->
         <ui:define name="editableContent">
-            <div align="center"> <index_header>Create Account</index_header></div>
-            <br/>
-            <div align="center" style="width:600px; background-color: #FEFEFE; margin:0 auto;" >
+            
+            <br/><br/>
+
+            <div align="center" style="width:600px; background-color: white; opacity: .9; margin:0 auto;" >
 
                 <!-- Error messages will be shown here if any  -->
-                <p:messages id="msgs" showIcon="false"/>
-                <h:outputLabel id="form-error-message" class="errorMessages" value="#{accountManager.statusMessage}"/>
+            <br/>
+                <div align="center"> <index_header>Create Account</index_header></div>
 
                 <h:form id="AccountCreationForm">
+                    <br/>
 
                     <f:event listener="#{accountManager.validateInformation}" type="postValidate"/>
 
                     <table cellspacing="7" style="border-right-color: red; border-right-width: 200px;">
                         <tr>
-                            <td><index_regular>First Name</index_regular></td>
-                        </tr>
-                        <tr>
+                            <td><index_regular>First Name:</index_regular></td>
                             <td>
                                 <p:inputText id="firstName" value="#{accountManager.firstName}" required="true" styleClass="accountInputTextField"
                                              requiredMessage="First Name is Required!" label="First Name">
                                     <f:validateLength minimum="2" />
                                 </p:inputText>   
                             </td>
-                             
+
                         </tr>
-                        
+
                         <tr>
-                            <td><index_regular>Last Name</index_regular></td>
-                        </tr>
-                        <tr>
-                             <td>
-                               <p:inputText id="lastName" value="#{accountManager.lastName}" required="true" styleClass="accountInputTextField"
+                            <td><index_regular>Last Name:</index_regular></td>
+
+                            <td>
+                                <p:inputText id="lastName" value="#{accountManager.lastName}" required="true" styleClass="accountInputTextField"
                                              requiredMessage="Last Name is Required!" label="Last Name">
                                     <f:validateLength minimum="2" />
                                 </p:inputText>
                             </td> 
                         </tr>
-                        
+
                         <tr>
-                            <td><index_regular>Email</index_regular></td>
-                        </tr>
-                        <tr>
+                            <td><index_regular>Email:</index_regular></td>
+
                             <td>
                                 <p:inputText id="email" value="#{accountManager.email}" required="true" styleClass="accountInputTextField"
                                              requiredMessage="Email Address is Required!" label="Email">
@@ -71,11 +64,10 @@ Copyright © 2017 Osman Balci. All rights reserved.
                                 </p:inputText>
                             </td>
                         </tr>
-                        
+
                         <tr>
-                            <td><index_regular>Username</index_regular></td>
-                        </tr>
-                        <tr>
+                            <td><index_regular>Username:</index_regular></td>
+
                             <td>
                                 <p:inputText id="username" value="#{accountManager.username}" required="true" styleClass="accountInputTextField"
                                              requiredMessage="Username is Required!" label="Username">
@@ -83,11 +75,10 @@ Copyright © 2017 Osman Balci. All rights reserved.
                                 </p:inputText>
                             </td>
                         </tr>
-                        
+
                         <tr>
-                            <td><index_regular>Password</index_regular></td>
-                        </tr>
-                        <tr>
+                            <td><index_regular>Password:</index_regular></td>
+
                             <td>
                                 <p:password id="password" value="#{accountManager.password}" feedback="true" required="true" 
                                             styleClass="accountInputTextField" requiredMessage="Password is Required!">
@@ -96,21 +87,18 @@ Copyright © 2017 Osman Balci. All rights reserved.
                                 </p:password>
                             </td>
                         </tr>
-                        
+
                         <tr>
-                            <td><index_regular>Confirm Password</index_regular></td>
-                        </tr>
-                        <tr>
+                            <td><index_regular>Confirm Password:</index_regular></td>
+
                             <td>
                                 <p:password id="confirmPassword" value="ToBeReadFromThisFieldByAccountManager" required="true" 
                                             styleClass="accountInputTextField" requiredMessage="Confirm Password is Required!"/>
                             </td>
                         </tr>
-                        
+
                         <tr>
-                            <td><index_regular>Security Question</index_regular></td>
-                        </tr>
-                        <tr>
+                            <td><index_regular>Security Question:</index_regular></td>
                             <td>
                                 <h:selectOneMenu id="securityQuestion" style="width: 228px; height: 30px; border-radius: 3px;" label="Security Questions"
                                                  value="#{accountManager.securityQuestion}" required="true" requiredMessage="Security Question is Required!" >
@@ -118,11 +106,9 @@ Copyright © 2017 Osman Balci. All rights reserved.
                                 </h:selectOneMenu>
                             </td>
                         </tr>
-                        
+
                         <tr>
-                            <td><index_regular>Security Answer</index_regular></td>
-                        </tr>
-                        <tr>
+                            <td><index_regular>Security Answer:</index_regular></td>
                             <td>
                                 <p:inputText id="securityAnswer" value="#{accountManager.securityAnswer}" required="true" styleClass="accountInputTextField"
                                              requiredMessage="Security Answer is Required!" label="Security Answer">
@@ -136,7 +122,6 @@ Copyright © 2017 Osman Balci. All rights reserved.
                     <div align="center">
                         <p:commandButton class="login" style="display:inline" id="submit" value="Submit" action="#{accountManager.createAccount()}" ajax="false"/>
                     </div>
-                    <br/>
                     <br/>
                 </h:form>
             </div>

@@ -24,7 +24,7 @@ html, body {
     /* background-color: #F5F5DC;   /* Beige */
     /* background-color: #DCDCDC;   /* Gainsboro */
     /* background-color: #FFFFF0;   /* Ivory */
-    background-color: #f5f5f8;   /* Linen */
+    background-color: #F8F8F8;   /* Linen */
     /* background-color: #FDF5E6;   /* OldLace */
     /* background-color: #FFEFD5;   /* PapayaWhip */
     /* background-color: #F5DEB3;   /* Wheat */
@@ -55,7 +55,7 @@ body {
     font-weight: normal;
     text-decoration: none;
     color: black;    
-}
+   }
 
 /* Style the text used under the standard HTML tag "p" for paragraph */
 p {
@@ -127,7 +127,7 @@ index_bottom_header {
     height: 500px;
     width: 100%;
 
-    background: #f5f5f8;
+    background: #F8F8F8;
     font-family: Lato; 
     text-align: center;
 
@@ -138,7 +138,7 @@ index_bottom_header {
     height: 300px;
     width: 100%;
 
-    background: #f5f5f8;
+    background: #F8F8F8;
     font-family: Lato; 
     text-align: center;
 
@@ -149,7 +149,7 @@ index_bottom_header {
     height: 100%;
     width: 100%;
 
-    background: #EEEEEE;
+    background: #F8F8F8;
     font-family: Lato; 
     text-align: center;
     font-size: 20px;
@@ -433,7 +433,7 @@ Style the div component whose unique id is "rightAlignPanelGroup" per reference
 }
 
 .login_button:hover {
-    border-color: #0aa9f7;
+    background: #0aa9f7 !important;
 }
 
 .index_login:hover {
