@@ -112,16 +112,28 @@ Copyright © 2017 Osman Balci. All rights reserved.
 
                         </p:dataTable>
 
-                        <p:dataTable id="joinedSessions" var="item" value="#{sessionsController.joinedSessions}" style="font-family: Lato" scrollable="true" scrollHeight="250">
+                        <p:dataTable id="joinedSessions" var="item" value="#{userAnswersController.joinedSessions}" style="font-family: Lato" scrollable="true" scrollHeight="250">
                             <div align="center">
-                                <p:column headerText="Session Name">
+                                <p:column headerText="Session ID">
                                     <div align="center">
-
-                                        <h:outputLabel value="#{item.sessionName}"/>
+                                        <h:outputLabel value="#{item.sessionId}"/>
                                     </div>
 
                                 </p:column>
                             </div>
+
+                            <p:column headerText="Score">
+                                <h:outputLabel value="#{item.grade}"/>
+                            </p:column> 
+
+                            <p:column headerText="Total Possible Points">
+                                <h:outputLabel value="#{gradesController.getTotalPoints(item.sessionId)}"/>
+                            </p:column>
+
+                            <p:column headerText="Percent(%)">
+                                <h:outputLabel value="#{gradesController.calculatePercent(item.grade, item.sessionId)}">
+                                </h:outputLabel>
+                            </p:column> 
 
 
 

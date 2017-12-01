@@ -4,6 +4,7 @@ import com.Interact.Entities.UserAnswers;
 import com.Interact.controllers.util.JsfUtil;
 import com.Interact.controllers.util.JsfUtil.PersistAction;
 import com.Interact.FacadeBeans.UserAnswersFacade;
+import com.Interact.managers.AccountManager;
 
 import java.io.Serializable;
 import java.util.List;
@@ -18,10 +19,14 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.inject.Inject;
 
 @Named("userAnswersController")
 @SessionScoped
 public class UserAnswersController implements Serializable {
+
+    @Inject
+    private AccountManager accountManager;
 
     @EJB
     private com.Interact.FacadeBeans.UserAnswersFacade ejbFacade;
@@ -56,18 +61,21 @@ public class UserAnswersController implements Serializable {
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("UserAnswersCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").
+                getString("UserAnswersCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("UserAnswersUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").
+                getString("UserAnswersUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("UserAnswersDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").
+                getString("UserAnswersDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
@@ -100,11 +108,14 @@ public class UserAnswersController implements Serializable {
                 if (msg.length() > 0) {
                     JsfUtil.addErrorMessage(msg);
                 } else {
-                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+                    JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle(
+                            "/Bundle").getString("PersistenceErrorOccured"));
                 }
             } catch (Exception ex) {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, null, ex);
-                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE,
+                        null, ex);
+                JsfUtil.addErrorMessage(ex, ResourceBundle.getBundle("/Bundle").
+                        getString("PersistenceErrorOccured"));
             }
         }
     }
@@ -121,16 +132,25 @@ public class UserAnswersController implements Serializable {
         return getFacade().findAll();
     }
 
+    public List<UserAnswers> getJoinedSessions() {
+        String username = accountManager.getSelected().getUsername();
+
+        return getFacade().findByUsername(username);
+    }
+
     @FacesConverter(forClass = UserAnswers.class)
     public static class UserAnswersControllerConverter implements Converter {
 
         @Override
-        public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
+        public Object getAsObject(FacesContext facesContext,
+                UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            UserAnswersController controller = (UserAnswersController) facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "userAnswersController");
+            UserAnswersController controller = (UserAnswersController) facesContext.
+                    getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null,
+                            "userAnswersController");
             return controller.getUserAnswers(getKey(value));
         }
 
@@ -147,7 +167,8 @@ public class UserAnswersController implements Serializable {
         }
 
         @Override
-        public String getAsString(FacesContext facesContext, UIComponent component, Object object) {
+        public String getAsString(FacesContext facesContext,
+                UIComponent component, Object object) {
             if (object == null) {
                 return null;
             }
@@ -155,7 +176,10 @@ public class UserAnswersController implements Serializable {
                 UserAnswers o = (UserAnswers) object;
                 return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), UserAnswers.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE,
+                        "object {0} is of type {1}; expected type: {2}",
+                        new Object[]{object, object.getClass().getName(),
+                            UserAnswers.class.getName()});
                 return null;
             }
         }

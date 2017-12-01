@@ -34,7 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Sessions.findAll", query = "SELECT s FROM Sessions s")
     , @NamedQuery(name = "Sessions.findById", query = "SELECT s FROM Sessions s WHERE s.id = :id")
-    , @NamedQuery(name = "Sessions.findByStatus", query = "SELECT s FROM Sessions s WHERE s.status = :status")
+    , @NamedQuery(name = "Sessions.findByStatus", query = "SELECT s FROM Sessions s WHERE s.status = :status") 
     , @NamedQuery(name = "Sessions.findOwnedSessions", query = "SELECT s FROM Sessions s WHERE s.master.username = :master")})
 public class Sessions implements Serializable {
 

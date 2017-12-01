@@ -29,15 +29,22 @@ public class UserAnswersFacade extends AbstractFacade<UserAnswers> {
         super(UserAnswers.class);
     }
 
-    public List<UserAnswers> findByUsernameAndSession(String username, String session_id) {
+    public List<UserAnswers> findByUsernameAndSession(String username,
+            String session_id) {
 
-        return em.createNamedQuery("UserAnswers.findByUsernameAndSession")
+        return em.createNamedQuery("UserAnswers.findByUsername")
                 .setParameter("username", username)
                 .setParameter("session_id", session_id).getResultList();
     }
-    
+
+    public List<UserAnswers> findByUsername(String username) {
+        return em.createNamedQuery("UserAnswers.findByUsername")
+                .setParameter("username", username).getResultList();
+    }
+
     public List<UserAnswers> findBySession(String session_id) {
-        
-        return em.createNamedQuery("UserAnswers.findBySession").setParameter("session_id", session_id).getResultList();
+
+        return em.createNamedQuery("UserAnswers.findBySession").setParameter(
+                "session_id", session_id).getResultList();
     }
 }
