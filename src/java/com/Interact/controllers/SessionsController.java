@@ -113,6 +113,13 @@ public class SessionsController implements Serializable {
         getSelected().setStatus(2);
         update();
     }
+    
+    public boolean sessionOver(String sessionId){
+        System.out.println(sessionId);
+        Sessions session = ejbFacade.findById(sessionId);
+        System.out.println(session.getStatus());
+        return session.getStatus() == 2;
+    }
 
     public Sessions prepareCreate() {
         selected = new Sessions(generateId(), 0, accountManager.
