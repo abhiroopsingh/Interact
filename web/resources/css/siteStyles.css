@@ -692,12 +692,12 @@ th {
 }
 
 .accountInputTextField {
-    font-family: Lato;
-    font-size: 20px;
-    text-decoration: none;
-    box-shadow: none;
-    width: 220px;
-    height: 25px;
+    font-family: Lato !important;
+    font-size: 20px !important;
+    text-decoration: none !important;
+    box-shadow: none !important;
+    width: 220px !important;
+    height: 30px !important;
 }
 
 .weatherResults {

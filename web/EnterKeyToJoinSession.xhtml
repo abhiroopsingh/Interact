@@ -14,20 +14,18 @@ Copyright © 2017 Andy Sin. All rights reserved.
     <!-- Do not enter tags before the composition line since they are ignored by JSF -->
 
     <!-- This page is constructed based on the siteTemplate -->
-    <ui:composition template="/template/siteTemplate.xhtml">
-        <ui:define name="title">
-            <h:outputText value="Join A Session"></h:outputText>
-        </ui:define>
+    <ui:composition>
 
         <!-- Create the content for this page below -->
-        <ui:define name="editableContent">
 
-            <h:form id="EnterKeyForm">
+        <p:dialog id="JoinSessionDlg" widgetVar="JoinSessionDialog" modal="true" resizable="false" appendTo="@(body)" header="Join Session">
+            <h:form id="JoinSessionForm">
                 <div align="Center">
-                    <h:outputLabel value="Enter a Session Key: "/>
+                    <br/>
+                    <index_regular>Enter Session Key:</index_regular>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                    <p:inputText id="keyword" value="#{sessionsController.joinKey}" 
-                                 required="true" requiredMessage="Please enter a session key!">
+                    <p:inputText id="keyword" value="#{sessionsController.joinKey}" styleClass="accountInputTextField">
                         <f:validateLength minimum="16" maximum="16" />
                     </p:inputText>
                 </div>
@@ -35,13 +33,15 @@ Copyright © 2017 Andy Sin. All rights reserved.
                     <p:spacer height="10"/>
                     <div align="center">
                         <!-- SUBMIT button -->
-                        <p:commandButton value="Submit" icon="ui-icon-check" ajax="false" 
-                                         styleClass="commandButton" action="#{sessionsController.join}"/> 
+                        <p:commandButton value="Join" ajax="false" action="#{sessionsController.join}" class="login"
+                                         style="width: 140px; height: 50px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 15px; border-style: solid; border-width: 1px;"
+                                         /> 
                     </div>
                 </h:panelGroup>
             </h:form>
+        </p:dialog>
 
-        </ui:define>
+
     </ui:composition>
 
 

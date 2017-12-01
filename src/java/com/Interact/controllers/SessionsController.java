@@ -121,6 +121,10 @@ public class SessionsController implements Serializable {
         initializeEmbeddableKey();
         return selected;
     }
+    
+    public void prepareJoin() {
+        
+    }
 
     public String create() {
         persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").
