@@ -41,7 +41,7 @@ function onMessage(event) {
             }
 
             if (device.A) {
-                document.getElementById("studentView:studentViewOptionA").value = device.A;
+                document.getElementById("studentView:studentViewOptionA").value = ("A. " + device.A);
                 document.getElementById("studentView:studentViewOptionA").style.display = "block";
                 document.getElementById("studentView:studentViewOptionB").style.display = "none";
                 document.getElementById("studentView:studentViewOptionC").style.display = "none";
@@ -50,7 +50,7 @@ function onMessage(event) {
             }
 
             if (device.B) {
-                document.getElementById("studentView:studentViewOptionB").value = device.B;
+                document.getElementById("studentView:studentViewOptionB").value = ("B. " + device.B);
                 document.getElementById("studentView:studentViewOptionB").style.display = "block";
                 document.getElementById("studentView:studentViewOptionC").style.display = "none";
                 document.getElementById("studentView:studentViewOptionD").style.display = "none";
@@ -58,20 +58,20 @@ function onMessage(event) {
             }
 
             if (device.C) {
-                document.getElementById("studentView:studentViewOptionC").value = device.C;
+                document.getElementById("studentView:studentViewOptionC").value = ("C. " + device.C);
                 document.getElementById("studentView:studentViewOptionC").style.display = "block";
                 document.getElementById("studentView:studentViewOptionD").style.display = "none";
                 document.getElementById("studentView:studentViewOptionE").style.display = "none";
             }
 
             if (device.D) {
-                document.getElementById("studentView:studentViewOptionD").value = device.D;
+                document.getElementById("studentView:studentViewOptionD").value = ("D. " + device.D);
                 document.getElementById("studentView:studentViewOptionD").style.display = "block";
                 document.getElementById("studentView:studentViewOptionE").style.display = "none";
             }
 
             if (device.E) {
-                document.getElementById("studentView:studentViewOptionE").value = device.E;
+                document.getElementById("studentView:studentViewOptionE").value = ("E. " + device.E);
                 document.getElementById("studentView:studentViewOptionE").style.display = "block";
             }
 
