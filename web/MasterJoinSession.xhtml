@@ -32,14 +32,14 @@ Copyright © 2017 Andy Sin. All rights reserved.
                     <p:panelGrid id="topGrid" columns="3" layout="grid">
 
                         <p:commandButton style="width: 290px; height: 55px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 20px; border-style: solid; border-width: 1px;"
-                                         value="Previous" action="#{masterViewController.previousIsClicked}" ajax="false"/>
+                                         value="Previous" action="#{masterViewController.previousIsClicked}" ajax="false" class="login"/>
 
 
                         <h:panelGroup id="display">
                             <p:commandButton id="broadcast" style="width: 290px; height: 55px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 20px; border-style: solid; border-width: 1px;"
-                                             value="Broadcast" onclick="formSubmit(\'#{masterViewController.question}\')"/>
+                                             value="Broadcast" onclick="formSubmit(\'#{masterViewController.question}\')" class="login"/>
                             <p:commandButton id="unbroadcast" style="display:none; width: 290px; height: 55px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 20px; border-style: solid; border-width: 1px;"
-                                             value="Un-broadcast" onclick="formDisable(\'#{masterViewController.question}\')"/>
+                                             value="Un-broadcast" onclick="formDisable(\'#{masterViewController.question}\')" class="login"/>
                             <br/>
                             <br/>
                             <div align="center">
@@ -78,12 +78,12 @@ Copyright © 2017 Andy Sin. All rights reserved.
                         <c:if test="#{masterViewController.isLastQuestion() == false}">
 
                             <p:commandButton style="width: 290px; height: 55px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 20px; border-style: solid; border-width: 1px;"
-                                             value="Next" action="#{masterViewController.nextIsClicked}" ajax="false"/>
+                                             value="Next" action="#{masterViewController.nextIsClicked}" ajax="false" class="login"/>
                         </c:if>
                         <c:if test="#{masterViewController.isLastQuestion() == true}">
 
                             <p:commandButton style="width: 290px; height: 55px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 20px; border-style: solid; border-width: 1px;"
-                                             value="End" action="#{masterViewController.nextIsClicked}" onclick="endSession()" ajax="false"/>
+                                             value="End" action="#{masterViewController.nextIsClicked}" onclick="endSession()" ajax="false" class="login"/>
 
                         </c:if>
 

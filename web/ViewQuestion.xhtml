@@ -9,11 +9,11 @@
 
     <ui:composition>
 
-        <p:dialog id="QuestionsViewDlg" widgetVar="QuestionsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewQuestionsTitle}">
+        <p:dialog id="QuestionsViewDlg" widgetVar="QuestionsViewDialog" modal="true" resizable="false" appendTo="@(body)" header="Preview Question">
 
             <div align="left" style="width:97%">
 
-                <h:form id="QuestionsViewForm" style="width: 750px; height: 500px; ">
+                <h:form id="QuestionsViewForm" style="width: 750px; height: 400px; ">
                     <h:panelGroup id="display">
 
                         <div align="center">
@@ -48,7 +48,9 @@
                             <h:outputText style="word-wrap: break-word;" value="Correct Answer: #{questionsController.selected.answer}"/>
                         </div>
                         <div align="center" style="padding-bottom:10px;">                        
-                            <p:commandButton value="#{bundle.Close}" onclick="QuestionsViewDialog.hide()"/>
+                            <p:commandButton value="Close" onclick="QuestionsViewDialog.hide()" class="login"
+                                             style="width: 140px; height: 50px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 15px; border-style: solid; border-width: 1px;"
+                                             />
                         </div>
                     </h:panelGroup>
                 </h:form>
