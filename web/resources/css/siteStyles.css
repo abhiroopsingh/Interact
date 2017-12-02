@@ -428,6 +428,11 @@ Style the div component whose unique id is "rightAlignPanelGroup" per reference
     background: #0aa9f7 !important;
     border-color: #0aa9f7 !important;
 }
+.login:active {
+    background: #0aa9f7 !important;
+    border-color: #0aa9f7 !important;
+}
+
 
 .signup_button:hover {
     border-color: #0aa9f7;
@@ -762,3 +767,4 @@ td.hPage {
 .companyHeaderGrid.ui-panelgrid .ui-panelgrid-cell {
     border: none;
 }
+
