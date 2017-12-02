@@ -51,9 +51,7 @@ public class ScoresController implements Serializable {
         FacesContext fc = FacesContext.getCurrentInstance();
         String session_id = fc.getExternalContext().getRequestParameterMap().
                 get("sessId");
-        
-        System.out.println("SESSION ID: " + session_id);
-        
+       
         this.setSessionAnswers(getFacade().findBySession(session_id));
         this.setTotalPoints(questionsFacade.findBySessionId(session_id).size());
         prepareSessionStats();
