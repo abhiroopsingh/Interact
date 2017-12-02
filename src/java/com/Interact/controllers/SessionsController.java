@@ -101,6 +101,11 @@ public class SessionsController implements Serializable {
     }
 
     public String startSession() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        String session_id = fc.getExternalContext().getRequestParameterMap().
+                get("sessId");
+        Sessions sess = getSessions(session_id);
+        setSelected(sess);
         getSelected().setStatus(1);
         update();
         joinKey = getSelected().getId();
@@ -242,7 +247,6 @@ public class SessionsController implements Serializable {
     }
 
     public String routeSessions() {
-
         FacesContext fc = FacesContext.getCurrentInstance();
         String session_id = fc.getExternalContext().getRequestParameterMap().
                 get("sessId");
