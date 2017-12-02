@@ -114,9 +114,9 @@ Copyright © 2017 Osman Balci. All rights reserved.
 
                         <p:dataTable id="joinedSessions" var="item" value="#{userAnswersController.joinedSessions}" style="font-family: Lato" scrollable="true" scrollHeight="250">
                             <div align="center">
-                                <p:column headerText="Session ID">
+                                <p:column headerText="Session Name">
                                     <div align="center">
-                                        <h:outputLabel value="#{item.sessionId}"/>
+                                        <h:outputLabel value="#{item.sessionId.sessionName}"/>
                                     </div>
 
                                 </p:column>
@@ -127,15 +127,23 @@ Copyright © 2017 Osman Balci. All rights reserved.
                             </p:column> 
 
                             <p:column headerText="Total Possible Points">
-                                <h:outputLabel value="#{gradesController.getTotalPoints(item.sessionId)}"/>
+                                <h:outputLabel value="#{gradesController.getTotalPoints(item.sessionId.id)}"/>
                             </p:column>
 
                             <p:column headerText="Percent(%)">
-                                <h:outputLabel value="#{gradesController.calculatePercent(item.grade, item.sessionId)}">
+                                <h:outputLabel value="#{gradesController.calculatePercent(item.grade, item.sessionId.id)}">
                                 </h:outputLabel>
                             </p:column> 
 
+                            <p:column headerText="Class Average">
+                                <h:outputLabel value="#{gradesController.getClassAvg(item.sessionId.id)}">
+                                </h:outputLabel>
+                            </p:column> 
 
+                            <p:column headerText="Class Median">
+                                <h:outputLabel value="#{gradesController.getClassMedian(item.sessionId.id)}">
+                                </h:outputLabel>
+                            </p:column> 
 
                         </p:dataTable>
                     </h:form>
