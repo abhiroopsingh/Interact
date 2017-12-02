@@ -70,7 +70,7 @@ public class StudentViewController implements Serializable {
 
             String correctAnswer = questionsController.getQuestions(Integer.valueOf(this.questionId)).getAnswer();
 
-            if (correctAnswer.equals(answer)) {
+            if (correctAnswer.equalsIgnoreCase(answer)) {
 
                 int currentGrade = 0;
                 currentGrade++;
