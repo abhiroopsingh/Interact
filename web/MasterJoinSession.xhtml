@@ -70,9 +70,6 @@ Copyright © 2017 Andy Sin. All rights reserved.
                                 </c:otherwise>
                             </c:choose>
 
-                            <div align="center" style="font-size: 25px; font-weight: bolder; padding-bottom: 25px;">
-                                <h:outputText style="word-wrap: break-word;" value="Correct Answer: #{masterViewController.question.answer}"/>
-                            </div>
                         </h:panelGroup>
 
                         <c:if test="#{masterViewController.isLastQuestion() == false}">
