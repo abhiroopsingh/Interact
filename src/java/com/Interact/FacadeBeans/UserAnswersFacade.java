@@ -32,7 +32,7 @@ public class UserAnswersFacade extends AbstractFacade<UserAnswers> {
     public List<UserAnswers> findByUsernameAndSession(String username,
             String session_id) {
 
-        return em.createNamedQuery("UserAnswers.findByUsername")
+        return em.createNamedQuery("UserAnswers.findByUsernameAndSession")
                 .setParameter("username", username)
                 .setParameter("session_id", session_id).getResultList();
     }
