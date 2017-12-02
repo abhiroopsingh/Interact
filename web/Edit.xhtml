@@ -11,34 +11,36 @@
 
         <p:dialog id="QuestionsEditDlg" widgetVar="QuestionsEditDialog" modal="true" resizable="false" appendTo="@(body)" header="Edit Question">
             <h:form id="QuestionsEditForm">
-                <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{questionsController.selected != null}">
 
-                        <p:outputLabel value="Question Type" for="questionType" />
-                        <p:selectOneMenu id="questionType" value="#{questionsController.selected.questionType}" style="width:483px">
+
+                <h:panelGroup>
+                    <p:panelGrid columns="2" rendered="#{questionsController.selected != null}" styleClass="companyHeaderGrid">
+
+                        <p:outputLabel value="Question Type" for="questionType" style="font-family: Lato" />
+                        <h:selectOneMenu id="questionType" value="#{questionsController.selected.questionType}" styleClass="accountInputTextField" style="width:483px !important; font-family: Lato">
                             <f:selectItem itemLabel="Select Question Type" itemValue="" />
                             <f:selectItem itemLabel="Multiple Choice" itemValue="Multiple Choice" />
                             <f:selectItem itemLabel="True False" itemValue="True/False" />
                             <f:selectItem itemLabel="Text Entry" itemValue="Text Entry" />
                             <p:ajax event="change" update="@form" />
-                        </p:selectOneMenu> 
+                        </h:selectOneMenu> 
 
-                        <p:outputLabel value="#{bundle.CreateQuestionsLabel_question}" for="question" />
-                        <p:inputText id="question" style="width: 500px" value="#{questionsController.selected.question}" title="#{bundle.CreateQuestionsTitle_question}" required="true" requiredMessage="#{bundle.CreateQuestionsRequiredMessage_question}"/>         
+                        <p:outputLabel value="#{bundle.CreateQuestionsLabel_question}" for="question"  style="font-family: Lato" />
+                        <p:inputText id="question" styleClass="accountInputTextField" style="width: 485px !important; font-family: Lato" value="#{questionsController.selected.question}" title="#{bundle.CreateQuestionsTitle_question}"/>         
 
-                        <p:outputLabel rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" value="A:" />
-                        <p:inputText rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" id="choice1" style="width: 500px" value="#{questionsController.selected.multipleChoiceA}" title="#{bundle.CreateQuestionsTitle_question}"/>
-                        <p:outputLabel rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" value="B:" />
-                        <p:inputText rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" id="choice2" style="width: 500px" value="#{questionsController.selected.multipleChoiceB}" title="#{bundle.CreateQuestionsTitle_question}"/>
-                        <p:outputLabel rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" value="C:" />
-                        <p:inputText rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" id="choice3" style="width: 500px" value="#{questionsController.selected.multipleChoiceC}" title="#{bundle.CreateQuestionsTitle_question}"/>
-                        <p:outputLabel rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" value="D:" />
-                        <p:inputText rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" id="choice4" style="width: 500px" value="#{questionsController.selected.multipleChoiceD}" title="#{bundle.CreateQuestionsTitle_question}"/>
-                        <p:outputLabel rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" value="E:" />
-                        <p:inputText rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" id="choice5" style="width: 500px" value="#{questionsController.selected.multipleChoiceE}" title="#{bundle.CreateQuestionsTitle_question}"/>
+                        <p:outputLabel style="font-family: Lato" rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" value="A:" />
+                        <p:inputText styleClass="accountInputTextField" rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" id="choice1" style="width: 485px !important; font-family: Lato" value="#{questionsController.selected.multipleChoiceA}" title="#{bundle.CreateQuestionsTitle_question}"/>
+                        <p:outputLabel style="font-family: Lato" rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" value="B:" />
+                        <p:inputText styleClass="accountInputTextField" rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" id="choice2" style="width: 485px !important; font-family: Lato" value="#{questionsController.selected.multipleChoiceB}" title="#{bundle.CreateQuestionsTitle_question}"/>
+                        <p:outputLabel style="font-family: Lato" rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" value="C:" />
+                        <p:inputText styleClass="accountInputTextField" rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" id="choice3" style="width: 485px !important; font-family: Lato" value="#{questionsController.selected.multipleChoiceC}" title="#{bundle.CreateQuestionsTitle_question}"/>
+                        <p:outputLabel style="font-family: Lato" rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" value="D:" />
+                        <p:inputText styleClass="accountInputTextField" rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" id="choice4" style="width: 485px !important; font-family: Lato" value="#{questionsController.selected.multipleChoiceD}" title="#{bundle.CreateQuestionsTitle_question}"/>
+                        <p:outputLabel style="font-family: Lato" rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" value="E:" />
+                        <p:inputText styleClass="accountInputTextField" rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" id="choice5" style="width: 485px !important; font-family: Lato" value="#{questionsController.selected.multipleChoiceE}" title="#{bundle.CreateQuestionsTitle_question}"/>
 
-                        <p:outputLabel value="#{bundle.CreateQuestionsLabel_answer}" for="answer" />
-                        <p:selectOneMenu id="MCAnswer" rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" value="#{questionsController.selected.answer}" style="width:483px">
+                        <p:outputLabel value="Answer" for="answer"  style="font-family: Lato" />
+                        <h:selectOneMenu id="MCAnswer" rendered="#{questionsController.selected.questionType eq 'Multiple Choice'}" value="#{questionsController.selected.answer}" style="font-family: Lato; width:483px">
                             <f:selectItem itemLabel="Select Correct Answer Choice" itemValue="" />
                             <f:selectItem itemLabel="A" itemValue="A" />
                             <f:selectItem itemLabel="B" itemValue="B" />
@@ -46,25 +48,21 @@
                             <f:selectItem itemLabel="D" itemValue="D" />
                             <f:selectItem itemLabel="E" itemValue="E" />
 
-                        </p:selectOneMenu> 
-                        <p:selectOneMenu id="TFAnswer" rendered="#{questionsController.selected.questionType eq 'True/False'}" value="#{questionsController.selected.answer}" style="width:483px">
+                        </h:selectOneMenu> 
+                        <h:selectOneMenu id="TFAnswer" rendered="#{questionsController.selected.questionType eq 'True/False'}" value="#{questionsController.selected.answer}" style="font-family: Lato; width:483px">
                             <f:selectItem itemLabel="Select Correct Answer Choice" itemValue="" />
                             <f:selectItem itemLabel="True" itemValue="A" />
                             <f:selectItem itemLabel="False" itemValue="B" />
-                        </p:selectOneMenu> 
-                        <p:inputText id="answer" rendered="#{questionsController.selected.questionType eq 'Text Entry'}" value="#{questionsController.selected.answer}" title="#{bundle.CreateQuestionsTitle_answer}" required="true" requiredMessage="#{bundle.CreateQuestionsRequiredMessage_answer}"/>
+                        </h:selectOneMenu> 
+                        <p:inputText id="answer" styleClass="accountInputTextField" style="font-family: Lato; width:483px !important;" rendered="#{questionsController.selected.questionType eq 'Text Entry'}" value="#{questionsController.selected.answer}" title="#{bundle.CreateQuestionsTitle_answer}"/>
 
                     </p:panelGrid>
+                    <br />
                     <div align="center">
-                        <br />
-                        <p:commandButton actionListener="#{questionsController.update}" value="#{bundle.Save}" 
-                                         styleClass="commandButton" icon="ui-icon-disk" ajax="false"
+                        <p:commandButton actionListener="#{questionsController.update}" value="Save" ajax="false" class="login"
+                                         style="width: 140px; height: 50px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 15px; border-style: solid; border-width: 1px;"
                                          update="display,:QuestionsListForm:datalist,:growl" 
                                          oncomplete="handleSubmit(args,'QuestionsCreateDialog');" />
-                        &nbsp;
-                        <!-- CANCEL button -->
-                        <p:commandButton value="#{bundle.Cancel}" onclick="PF('QuestionsEditDialog').hide()" 
-                                         styleClass="commandButton" icon="ui-icon-cancel"/>
                     </div>
                 </h:panelGroup>
             </h:form>

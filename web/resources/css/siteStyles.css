@@ -757,3 +757,8 @@ td.hPage {
     text-align: center !important;
     
 }
+
+.companyHeaderGrid.ui-panelgrid>*>tr,
+.companyHeaderGrid.ui-panelgrid .ui-panelgrid-cell {
+    border: none;
+}
