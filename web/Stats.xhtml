@@ -26,15 +26,15 @@
 
 
                         <c:if test="#{masterViewController.question.questionType eq 'Multiple Choice'}">
-                            <p:outputLabel value="A: " rendered="#{empty masterViewController.question.multipleChoiceA}"/>
+                            <p:outputLabel value="A: " rendered="#{not empty masterViewController.question.multipleChoiceA}"/>
                             <p:outputLabel value=""/>
-                            <p:outputLabel value="B:" rendered="#{empty masterViewController.question.multipleChoiceB}"/>
+                            <p:outputLabel value="B:" rendered="#{not empty masterViewController.question.multipleChoiceB}"/>
                             <p:outputLabel value=""/>
-                            <p:outputLabel value="C: " rendered="#{empty masterViewController.question.multipleChoiceC}"/>
+                            <p:outputLabel value="C: " rendered="#{not empty masterViewController.question.multipleChoiceC}"/>
                             <p:outputLabel value=""/>
-                            <p:outputLabel value="D: " rendered="#{empty masterViewController.question.multipleChoiceD}"/>
+                            <p:outputLabel value="D: " rendered="#{not empty masterViewController.question.multipleChoiceD}"/>
                             <p:outputLabel value=""/>
-                            <p:outputLabel value="E: " rendered="#{empty masterViewController.question.multipleChoiceE}"/>
+                            <p:outputLabel value="E: " rendered="#{not empty masterViewController.question.multipleChoiceE}"/>
                             <p:outputLabel value=""/>
                         </c:if>
 
