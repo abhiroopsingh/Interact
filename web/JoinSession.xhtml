@@ -32,42 +32,57 @@ Copyright © 2017 Andy Sin. All rights reserved.
                     <input type="hidden" id="joinKeyId"
                            value="#{sessionsController.joinKey}"/>
 
-                    <p:panelGrid id="topGrid" columns="1">
+                    <p:panelGrid id="topGrid" columns="1" style="font-family: Lato; font-size: 25px; width: 750px; height: 400px;">
                         <h:panelGroup style="display: block; text-align:center">
-                            <p id="studentViewQuestion" style="font-size: 25px; word-wrap: break-word;" />
+                            <div align="center">
+                                <p id="studentViewQuestion" style=" text-align: center; font-family: Lato; font-size: 25px; word-wrap: break-word;" />
+                            </div>
 
-                            <h:commandButton id="studentViewOptionA" class="active" style="font-size: 25px; word-wrap: break-word; display:none;" action="#{studentViewController.makeA()}">
-                                <f:ajax execute="@form =" render="@none"/>
-                            </h:commandButton>
-
-                            <h:commandButton id="studentViewOptionB" class="active"  style="font-size: 25px; word-wrap: break-word; display:none;" action="#{studentViewController.makeB()}">
-                                <f:ajax execute="@form =" render="@none"/>
-                            </h:commandButton>
-
-                            <h:commandButton id="studentViewOptionC" class="active" style="font-size: 25px; word-wrap: break-word; display:none;" action="#{studentViewController.makeC()}">
-                                <f:ajax execute="@form =" render="@none"/>
-                            </h:commandButton>
-
-                            <h:commandButton id="studentViewOptionD" class="active"  style="font-size: 25px; word-wrap: break-word; display:none;" action="#{studentViewController.makeD()}">
-                                <f:ajax execute="@form =" render="@none"/>
-                            </h:commandButton>
-
-                            <h:commandButton id="studentViewOptionE" class="active" style="font-size: 25px; word-wrap: break-word; display:none;" action="#{studentViewController.makeE()}">
-                                <f:ajax execute="@form =" render="@none"/>
-                            </h:commandButton>
-                            <p:inputText id="studentResponse" style="box-shadow: none; display: none;" value="#{studentViewController.freeResponseAnswer}" >
-                                <f:ajax execute="@form =" render="@none"/>
-                            </p:inputText>
                             <br/>
                             <br/>
-                            <h:commandButton id="submit" style="font-size: 25px; word-wrap: break-word; display:none;" value="Submit" action="#{studentViewController.submit()}">
+
+                            <h:commandButton id="studentViewOptionA" class="active" style="font-family: Lato; font-size: 25px; word-wrap: break-word; display:none; background: white; box-shadow: none !important; border-style: solid; border-width: 2px; text-decoration: none;" action="#{studentViewController.makeA()}">
+                                <f:ajax execute="@form =" render="@none"/>
                             </h:commandButton>
+                            <br/>
 
+                            <h:commandButton id="studentViewOptionB" class="active"  style="font-family: Lato; font-size: 25px; word-wrap: break-word; display:none; background: white; box-shadow: none !important; border-style: solid; border-width: 2px; text-decoration: none;" action="#{studentViewController.makeB()}">
+                                <f:ajax execute="@form =" render="@none"/>
+                            </h:commandButton>
+                            <br/>
 
-                            <p:outputLabel id="waitField">
+                            <h:commandButton id="studentViewOptionC" class="active" style="font-family: Lato; font-size: 25px; word-wrap: break-word; display:none; background: white; box-shadow: none !important; border-style: solid; border-width: 2px; text-decoration: none;" action="#{studentViewController.makeC()}">
+                                <f:ajax execute="@form =" render="@none"/>
+                            </h:commandButton>
+                            <br/>
+
+                            <h:commandButton id="studentViewOptionD" class="active"  style="font-family: Lato; font-size: 25px; word-wrap: break-word; display:none; background: white; box-shadow: none !important; border-style: solid; border-width: 2px; text-decoration: none;" action="#{studentViewController.makeD()}">
+                                <f:ajax execute="@form =" render="@none"/>
+                            </h:commandButton>
+                            <br/>
+
+                            <h:commandButton id="studentViewOptionE" class="active" style="font-family: Lato; font-size: 25px; word-wrap: break-word; display:none; background: white; box-shadow: none !important; border-style: solid; border-width: 2px; text-decoration: none;" action="#{studentViewController.makeE()}">
+                                <f:ajax execute="@form =" render="@none"/>
+                            </h:commandButton>
+                            <br/>
+
+                            <div align="center">
+                                <p:inputText id="studentResponse" placeholder="Enter Answer..." style="box-shadow: none; display: none; width: 250px; height: 25px; " value="#{studentViewController.freeResponseAnswer}" >
+                                    <f:ajax execute="@form =" render="@none"/>
+                                </p:inputText>
+                            </div>
+                            <br/>
+                            <br/>
+                            <div align="center">
+                                <h:commandButton id="submit" class="login" 
+                                                 style="font-family: Lato; word-wrap: break-word; display:none; width: 140px !important; height: 50px !important; background: #313134 !important; color: white !important; font-weight: 300 !important; box-shadow: none !important; text-decoration: none !important; font-size: 15px !important; border-style: solid !important; border-width: 1px !important;" value="SUBMIT" action="#{studentViewController.submit()}">
+                                </h:commandButton>
+                            </div>
+
+                            <p:outputLabel id="waitField" style="font-family: Lato; font-size: 25px; width: 750px; height: 400px; padding-top: 100px;">
                                 Please wait for the next question...
-                                <br/>
-                                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
+                                <br/><br/>
+                                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
                             </p:outputLabel>
 
 

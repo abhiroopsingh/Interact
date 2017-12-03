@@ -428,6 +428,11 @@ Style the div component whose unique id is "rightAlignPanelGroup" per reference
     background: #0aa9f7 !important;
     border-color: #0aa9f7 !important;
 }
+.login:active {
+    background: #0aa9f7 !important;
+    border-color: #0aa9f7 !important;
+}
+
 
 .signup_button:hover {
     border-color: #0aa9f7;
@@ -744,9 +749,12 @@ td.hPage {
 
 .active:focus {
 
-    background-color: black;
-    color: white;
+    border-color: #0aa9f7;
+}
 
+.active:hover {
+
+    border-color: #0aa9f7;
 }
 
 .ui-datatable thead th,
@@ -755,10 +763,11 @@ td.hPage {
 .ui-datatable tbody td {
     border-style: none !important;
     text-align: center !important;
-    
+
 }
 
 .companyHeaderGrid.ui-panelgrid>*>tr,
 .companyHeaderGrid.ui-panelgrid .ui-panelgrid-cell {
     border: none;
 }
+
