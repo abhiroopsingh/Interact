@@ -4,6 +4,7 @@
  */
 package com.Interact.controllers;
 
+import com.Interact.Entities.Questions;
 import com.Interact.Entities.UserAnswers;
 import java.io.Serializable;
 import java.util.HashMap;
@@ -43,13 +44,22 @@ public class StatsController implements Serializable {
     private String secondMostCommonFree;
     private String thirdMostCommonFree;
 
+    private int freeRight;
+    private int freeWrong;
+
+    private int totalResponses;
+
+    private Map<String, Integer> occurences;
+
     public StatsController() {
 
     }
-    
+
     private class Answer implements Comparable<Answer> {
+
         String answer;
         int occurences;
+
         private Answer(String s, int i) {
             answer = s;
             occurences = i;
@@ -61,14 +71,16 @@ public class StatsController implements Serializable {
         }
     }
 
-    public void prepareCreate(String questionId) {
+    public void prepareCreate(Questions question) {
         String sessionId = sessionsController.getSelected().getId();
 
         List<UserAnswers> userAnswers = userAnswersFacade.findBySession(
                 sessionId);
 
-        Map<String, Integer> occurences = new HashMap<>();
-        int totalResponses = 0;
+        occurences = new HashMap<>();
+        totalResponses = 0;
+
+        String questionId = String.valueOf(question.getId());
 
         for (UserAnswers u : userAnswers) {
             JSONObject jsonObject = new JSONObject(u.getAnswers());
@@ -79,22 +91,35 @@ public class StatsController implements Serializable {
                         (occurences.containsKey(answer) ? occurences.get(answer) : 0) + 1);
             }
         }
-        if (occurences.containsKey("A")) {
-            setA(convertToPercent(occurences.get("A"), totalResponses));
+        if (question.getQuestionType().equals("Text Entry")) {
+            findMostCommon(occurences);
+            String correctAnswer = question.getAnswer();
+            if (occurences.containsKey(correctAnswer.toLowerCase())) {
+                freeRight = occurences.get(correctAnswer.toLowerCase());
+            } else {
+                freeRight = 0;
+            }
+            freeWrong = totalResponses - freeRight;
+        } else {
+            if (occurences.containsKey("a")) {
+                setA(convertToPercent(occurences.get("a"), totalResponses));
+            }
+            if (occurences.containsKey("b")) {
+                setB(convertToPercent(occurences.get("b"), totalResponses));
+            }
+            if (occurences.containsKey("c")) {
+                setC(convertToPercent(occurences.get("c"), totalResponses));
+            }
+            if (occurences.containsKey("d")) {
+                setD(convertToPercent(occurences.get("d"), totalResponses));
+            }
+            if (occurences.containsKey("e")) {
+                setE(convertToPercent(occurences.get("e"), totalResponses));
+            }
         }
-        if (occurences.containsKey("B")) {
-            setB(convertToPercent(occurences.get("B"), totalResponses));
-        }
-        if (occurences.containsKey("C")) {
-            setC(convertToPercent(occurences.get("C"), totalResponses));
-        }
-        if (occurences.containsKey("D")) {
-            setD(convertToPercent(occurences.get("D"), totalResponses));
-        }
-        if (occurences.containsKey("E")) {
-            setE(convertToPercent(occurences.get("E"), totalResponses));
-        }
-        findMostCommon(occurences);
+        
+        System.out.println(occurences.toString());
+        
     }
 
     private String convertToPercent(int responses, int total) {
@@ -103,12 +128,26 @@ public class StatsController implements Serializable {
 
     private void findMostCommon(Map<String, Integer> map) {
         PriorityQueue<Answer> queue = new PriorityQueue<>();
-        for(String s : map.keySet()) {
+        for (String s : map.keySet()) {
             queue.offer(new Answer(s, map.get(s)));
         }
-        firstMostCommonFree = queue.size() > 0 ? queue.poll().answer : "N/A";
-        secondMostCommonFree = queue.size() > 0 ? queue.poll().answer : "N/A";
-        thirdMostCommonFree = queue.size() > 0 ? queue.poll().answer : "N/A";
+        firstMostCommonFree = queue.size() > 0 ? queue.poll().answer : null;
+        secondMostCommonFree = queue.size() > 0 ? queue.poll().answer : null;
+        thirdMostCommonFree = queue.size() > 0 ? queue.poll().answer : null;
+    }
+
+    public String getTopAnswers() {
+        String result = "";
+        if (firstMostCommonFree != null) {
+            result += firstMostCommonFree;
+        }
+        if (secondMostCommonFree != null) {
+            result += ", " + secondMostCommonFree;
+        }
+        if (thirdMostCommonFree != null) {
+            result += ", " + thirdMostCommonFree;
+        }
+        return result;
     }
 
     public String getA() {
@@ -175,4 +214,19 @@ public class StatsController implements Serializable {
         this.thirdMostCommonFree = thirdMostCommonFree;
     }
 
+    public int getFreeRight() {
+        return freeRight;
+    }
+
+    public void setFreeRight(int freeRight) {
+        this.freeRight = freeRight;
+    }
+
+    public int getFreeWrong() {
+        return freeWrong;
+    }
+
+    public void setFreeWrong(int freeWrong) {
+        this.freeWrong = freeWrong;
+    }
 }
