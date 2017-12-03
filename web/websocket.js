@@ -28,6 +28,7 @@ function onMessage(event) {
             document.getElementById("studentView:waitField").style.display = "none";
             document.getElementById("studentView:submit").disabled = false;
             document.getElementById("studentViewQuestion").innerHTML = device.question;
+            
             if (device.questionType === "Text Entry") {
                 document.getElementById("studentView:studentResponse").style.display = "block";
                 document.getElementById("studentView:studentViewOptionA").style.display = "none";
@@ -39,7 +40,7 @@ function onMessage(event) {
                 qid([{name: 'questionID', value: device.id}]);
                 return;
             }
-
+            document.getElementById("studentView:studentResponse").style.display = "none";
             if (device.A) {
                 document.getElementById("studentView:studentViewOptionA").value = ("A. " + device.A);
                 document.getElementById("studentView:studentViewOptionA").style.display = "block";
@@ -74,7 +75,7 @@ function onMessage(event) {
                 document.getElementById("studentView:studentViewOptionE").value = ("E. " + device.E);
                 document.getElementById("studentView:studentViewOptionE").style.display = "block";
             }
-
+            
             document.getElementById("studentView:submit").style.display = "block";
 
             qid([{name: 'questionID', value: device.id}]);
