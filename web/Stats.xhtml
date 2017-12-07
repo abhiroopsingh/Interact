@@ -9,46 +9,48 @@
     <ui:composition>
 
         <p:dialog id="StatsDlg" widgetVar="StatsDialog" modal="true" resizable="false" appendTo="@(body)" header="Student Answers">
-            <h:form id="StatsForm">
-                <h:panelGroup id="display">
-                    <p:panelGrid columns="2">
-                        <p:outputLabel value="Correct Answer: " />
-                        <p:outputLabel value="#{masterViewController.question.answer}"/>
+            <h:form id="StatsForm" style="width:400px;">
+                <div align="center">
+                    <h:panelGroup id="display">
+                        <p:panelGrid columns="2" styleClass="companyHeaderGrid">
+                            <p:outputLabel style="font-family: Lato;" value="Correct Answer: " />
+                            <p:outputLabel style="font-family: Lato;" value="#{masterViewController.question.answer}"/>
 
-                        <c:if test="#{masterViewController.question.questionType eq 'Text Entry'}"> 
-                            <p:outputLabel value="Answered Correct:" />
-                            <p:outputLabel value="#{statsController.freeRight}"/>
-                            <p:outputLabel value="Answered Incorrect: " />
-                            <p:outputLabel value="#{statsController.freeWrong}"/>
-                            <p:outputLabel value="Top Answers: " />
-                            <p:outputLabel value="#{statsController.topAnswers}"/>
-                        </c:if> 
+                            <c:if test="#{masterViewController.question.questionType eq 'Text Entry'}"> 
+                                <p:outputLabel style="font-family: Lato;" value="Answered Correct:" />
+                                <p:outputLabel style="font-family: Lato;" value="#{statsController.freeRight}"/>
+                                <p:outputLabel style="font-family: Lato;" value="Answered Incorrect: " />
+                                <p:outputLabel style="font-family: Lato;" value="#{statsController.freeWrong}"/>
+                                <p:outputLabel style="font-family: Lato;" value="Top Answers: " />
+                                <p:outputLabel style="font-family: Lato;" value="#{statsController.topAnswers}"/>
+                            </c:if> 
 
 
-                        <c:if test="#{masterViewController.question.questionType eq 'Multiple Choice'}">
-                            <p:outputLabel value="A: " rendered="#{not empty masterViewController.question.multipleChoiceA}"/>
-                            <p:outputLabel value="#{statsController.a}" rendered="#{not empty masterViewController.question.multipleChoiceA}"/>
-                            <p:outputLabel value="B:" rendered="#{not empty masterViewController.question.multipleChoiceB}"/>
-                            <p:outputLabel value="#{statsController.b}" rendered="#{not empty masterViewController.question.multipleChoiceB}"/>
-                            <p:outputLabel value="C: " rendered="#{not empty masterViewController.question.multipleChoiceC}"/>
-                            <p:outputLabel value="#{statsController.c}" rendered="#{not empty masterViewController.question.multipleChoiceC}"/>
-                            <p:outputLabel value="D: " rendered="#{not empty masterViewController.question.multipleChoiceD}"/>
-                            <p:outputLabel value="#{statsController.d}" rendered="#{not empty masterViewController.question.multipleChoiceD}"/>
-                            <p:outputLabel value="E: " rendered="#{not empty masterViewController.question.multipleChoiceE}"/>
-                            <p:outputLabel value="#{statsController.e}" rendered="#{not empty masterViewController.question.multipleChoiceE}"/>
-                        </c:if>
+                            <c:if test="#{masterViewController.question.questionType eq 'Multiple Choice'}">
+                                <p:outputLabel style="font-family: Lato;" value="A: " rendered="#{not empty masterViewController.question.multipleChoiceA}"/>
+                                <p:outputLabel style="font-family: Lato;" value="#{statsController.a}" rendered="#{not empty masterViewController.question.multipleChoiceA}"/>
+                                <p:outputLabel style="font-family: Lato;" value="B:" rendered="#{not empty masterViewController.question.multipleChoiceB}"/>
+                                <p:outputLabel style="font-family: Lato;" value="#{statsController.b}" rendered="#{not empty masterViewController.question.multipleChoiceB}"/>
+                                <p:outputLabel style="font-family: Lato;" value="C: " rendered="#{not empty masterViewController.question.multipleChoiceC}"/>
+                                <p:outputLabel style="font-family: Lato;" value="#{statsController.c}" rendered="#{not empty masterViewController.question.multipleChoiceC}"/>
+                                <p:outputLabel style="font-family: Lato;" value="D: " rendered="#{not empty masterViewController.question.multipleChoiceD}"/>
+                                <p:outputLabel style="font-family: Lato;" value="#{statsController.d}" rendered="#{not empty masterViewController.question.multipleChoiceD}"/>
+                                <p:outputLabel style="font-family: Lato;" value="E: " rendered="#{not empty masterViewController.question.multipleChoiceE}"/>
+                                <p:outputLabel style="font-family: Lato;" value="#{statsController.e}" rendered="#{not empty masterViewController.question.multipleChoiceE}"/>
+                            </c:if>
 
-                        <c:if test="#{masterViewController.question.questionType eq 'True/False'}">
-                            <p:outputLabel value="TRUE:" />
-                            <p:outputLabel value="#{statsController.a}"/>
-                            <p:outputLabel value="FALSE:" />
-                            <p:outputLabel value="#{statsController.b}"/>
-                        </c:if>
+                            <c:if test="#{masterViewController.question.questionType eq 'True/False'}">
+                                <p:outputLabel style="font-family: Lato;" value="True:" />
+                                <p:outputLabel style="font-family: Lato;" value="#{statsController.a}"/>
+                                <p:outputLabel style="font-family: Lato;" value="False:" />
+                                <p:outputLabel style="font-family: Lato;" value="#{statsController.b}"/>
+                            </c:if>
 
-                        <p:outputLabel value="Total Responses: " />
-                        <p:outputLabel value="#{statsController.totalResponses}"/>
-                    </p:panelGrid>
-                </h:panelGroup>
+                            <p:outputLabel style="font-family: Lato;" value="Total Responses: " />
+                            <p:outputLabel style="font-family: Lato;" value="#{statsController.totalResponses}"/>
+                        </p:panelGrid>
+                    </h:panelGroup>
+                </div>
             </h:form>
         </p:dialog>
 

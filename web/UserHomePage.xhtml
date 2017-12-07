@@ -64,9 +64,9 @@ Copyright © 2017 Osman Balci. All rights reserved.
 
                             <p:column>
                                 <div align="center">
-                                    <p:commandButton id="startButton" class="login"
+                                    <p:commandButton id="startButton" class="login" disabled="#{sessionsController.sessionOver(item.id)}"
                                                      style="width: 140px; height: 50px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 15px; border-style: solid; border-width: 1px;"
-                                                     value="Start" update="masterSessions" disabled="false" action="#{sessionsController.startSession()}">
+                                                     value="Start" update="masterSessions" action="#{sessionsController.startSession()}">
                                         <f:param name="sessId" value="#{item.id}" />
                                     </p:commandButton>    
                                 </div>
@@ -76,7 +76,7 @@ Copyright © 2017 Osman Balci. All rights reserved.
                                 <div align="center">
 
                                     <p:commandButton id="editButton" style="width: 140px; height: 50px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 15px; border-style: solid; border-width: 1px;"
-                                                     update="masterSessions" class="login" value="Edit" 
+                                                     update="masterSessions" class="login" value="Edit" disabled="#{sessionsController.sessionOver(item.id)}"
                                                      action="#{sessionsController.routeSessions}">
                                         <f:param name="sessId" value="#{item.id}" />
                                     </p:commandButton>   
@@ -87,7 +87,7 @@ Copyright © 2017 Osman Balci. All rights reserved.
                                 <div align="center">
 
                                     <p:commandButton id="deleteButton" style="width: 140px; height: 50px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 15px; border-style: solid; border-width: 1px;"
-                                                     update="masterSessions" class="login" value="Delete"
+                                                     update="masterSessions" class="login" value="Delete" 
                                                      action="#{sessionsController.destroy()}">
                                         <f:param name="deleteId" value="#{item.id}" />
                                     </p:commandButton>
