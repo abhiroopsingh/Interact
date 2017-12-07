@@ -64,7 +64,7 @@ Copyright © 2017 Osman Balci. All rights reserved.
 
                             <p:column>
                                 <div align="center">
-                                    <p:commandButton id="startButton" class="login" disabled="#{sessionsController.sessionOver(item.id)}"
+                                    <p:commandButton id="startButton" class="login" disabled="#{sessionsController.sessionOver(item.id) or sessionsController.numQuestions(item.id) == 0}"
                                                      style="width: 140px; height: 50px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 15px; border-style: solid; border-width: 1px;"
                                                      value="Start" update="masterSessions" action="#{sessionsController.startSession()}">
                                         <f:param name="sessId" value="#{item.id}" />

@@ -32,6 +32,8 @@ public class SessionsController implements Serializable {
 
     @EJB
     private com.Interact.FacadeBeans.SessionsFacade ejbFacade;
+    @EJB
+    private com.Interact.FacadeBeans.QuestionsFacade questionsFacade;
     private List<Sessions> items = null;
     private Sessions selected;
 
@@ -120,10 +122,12 @@ public class SessionsController implements Serializable {
     }
     
     public boolean sessionOver(String sessionId){
-        System.out.println(sessionId);
         Sessions session = ejbFacade.findById(sessionId);
-        System.out.println(session.getStatus());
         return session.getStatus() == 2;
+    }
+    
+    public int numQuestions(String sessionId){
+        return questionsFacade.findBySessionId(sessionId).size();
     }
 
     public Sessions prepareCreate() {
