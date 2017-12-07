@@ -14,28 +14,28 @@
                     <p:panelGrid columns="2">
                         <p:outputLabel value="Correct Answer: " />
                         <p:outputLabel value="#{masterViewController.question.answer}"/>
-                        
+
                         <c:if test="#{masterViewController.question.questionType eq 'Text Entry'}"> 
                             <p:outputLabel value="Answered Correct:" />
                             <p:outputLabel value="#{statsController.freeRight}"/>
                             <p:outputLabel value="Answered Incorrect: " />
                             <p:outputLabel value="#{statsController.freeWrong}"/>
-                            <p:outputLabel value="Top 3 Answers: " />
+                            <p:outputLabel value="Top Answers: " />
                             <p:outputLabel value="#{statsController.topAnswers}"/>
                         </c:if> 
 
 
                         <c:if test="#{masterViewController.question.questionType eq 'Multiple Choice'}">
                             <p:outputLabel value="A: " rendered="#{not empty masterViewController.question.multipleChoiceA}"/>
-                            <p:outputLabel value="#{statsController.a}"/>
+                            <p:outputLabel value="#{statsController.a}" rendered="#{not empty masterViewController.question.multipleChoiceA}"/>
                             <p:outputLabel value="B:" rendered="#{not empty masterViewController.question.multipleChoiceB}"/>
-                            <p:outputLabel value="#{statsController.b}"/>
+                            <p:outputLabel value="#{statsController.b}" rendered="#{not empty masterViewController.question.multipleChoiceB}"/>
                             <p:outputLabel value="C: " rendered="#{not empty masterViewController.question.multipleChoiceC}"/>
-                            <p:outputLabel value="#{statsController.c}"/>
+                            <p:outputLabel value="#{statsController.c}" rendered="#{not empty masterViewController.question.multipleChoiceC}"/>
                             <p:outputLabel value="D: " rendered="#{not empty masterViewController.question.multipleChoiceD}"/>
-                            <p:outputLabel value="#{statsController.d}"/>
+                            <p:outputLabel value="#{statsController.d}" rendered="#{not empty masterViewController.question.multipleChoiceD}"/>
                             <p:outputLabel value="E: " rendered="#{not empty masterViewController.question.multipleChoiceE}"/>
-                            <p:outputLabel value="#{statsController.e}"/>
+                            <p:outputLabel value="#{statsController.e}" rendered="#{not empty masterViewController.question.multipleChoiceE}"/>
                         </c:if>
 
                         <c:if test="#{masterViewController.question.questionType eq 'True/False'}">
@@ -44,6 +44,9 @@
                             <p:outputLabel value="FALSE:" />
                             <p:outputLabel value="#{statsController.b}"/>
                         </c:if>
+
+                        <p:outputLabel value="Total Responses: " />
+                        <p:outputLabel value="#{statsController.totalResponses}"/>
                     </p:panelGrid>
                 </h:panelGroup>
             </h:form>

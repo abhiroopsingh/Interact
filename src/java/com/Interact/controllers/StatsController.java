@@ -26,19 +26,16 @@ import org.primefaces.json.JSONObject;
 public class StatsController implements Serializable {
 
     @EJB
-    private com.Interact.FacadeBeans.SessionsFacade sessionsFacade;
-
-    @EJB
     private com.Interact.FacadeBeans.UserAnswersFacade userAnswersFacade;
 
     @Inject
     private SessionsController sessionsController;
 
-    private String a = "0%";
-    private String b = "0%";
-    private String c = "0%";
-    private String d = "0%";
-    private String e = "0%";
+    private String a;
+    private String b;
+    private String c;
+    private String d;
+    private String e;
 
     private String firstMostCommonFree;
     private String secondMostCommonFree;
@@ -72,13 +69,26 @@ public class StatsController implements Serializable {
     }
 
     public void prepareCreate(Questions question) {
+        a = "0%";
+        b = "0%";
+        c = "0%";
+        d = "0%";
+        e = "0%";
+
+        firstMostCommonFree = null;
+        secondMostCommonFree = null;
+        thirdMostCommonFree = null;
+
+        freeRight = 0;
+        freeWrong = 0;
+        totalResponses = 0;
+
+        occurences = new HashMap<>();
+
         String sessionId = sessionsController.getSelected().getId();
 
         List<UserAnswers> userAnswers = userAnswersFacade.findBySession(
                 sessionId);
-
-        occurences = new HashMap<>();
-        totalResponses = 0;
 
         String questionId = String.valueOf(question.getId());
 
@@ -117,9 +127,9 @@ public class StatsController implements Serializable {
                 setE(convertToPercent(occurences.get("e"), totalResponses));
             }
         }
-        
+
         System.out.println(occurences.toString());
-        
+
     }
 
     private String convertToPercent(int responses, int total) {
@@ -228,5 +238,9 @@ public class StatsController implements Serializable {
 
     public void setFreeWrong(int freeWrong) {
         this.freeWrong = freeWrong;
+    }
+
+    public int getTotalResponses() {
+        return totalResponses;
     }
 }
