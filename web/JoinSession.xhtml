@@ -40,38 +40,37 @@ Copyright © 2017 Andy Sin. All rights reserved.
 
                             <br/>
                             <br/>
-
-                            <h:commandButton id="studentViewOptionA" class="active" style="font-family: Lato; font-size: 25px; word-wrap: break-word; display:none; background: white; box-shadow: none !important; border-style: solid; border-width: 2px; text-decoration: none;" action="#{studentViewController.makeA()}">
-                                <f:ajax execute="@form =" render="@none"/>
-                            </h:commandButton>
-                            <br/>
-
-                            <h:commandButton id="studentViewOptionB" class="active"  style="font-family: Lato; font-size: 25px; word-wrap: break-word; display:none; background: white; box-shadow: none !important; border-style: solid; border-width: 2px; text-decoration: none;" action="#{studentViewController.makeB()}">
-                                <f:ajax execute="@form =" render="@none"/>
-                            </h:commandButton>
-                            <br/>
-
-                            <h:commandButton id="studentViewOptionC" class="active" style="font-family: Lato; font-size: 25px; word-wrap: break-word; display:none; background: white; box-shadow: none !important; border-style: solid; border-width: 2px; text-decoration: none;" action="#{studentViewController.makeC()}">
-                                <f:ajax execute="@form =" render="@none"/>
-                            </h:commandButton>
-                            <br/>
-
-                            <h:commandButton id="studentViewOptionD" class="active"  style="font-family: Lato; font-size: 25px; word-wrap: break-word; display:none; background: white; box-shadow: none !important; border-style: solid; border-width: 2px; text-decoration: none;" action="#{studentViewController.makeD()}">
-                                <f:ajax execute="@form =" render="@none"/>
-                            </h:commandButton>
-                            <br/>
-
-                            <h:commandButton id="studentViewOptionE" class="active" style="font-family: Lato; font-size: 25px; word-wrap: break-word; display:none; background: white; box-shadow: none !important; border-style: solid; border-width: 2px; text-decoration: none;" action="#{studentViewController.makeE()}">
-                                <f:ajax execute="@form =" render="@none"/>
-                            </h:commandButton>
-                            <br/>
-
                             <div align="center">
-                                <p:inputText id="studentResponse" placeholder="Enter Answer..." style="box-shadow: none; display: none; width: 250px; height: 25px; " value="#{studentViewController.freeResponseAnswer}" >
+                                <p:inputText id="studentResponse" placeholder="Enter Answer..." style="box-shadow: none; display: none; width: 250px; height: 30px; " value="#{studentViewController.freeResponseAnswer}" >
                                     <f:ajax execute="@form =" render="@none"/>
                                 </p:inputText>
                             </div>
+
+                            <h:commandButton id="studentViewOptionA" class="active" style="font-family: Lato; font-size: 25px; word-wrap: break-word; display:none; background: white; box-shadow: none !important; border-style: solid; border-width: 2px; text-decoration: none; margin-left: 50px;" action="#{studentViewController.makeA()}">
+                                <f:ajax execute="@form =" render="@none"/>
+                            </h:commandButton>
                             <br/>
+
+                            <h:commandButton id="studentViewOptionB" class="active"  style="font-family: Lato; font-size: 25px; word-wrap: break-word; display:none; background: white; box-shadow: none !important; border-style: solid; border-width: 2px; text-decoration: none; margin-left: 50px;" action="#{studentViewController.makeB()}">
+                                <f:ajax execute="@form =" render="@none"/>
+                            </h:commandButton>
+                            <br/>
+
+                            <h:commandButton id="studentViewOptionC" class="active" style="font-family: Lato; font-size: 25px; word-wrap: break-word; display:none; background: white; box-shadow: none !important; border-style: solid; border-width: 2px; text-decoration: none; margin-left: 50px;" action="#{studentViewController.makeC()}">
+                                <f:ajax execute="@form =" render="@none"/>
+                            </h:commandButton>
+                            <br/>
+
+                            <h:commandButton id="studentViewOptionD" class="active"  style="font-family: Lato; font-size: 25px; word-wrap: break-word; display:none; background: white; box-shadow: none !important; border-style: solid; border-width: 2px; text-decoration: none; margin-left: 50px;" action="#{studentViewController.makeD()}">
+                                <f:ajax execute="@form =" render="@none"/>
+                            </h:commandButton>
+                            <br/>
+
+                            <h:commandButton id="studentViewOptionE" class="active" style="font-family: Lato; font-size: 25px; word-wrap: break-word; display:none; background: white; box-shadow: none !important; border-style: solid; border-width: 2px; text-decoration: none; margin-left: 50px;" action="#{studentViewController.makeE()}">
+                                <f:ajax execute="@form =" render="@none"/>
+                            </h:commandButton>
+                            <br/>
+
                             <br/>
                             <div align="center">
                                 <h:commandButton id="submit" class="login" 
@@ -79,10 +78,10 @@ Copyright © 2017 Andy Sin. All rights reserved.
                                 </h:commandButton>
                             </div>
 
-                            <p:outputLabel id="waitField" style="font-family: Lato; font-size: 25px; width: 750px; height: 400px; padding-top: 100px;">
+                            <p:outputLabel id="waitField" style="font-family: Lato; font-size: 25px; width: 750px; height: 450px; padding-top: 100px;">
                                 Please wait for the next question...
                                 <br/><br/>
-                                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+                                <i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i>
                             </p:outputLabel>
 
 

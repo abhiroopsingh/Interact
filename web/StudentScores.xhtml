@@ -17,68 +17,68 @@ Copyright © 2017 Akhil Gangu. All rights reserved.
         <ui:define name="editableContent" >
             <div id="topMain" background-color="transparent">
 
-                    <h:form>
-                        <p:dataTable id="classScores" value="#{scoresController.dummyList}" style="font-family: Lato" scrollable="false">
-                            <f:facet name="header">
-                                Class Statistics
-                            </f:facet>
-                            
-                            <p:column headerText="Total Participants">
-                                <h:outputLabel value="#{scoresController.sessionAnswers.size()}"/>
-                            </p:column>
-                            
-                            <p:column headerText="Minimum">
-                                <h:outputLabel value="#{scoresController.low}"/>
-                            </p:column>
-                            
-                            <p:column headerText="Median">
-                                <h:outputLabel value="#{scoresController.median}"/>
-                            </p:column>
-                            
-                            <p:column headerText="Average">
-                                <h:outputLabel value="#{scoresController.avg}"/>
-                            </p:column>
-                            
-                            <p:column headerText="Maximum">
-                                <h:outputLabel value="#{scoresController.high}"/>
-                            </p:column>
-                            
-                        </p:dataTable>
-                        
-                        <br/>
-                        <br/>
-                        
-                        <p:dataTable id="studentScores" var="item" value="#{scoresController.sessionAnswers}" style="font-family: Lato" scrollable="true" scrollHeight="500">
-                            <f:facet name="header">
-                                Student Scores
-                            </f:facet>
+                <div align="center"> <index_header>Class Statistics</index_header></div>
+                <br/>
+                <h:form>
+                    <p:dataTable id="classScores" value="#{scoresController.dummyList}" style="font-family: Lato" scrollable="false">
 
-                            <p:column headerText="Student User ID">
-                                <h:outputLabel value="#{item.username}"/>
-                            </p:column>
-                            
-                            <p:column headerText="First Name">
-                                <h:outputLabel value="#{item.username.firstName}"/>
-                            </p:column>
-                            
-                             <p:column headerText="Last Name">
-                                 <h:outputLabel value="#{item.username.lastName}"/>
-                            </p:column>
+                        <p:column headerText="Total Participants">
+                            <h:outputLabel value="#{scoresController.sessionAnswers.size()}"/>
+                        </p:column>
 
-                            <p:column headerText="Score">
-                                <h:outputLabel value="#{item.grade}"/>
-                            </p:column> 
+                        <p:column headerText="Minimum">
+                            <h:outputLabel value="#{scoresController.low}"/>
+                        </p:column>
 
-                            <p:column headerText="Total Possible Points">
-                                <h:outputLabel value="#{scoresController.totalPoints}"/>
-                            </p:column>
+                        <p:column headerText="Median">
+                            <h:outputLabel value="#{scoresController.median}"/>
+                        </p:column>
 
-                            <p:column headerText="Percent(%)">
-                                <h:outputLabel value="#{scoresController.calculatePercent(item.grade)}">
-                                </h:outputLabel>
-                            </p:column> 
-                        </p:dataTable>
-                    </h:form>
+                        <p:column headerText="Average">
+                            <h:outputLabel value="#{scoresController.avg}"/>
+                        </p:column>
+
+                        <p:column headerText="Maximum">
+                            <h:outputLabel value="#{scoresController.high}"/>
+                        </p:column>
+
+                    </p:dataTable>
+
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+
+                    <div align="center"> <index_header>Student Scores</index_header></div>
+                    <br/>
+                    <p:dataTable id="studentScores" var="item" value="#{scoresController.sessionAnswers}" style="font-family: Lato" scrollable="true" scrollHeight="350">
+
+                        <p:column headerText="Student User ID">
+                            <h:outputLabel value="#{item.username}"/>
+                        </p:column>
+
+                        <p:column headerText="First Name">
+                            <h:outputLabel value="#{item.username.firstName}"/>
+                        </p:column>
+
+                        <p:column headerText="Last Name">
+                            <h:outputLabel value="#{item.username.lastName}"/>
+                        </p:column>
+
+                        <p:column headerText="Score">
+                            <h:outputLabel value="#{item.grade}"/>
+                        </p:column> 
+
+                        <p:column headerText="Total Possible Points">
+                            <h:outputLabel value="#{scoresController.totalPoints}"/>
+                        </p:column>
+
+                        <p:column headerText="Percent(%)">
+                            <h:outputLabel value="#{scoresController.calculatePercent(item.grade)}">
+                            </h:outputLabel>
+                        </p:column> 
+                    </p:dataTable>
+                </h:form>
 
             </div>
         </ui:define>
