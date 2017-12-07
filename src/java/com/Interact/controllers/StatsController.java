@@ -224,16 +224,16 @@ public class StatsController implements Serializable {
         this.thirdMostCommonFree = thirdMostCommonFree;
     }
 
-    public int getFreeRight() {
-        return freeRight;
+    public String getFreeRight() {
+        return convertToPercent(freeRight, totalResponses);
     }
 
     public void setFreeRight(int freeRight) {
         this.freeRight = freeRight;
     }
 
-    public int getFreeWrong() {
-        return freeWrong;
+    public String getFreeWrong() {
+        return convertToPercent(freeWrong, totalResponses);
     }
 
     public void setFreeWrong(int freeWrong) {
