@@ -56,10 +56,6 @@ Copyright © 2017 Andy Sin. All rights reserved.
                         </h:panelGroup>
                     </p:panelGrid>
                     <p:panelGrid id="topGrid1" columns="2" layout="grid">
-                        <h:panelGrid id="displayStat">
-                            <p:poll interval="1" update="votes" widgetVar="poll" autoStart="false"/>
-                            <p:chart id="votes" type="pie" model="#{liveChart.livePieModel}" style="width:600px;height:400px"/>
-                        </h:panelGrid>
                         <h:panelGroup id="display">
 
                             <br/>
@@ -90,6 +86,10 @@ Copyright © 2017 Andy Sin. All rights reserved.
                                 </c:otherwise>
                             </c:choose>
                         </h:panelGroup>
+                        <h:panelGrid id="displayStat">
+                            <p:poll interval="1" update="votes" widgetVar="poll" autoStart="false"/>
+                            <p:chart id="votes" type="pie" model="#{liveChart.livePieModel}" style="width:600px;height:400px"/>
+                        </h:panelGrid>
                     </p:panelGrid>
                 </h:form>
                 <ui:include src="Stats.xhtml"/>
