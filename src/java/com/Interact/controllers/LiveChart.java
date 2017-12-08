@@ -12,25 +12,25 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import org.primefaces.json.JSONObject;
 import org.primefaces.model.chart.PieChartModel;
- 
+
 @Named("liveChart")
 @SessionScoped
 public class LiveChart implements Serializable {
-    
+
     @EJB
     private com.Interact.FacadeBeans.UserAnswersFacade userAnswersFacade;
-    
+
     @EJB
     private com.Interact.FacadeBeans.QuestionsFacade questionsFacade;
 
     @Inject
     private SessionsController sessionsController;
-    
+
     @Inject
     private MasterViewController masterViewController;
-    
+
     private PieChartModel livePieModel;
- 
+
     public PieChartModel getLivePieModel() {
 
         List<UserAnswers> userAnswers = userAnswersFacade.findBySession(
@@ -44,23 +44,25 @@ public class LiveChart implements Serializable {
             if (jsonObject.has(questionId)) {
                 totalCount++;
                 String answer = jsonObject.getString(questionId).toLowerCase();
+                if (question.getQuestionType().equals("Text Entry")) {
+                    answer = question.getAnswer().equalsIgnoreCase(answer) ? "Correct" : "Incorrect";
+                }
                 occurences.put(answer,
                         (occurences.containsKey(answer) ? occurences.get(answer) : 0) + 1);
             }
         }
         livePieModel = new PieChartModel();
         livePieModel.setTitle("Live Responses: " + totalCount);
-        if(occurences.isEmpty()){
+        if (occurences.isEmpty()) {
             // To show the graph initially
             livePieModel.set("A", 0);
-        }
-        else{
-            for(String option : occurences.keySet()){
+        } else {
+            for (String option : occurences.keySet()) {
                 livePieModel.set(option, occurences.get(option));
             }
             livePieModel.setLegendPosition("ne");
         }
-         
+
         return livePieModel;
     }
 }
