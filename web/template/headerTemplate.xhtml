@@ -34,9 +34,9 @@ Copyright © 2017 Abhiroop Singh. All rights reserved.
                                                                 style="width:80px; height:75px; max-height:300px; max-width:230px; border: none"
                                                                 alt="Company Logo" />
                             </h:link>
-                            <img src="resources/images/interact.png"
-                                 style="width:80px; height:75px; max-height:300px; max-width:230px; border: none"
-                                 alt="Logo" />
+                            <h:link outcome="UserHomePage"><img src="resources/images/interact.png"
+                                 style="width:300px; height:50px; max-height:300px; max-width:230px; border: none; padding-bottom: 0px;"
+                                 alt="Logo" /></h:link>
                         </c:if>
                         <c:if test="#{accountManager.isLoggedIn() == false}">
 
@@ -44,9 +44,9 @@ Copyright © 2017 Abhiroop Singh. All rights reserved.
                                                           style="width:80px; height:75px; max-height:300px; max-width:230px; border: none"
                                                           alt="Company Logo" />
                             </h:link>
-                            <img src="resources/images/interact.png"
-                                 style="width:300px; height:50px; max-height:300px; max-width:230px; border: none; padding-bottom: 10px;"
-                                 alt="Logo" />
+                            <h:link outcome="SignIn"><img src="resources/images/interact.png"
+                                 style="width:300px; height:50px !important; max-height:300px; max-width:230px; border: none; padding-bottom: 10px;"
+                                 alt="Logo" /></h:link>
                         </c:if>
 
 
