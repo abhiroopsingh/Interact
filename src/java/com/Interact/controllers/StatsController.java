@@ -30,12 +30,15 @@ public class StatsController implements Serializable {
 
     @Inject
     private SessionsController sessionsController;
+    
+    @Inject
+    private ChartView chartView;
 
-    private String a;
-    private String b;
-    private String c;
-    private String d;
-    private String e;
+    private int a;
+    private int b;
+    private int c;
+    private int d;
+    private int e;
 
     private String firstMostCommonFree;
     private String secondMostCommonFree;
@@ -69,11 +72,11 @@ public class StatsController implements Serializable {
     }
 
     public void prepareCreate(Questions question) {
-        a = "0%";
-        b = "0%";
-        c = "0%";
-        d = "0%";
-        e = "0%";
+        a = 0;
+        b = 0;
+        c = 0;
+        d = 0;
+        e = 0;
 
         firstMostCommonFree = null;
         secondMostCommonFree = null;
@@ -112,20 +115,21 @@ public class StatsController implements Serializable {
             freeWrong = totalResponses - freeRight;
         } else {
             if (occurences.containsKey("a")) {
-                setA(convertToPercent(occurences.get("a"), totalResponses));
+                a = occurences.get("a");
             }
             if (occurences.containsKey("b")) {
-                setB(convertToPercent(occurences.get("b"), totalResponses));
+                b = occurences.get("b");
             }
             if (occurences.containsKey("c")) {
-                setC(convertToPercent(occurences.get("c"), totalResponses));
+                c = occurences.get("c");
             }
             if (occurences.containsKey("d")) {
-                setD(convertToPercent(occurences.get("d"), totalResponses));
+                d = occurences.get("d");
             }
             if (occurences.containsKey("e")) {
-                setE(convertToPercent(occurences.get("e"), totalResponses));
+                e = occurences.get("e");
             }
+            chartView.init();
         }
 
         System.out.println(occurences.toString());
@@ -134,6 +138,10 @@ public class StatsController implements Serializable {
 
     private String convertToPercent(int responses, int total) {
         return Math.round((responses * 1.0 / total) * 100) + "%";
+    }
+
+    private long convertToLong(int responses, int total) {
+        return Math.round((responses * 1.0 / total) * 100);
     }
 
     private void findMostCommon(Map<String, Integer> map) {
@@ -161,43 +169,43 @@ public class StatsController implements Serializable {
     }
 
     public String getA() {
-        return a;
-    }
-
-    public void setA(String a) {
-        this.a = a;
+        return convertToPercent(a, totalResponses);
     }
 
     public String getB() {
-        return b;
-    }
-
-    public void setB(String b) {
-        this.b = b;
+        return convertToPercent(b, totalResponses);
     }
 
     public String getC() {
-        return c;
-    }
-
-    public void setC(String c) {
-        this.c = c;
+        return convertToPercent(c, totalResponses);
     }
 
     public String getD() {
-        return d;
-    }
-
-    public void setD(String d) {
-        this.d = d;
+        return convertToPercent(d, totalResponses);
     }
 
     public String getE() {
-        return e;
+        return convertToPercent(e, totalResponses);
     }
 
-    public void setE(String e) {
-        this.e = e;
+    public long getAInt() {
+        return convertToLong(a, totalResponses);
+    }
+
+    public long getBInt() {
+        return convertToLong(b, totalResponses);
+    }
+
+    public long getCInt() {
+        return convertToLong(c, totalResponses);
+    }
+
+    public long getDInt() {
+        return convertToLong(d, totalResponses);
+    }
+
+    public long getEInt() {
+        return convertToLong(e, totalResponses);
     }
 
     public String getFirstMostCommonFree() {

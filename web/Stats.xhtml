@@ -12,6 +12,11 @@
             <h:form id="StatsForm" style="width:400px;">
                 <div align="center">
                     <h:panelGroup id="display">
+
+                        <c:if test="#{masterViewController.question.questionType ne 'Text Entry'}">
+                            <p:chart type="bar" model="#{chartView.barModel}" style="height:300px"/>
+                        </c:if>
+
                         <p:panelGrid columns="2" styleClass="companyHeaderGrid">
                             <p:outputLabel style="font-family: Lato;" value="Correct Answer: " />
                             <p:outputLabel style="font-family: Lato;" value="#{masterViewController.question.answer}"/>
