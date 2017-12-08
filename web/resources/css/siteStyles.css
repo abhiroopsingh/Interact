@@ -775,3 +775,5 @@ td.hPage {
 .companyHeaderGrid.ui-panelgrid .ui-panelgrid-cell {
     border: none;
 }
+
+ .jqplot-table-legend { font-size: 20px; }

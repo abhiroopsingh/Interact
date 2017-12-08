@@ -51,14 +51,13 @@ public class LiveChart implements Serializable {
         if(occurences.isEmpty()){
             // To show the graph initially
             livePieModel.set("A", 0);
-            
         }
         else{
             for(String option : occurences.keySet()){
                 livePieModel.set(option, occurences.get(option));
             }
+            livePieModel.setLegendPosition("ne");
         }
-        livePieModel.setLegendPosition("ne");
          
         return livePieModel;
     }
