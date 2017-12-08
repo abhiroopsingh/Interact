@@ -36,12 +36,10 @@ Copyright © 2017 Andy Sin. All rights reserved.
 
                         <h:panelGroup>
                             <p:commandButton id="broadcast" style="width: 290px; height: 55px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 20px; border-style: solid; border-width: 1px;"
-                                             value="Broadcast" onclick="formSubmit(\'#{masterViewController.question}\');PF(\'poll\').start();" action="#{masterViewController.setBroadcast(true)}" class="login"/>
+                                             value="Broadcast" onclick="formSubmit(\'#{masterViewController.question}\');PF(\'poll\').start();" class="login"/>
                             <p:commandButton id="unbroadcast" style="display:none; width: 290px; height: 55px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 20px; border-style: solid; border-width: 1px;"
                                              value="Un-broadcast" onclick="formDisable(\'#{masterViewController.question}\');PF(\'poll\').stop();" action="#{statsController.prepareCreate(masterViewController.question)}" class="login"
-                                             update=":StatsForm" oncomplete="PF('StatsDialog').show()">
-                                <f:actionListener binding="#{masterViewController.setBroadcast(false)}" />
-                            </p:commandButton>
+                                             update=":StatsForm" oncomplete="PF('StatsDialog').show()"/>
                         </h:panelGroup>
                         <h:panelGroup>
                             <c:if test="#{masterViewController.isLastQuestion() == false}">

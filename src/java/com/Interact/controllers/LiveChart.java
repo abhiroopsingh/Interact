@@ -38,16 +38,18 @@ public class LiveChart implements Serializable {
         Questions question = masterViewController.getQuestion();
         String questionId = String.valueOf(question.getId());
         Map<String, Integer> occurences = new HashMap<String, Integer>();
+        int totalCount = 0;
         for (UserAnswers u : userAnswers) {
             JSONObject jsonObject = new JSONObject(u.getAnswers());
             if (jsonObject.has(questionId)) {
+                totalCount++;
                 String answer = jsonObject.getString(questionId).toLowerCase();
                 occurences.put(answer,
                         (occurences.containsKey(answer) ? occurences.get(answer) : 0) + 1);
             }
         }
         livePieModel = new PieChartModel();
-        livePieModel.setTitle("Live Response Stats");
+        livePieModel.setTitle("Live Responses: " + totalCount);
         if(occurences.isEmpty()){
             // To show the graph initially
             livePieModel.set("A", 0);
