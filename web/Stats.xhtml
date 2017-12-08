@@ -14,7 +14,7 @@
                     <h:panelGroup id="display">
 
                         <c:if test="#{masterViewController.question.questionType ne 'Text Entry'}">
-                            <p:chart type="bar" model="#{chartView.barModel}" style="height:300px"/>
+                            <p:chart type="bar" model="#{chartView.barModel}" style="height:300px; font-family: Lato;"/>
                         </c:if>
 
                         <p:panelGrid columns="2" styleClass="companyHeaderGrid">

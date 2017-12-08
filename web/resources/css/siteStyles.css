@@ -748,7 +748,7 @@ td.hPage {
 }
 
 .active {
-    
+
     word-wrap: break-word !important;
 }
 
@@ -776,4 +776,22 @@ td.hPage {
     border: none;
 }
 
- .jqplot-table-legend { font-size: 20px; }
+.jqplot-table-legend {
+    font-family: Lato !important;
+    font-size: 20px;
+    border: none;
+}
+
+.jqplot-series-canvas {
+  background: white;
+  border: white !important;
+  border-color: white !important;
+  border-width: 0px;
+}
+
+.jqplot-xaxis-label{
+    font-family: Lato;
+}
+.jqplot-yaxis-label{
+    font-family: Lato;
+}

@@ -86,9 +86,9 @@ Copyright © 2017 Andy Sin. All rights reserved.
                                 </c:otherwise>
                             </c:choose>
                         </h:panelGroup>
-                        <h:panelGrid id="displayStat">
+                        <h:panelGrid id="displayStat" style="background-color: transparent !important;">
                             <p:poll interval="1" update="votes" widgetVar="poll" autoStart="false"/>
-                            <p:chart id="votes" type="pie" model="#{liveChart.livePieModel}" style="width:600px;height:400px"/>
+                            <p:chart id="votes" type="pie" model="#{liveChart.livePieModel}" style="width:600px;height:400px; font-family: Lato; font-size: 25px; background-color: white;"/>
                         </h:panelGrid>
                     </p:panelGrid>
                 </h:form>

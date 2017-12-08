@@ -1,5 +1,5 @@
 window.onload = init;
-var socket = new WebSocket("ws://localhost:8080/Interact/actions");
+var socket = new WebSocket("ws://venus.cs.vt.edu/Interact/actions");
 socket.onmessage = onMessage;
 
 function onMessage(event) {

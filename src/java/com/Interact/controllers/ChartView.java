@@ -59,10 +59,9 @@ public class ChartView implements Serializable {
     private void createBarModel() {
         barModel = initBarModel();
 
-        barModel.setTitle("Results for Question");
+        barModel.setTitle("Class Responses");
 
         Axis xAxis = barModel.getAxis(AxisType.X);
-        xAxis.setLabel("Results");
 
         Axis yAxis = barModel.getAxis(AxisType.Y);
         yAxis.setLabel("Percantage of Total");
