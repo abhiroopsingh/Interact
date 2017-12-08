@@ -32,7 +32,7 @@ public class LiveChart implements Serializable {
     private PieChartModel livePieModel;
  
     public PieChartModel getLivePieModel() {
-        
+
         List<UserAnswers> userAnswers = userAnswersFacade.findBySession(
                 sessionsController.getSelected().getId());
         Questions question = masterViewController.getQuestion();

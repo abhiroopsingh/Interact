@@ -111,7 +111,7 @@ function formDisable(question) {
         decription: null
     };
     socket.send(JSON.stringify(DeviceAction));
-    document.getElementById("masterView:unbroadcast").disabled = true;
+    document.getElementById("masterView:unbroadcast").style.display = 'none';
 }
 
 function endSession() {
