@@ -60,7 +60,7 @@ public class MasterViewController implements Serializable {
 
         return sessionQuestions.get(questionNum);
     }
-    
+
     public void prepare() {
         sessionQuestions = questionsController.getSessionItems();
         questionNum = 0;
