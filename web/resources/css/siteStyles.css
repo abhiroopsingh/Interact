@@ -747,6 +747,11 @@ td.hPage {
     text-align: left;
 }
 
+.active {
+    
+    word-wrap: break-word !important;
+}
+
 .active:focus {
 
     border-color: #0aa9f7;
