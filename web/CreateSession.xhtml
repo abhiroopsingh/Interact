@@ -37,11 +37,16 @@ Copyright © 2016 Osman Balci. All rights reserved.
                     <br />
                     <br />
                     <br />
-                    <div align="center">
+                    <div align="center" style="display: inline-block">
+                        <p:commandButton id="Start" value="Start Session" action="#{sessionsController.startSession}" class="login" disabled="#{sessionsController.sessionOver(sessionsController.selected.getId()) or sessionsController.numQuestions(sessionsController.selected.getId()) == 0}"
+                                         style="width: 250px; height: 50px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 15px; border-style: solid; border-width: 1px; float:left;">
+                            <f:param name="sessId" value="#{sessionsController.selected.getId()}" />
+                        </p:commandButton>    
                         <p:commandButton id="createButton" value="Add Question" class="login"
-                                         style="width: 250px; height: 50px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 15px; border-style: solid; border-width: 1px;"
+                                         style="width: 250px; height: 50px; font-family: Lato; background: #313134; color: white; font-weight: 300; box-shadow: none; text-decoration: none; font-size: 15px; border-style: solid; border-width: 1px; float:left;"
                                          actionListener="#{questionsController.prepareCreate}" update=":QuestionsCreateForm" oncomplete="PF('QuestionsCreateDialog').show()"/>
                     </div>
+                    <br />
                     <br />
                     <br />
                 </div>

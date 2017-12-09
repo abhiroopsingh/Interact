@@ -1,5 +1,5 @@
 window.onload = init;
-var socket = new WebSocket("ws://venus.cs.vt.edu/Interact/actions");
+var socket = new WebSocket("ws://ec2-34-216-124-131.us-west-2.compute.amazonaws.com:8080/Interact/actions");
 socket.onmessage = onMessage;
 
 function onMessage(event) {
@@ -20,10 +20,14 @@ function onMessage(event) {
     var form = document.getElementById("studentView");
     var join_id = form.elements["joinKeyId"].value;
 
+    console.log("Join Key ID: " + join_id)
+
     if (device.session === join_id) {
+        
+        console.log("MATCHES ID");
 
         if (device.disable) {
-            document.getElementById("studentView:submit").disabled = true;
+            document.getElementById("studentView:submit").style.display = "none";
         } else {
             document.getElementById("studentView:waitField").style.display = "none";
             document.getElementById("studentView:submit").disabled = false;
@@ -107,8 +111,8 @@ function formDisable(question) {
     var DeviceAction = {
         action: "disable",
         name: question,
-        type: null,
-        decription: null
+        type: "",
+        decription: ""
     };
     socket.send(JSON.stringify(DeviceAction));
     document.getElementById("masterView:unbroadcast").style.display = 'none';
